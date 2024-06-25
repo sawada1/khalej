@@ -1,0 +1,46 @@
+
+
+@media(max-width:1000px){
+    .payment-order-section{
+        .main-one{
+            gap: 40px;
+        }
+        .custom-row{
+            width: 100%;
+            p{
+                width: 100% !important;
+            }
+        }
+        .image-container{
+            width: 100%;
+            height: 450px;
+            button{
+                width: 55% !important;
+            }
+        }
+    }
+}
+
+@media(max-width:775px){
+    .footer-container{
+        .main-links-container , .foot-line{
+            flex-direction: column;
+            gap: 40px;
+            text-align: center;
+        }
+        .image-container{
+            p{
+                width: 100% !important;
+            }
+            .icons{
+                justify-content: center;
+            }
+        }
+        .all-links{
+            gap: 80px !important; 
+        }
+        .foot-line{
+            gap: 20px;
+        }
+    }
+}

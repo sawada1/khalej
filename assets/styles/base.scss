@@ -1,16 +1,21 @@
 @import "./variables.scss";
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
+h1,h2,h3,h4,h5,h6{
+  margin: 0;
+}
+
 @font-face {
-    font-family: "Lama Sans";
-    src:url("/assets/fonts/LamaSans-Regular.ttf") format("truetype");
-    // font-weight: bolder;
-    font-display: swap;
-  }
+  font-family: "Lama Sans";
+  src: url("/assets/fonts/LamaSans-Regular.ttf") format("truetype");
+  // font-weight: bolder;
+  font-display: swap;
+}
 
 html,
 body {
@@ -27,163 +32,130 @@ body {
 // start product card 
 
 .car-card {
-    display: flex;
-    flex-direction: column;
-    border-radius: 16px;
-    background: #fff;
-    padding: 20px;
-    margin: 10px 0px;
-    position: relative;
-    // width: 100%;
-    height: fit-content;
-    .disc2 {
-      font-weight: 300 !important;
-      text-decoration: line-through;
-    }
-    .used {
-      width: fit-content;
-      padding: 0px 12px;
-      height: 33px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #fcf4e2;
-      font-size: 10px !important;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  background: #fff;
+  padding: 20px;
+  position: relative;
+  // width: 100%;
+  height: fit-content;
+
+  .disc2 {
+    font-weight: 300 !important;
+    text-decoration: line-through;
+  }
+
+  .compPrice {
+    display: inline-flex;
+    height: 26px;
+    padding: 2px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+    border: 1px solid $yellow;
+
+    span {
+      font-size: 14px;
       font-style: normal;
-      font-weight: 700 !important;
-      color: #dcb63b !important;
-      border-top-right-radius: 17px;
-      border-bottom-right-radius: 17px;
-      position: absolute;
-      z-index: 1;
-      top: 12px;
-      left: 0;
+      font-weight: 600;
+      color: $yellow;
+
     }
-  
-    .image {
+  }
+
+  .image {
+    width: 100%;
+    height: 163px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: #fafafa;
+    margin-bottom: 20px;
+
+    img {
       width: 100%;
-      height: 163px;
-  
+      border-radius: 8px;
+      height: 100%;
+      // object-fit: cover;
+      width: 188px;
+      height: 92px;
+    }
+  }
+
+  .name {
+    gap: 14px;
+    margin-top: 24px;
+
+    // margin-bottom: 10px;
+    span {
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      color: $sec;
+    }
+
+    h4 {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      color: $black;
+      // margin-top: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: relative;
+    }
+  }
+
+  .types {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: 20px;
+
+    .type {
       display: flex;
       align-items: center;
-      justify-content: center;
-      border-radius: 8px;
-      background: #fafafa;
-      // margin-bottom: 20px;
-      img {
-        width: 100%;
-        border-radius: 8px;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-    .name {
-      gap: 14px;
-      // margin-bottom: 10px;
+      gap: 5px;
+
       span {
-        font-size: 12px;
+        font-size: 14px;
         font-style: normal;
         font-weight: 400;
         color: $sec;
       }
-      h4 {
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 700;
-        color: $black;
-        margin-top: 8px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        position: relative;
-      }
-    }
-    .price {
-      margin-top: 14px;
-      gap: 8px;
-      h6 {
-        font-size: 15px;
-        font-style: normal;
-        font-weight: 700;
-        color: #dcb63b;
-        margin-bottom: 0px;
-      }
-      span {
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 700;
-        white-space: nowrap;
-        color: #90a3bf;
-      }
-    }
-    .types {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      gap: 10px;
-      margin-top: 18px;
-      .type {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        span {
-          font-size: 14px;
-          font-style: normal;
-          font-weight: 400;
-          color: $body-text;
-        }
-      }
-    }
-    .btn-container {
-      margin-top: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      border-top: 1px solid #ebeaed;
-      padding-top: 15px;
-      .icon {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 8px;
-        border: 1px solid #ebeaed;
-        cursor: pointer;
-        svg {
-          &.active {
-            fill: #ed3f3f !important;
-            path {
-              fill: #ed3f3f !important;
-            }
-          }
-        }
-      }
-      button {
-        display: flex;
-        width: 80%;
-        height: 40px;
-        padding: 0px 20px;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-        border-radius: 8px;
-        background: #2d3a4a;
-        color: #fff;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 600;
-      }
-    }
-    .namee {
-      margin-top: 20px;
-      margin-bottom: 4px;
-      font-size: 12px;
-      font-weight: 400;
-      color: #959ead;
     }
   }
+
+  .price-container {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-top: 1px solid #ebeaed;
+    padding-top: 15px;
+
+    span {
+      color: $sec;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    h4 {
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      color: $primary;
+    }
+
+  }
+
+}
 
 // end product card 
 
@@ -192,6 +164,7 @@ body {
 .dropdown-container {
   position: relative;
   display: inline-block;
+
   .dropdown-toggle-container {
     display: flex;
     // background-color: red;
@@ -204,6 +177,7 @@ body {
     border-radius: 12px;
     border: 2px solid var(--Lines-and-Borders, #dfe3ea);
   }
+
   &.search {
     .dropdown-toggle-container {
       border: none;
@@ -237,27 +211,87 @@ body {
     // justify-content: space-between;
     // gap: 20px;
     text-align: center;
+
     // text-align: right;
-   span{
-    color: $sec;
-    font-size: 14px;
-   font-style: normal;
-   font-weight: 400;
-   }
-   &:hover{
-    border-radius: 8px;
-background:#F4F5F6;
-    span{
+    span {
+      color: $sec;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    &:hover {
+      border-radius: 8px;
+      background: #F4F5F6;
+
+      span {
         color: $black;
-    }
-    svg{
+      }
+
+      svg {
         fill: $black !important;
-        path{
-            fill: $black !important;
+
+        path {
+          fill: $black !important;
         }
+      }
     }
-   }
   }
 }
 
 // end dropdown
+
+
+
+
+// start brands 
+
+.allBrands{
+  .box {
+    padding: 20px;
+    border-radius: 16px;
+    background: #f4f5f6;
+    transition: 0.5s all;
+    cursor: pointer;
+    margin-bottom: 16px;
+
+    .icon {
+      opacity: 0;
+    }
+
+    h4 {
+      margin-top: 14px;
+      margin-bottom: 8px;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      color: $black;
+    }
+
+    span {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      color: $sec;
+    }
+
+    &:hover {
+      background: linear-gradient(114deg, #363f4d -1.62%, #0e131b 64.19%);
+
+      h4,
+      span {
+        color: #fff;
+      }
+
+      .icon {
+        opacity: 1;
+      }
+
+      img {
+        filter: invert(100%) brightness(10000%);
+      }
+    }
+  }
+}
+
+// end brands 

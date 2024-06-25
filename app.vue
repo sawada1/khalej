@@ -5,6 +5,6 @@
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-      <RouterView />
+      <!-- <RouterView /> -->
   </div>
 </template>

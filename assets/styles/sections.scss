@@ -21,9 +21,11 @@
   align-items: center;
   padding: 10px 0px;
   z-index: 111111;
+
   .inp {
     display: flex;
     flex-direction: column;
+
     label {
       font-size: 14px;
       font-style: normal;
@@ -31,6 +33,7 @@
       color: #64748b;
     }
   }
+
   .searchBtn {
     display: flex;
     width: 170px;
@@ -51,15 +54,18 @@
 .explore-brands-section {
   margin-top: $mainSpace;
   position: relative;
+
   h1 {
     font-size: 40px;
     font-style: normal;
     font-weight: 700;
     color: $black;
+
     span {
       color: $primary;
     }
   }
+
   p {
     font-size: 16px;
     font-style: normal;
@@ -70,44 +76,8 @@
     line-height: 24px;
     margin-bottom: $space1;
   }
-  .box {
-    padding: 20px;
-    border-radius: 16px;
-    background: #f4f5f6;
-    transition: 0.5s all;
-    cursor: pointer;
-    margin-bottom: 16px;
-    .icon {
-      opacity: 0;
-    }
-    h4 {
-      margin-top: 14px;
-      margin-bottom: 8px;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 700;
-      color: $black;
-    }
-    span {
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 400;
-      color: $sec;
-    }
-    &:hover {
-      background: linear-gradient(114deg, #363f4d -1.62%, #0e131b 64.19%);
-      h4,
-      span {
-        color: #fff;
-      }
-      .icon {
-        opacity: 1;
-      }
-      img {
-        filter: invert(100%) brightness(10000%);
-      }
-    }
-  }
+
+
 }
 
 // end explore brands
@@ -118,28 +88,32 @@
   margin-top: $mainSpace;
   margin-bottom: 50px;
   position: relative;
-  .text{
-      h2 {
-        font-size: 40px;
-        font-style: normal;
-        font-weight: 700;
-        color: $black;
-        span {
-          color: $primary;
-        }
+
+  .text {
+    h2 {
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      color: $black;
+
+      span {
+        color: $primary;
       }
-      p {
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        margin-top: 16px;
-        color: $sec;
-        width: 382px;
-        line-height: 24px;
-        margin-bottom: $space1;
-      }
+    }
+
+    p {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      margin-top: 16px;
+      color: $sec;
+      width: 382px;
+      line-height: 24px;
+      margin-bottom: $space1;
+    }
 
   }
+
   .box {
     display: flex;
     flex-direction: column;
@@ -150,11 +124,13 @@
     background: #F4F5F6;
     transition: 0.4s all;
     text-align: center;
-    img{
-        height: 56px;
-        width: 56px;
-        border-radius: 50%;
+
+    img {
+      height: 56px;
+      width: 56px;
+      border-radius: 50%;
     }
+
     h5 {
       margin-top: 32px;
       margin-bottom: 16px;
@@ -163,21 +139,578 @@
       font-weight: 700;
       color: $black;
     }
-    p{
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 500;
-        // width: 210px;
-        line-height: 24px;
-        margin: 0;
-        color: $sec;
-        text-align: center;  
+
+    p {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      // width: 210px;
+      line-height: 24px;
+      margin: 0;
+      color: $sec;
+      text-align: center;
     }
-    &:hover{
-background: #FFF;
-box-shadow: 0px 64px 64px -48px rgba(15, 15, 15, 0.10);
+
+    &:hover {
+      background: #FFF;
+      box-shadow: 0px 64px 64px -48px rgba(15, 15, 15, 0.10);
     }
   }
 }
 
 // end why-choose-section
+
+
+
+// start cars home section 
+
+.cars-section-home {
+  margin-top: $mainSpace;
+  background: #F4F5F6;
+  padding: 56px 0px;
+
+  .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+
+    p {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      color: $sec;
+    }
+
+    h2 {
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      color: $black;
+    }
+  }
+
+  .more-btn {
+    margin-top: 48px;
+    width: 138px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 28px;
+    border: 1px solid $black;
+    box-shadow: -15px 20px 50px 0px rgba(45, 149, 150, 0.16);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    color: $black;
+  }
+}
+
+// end cars home section 
+
+
+
+// start payment-order-section 
+
+.payment-order-section {
+  margin-top: $mainSpace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .custom-row {
+    width: 855px;
+
+  }
+
+  .main-one {
+    gap: 80px;
+
+    .text-contaier {
+      h2 {
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 700;
+        color: $black;
+        margin-bottom: 16px;
+      }
+
+      p {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        color: $sec;
+        line-height: 20px;
+        width: 353px;
+      }
+    }
+
+
+  }
+
+  .image-container {
+    position: relative;
+    border-radius: 24px;
+    height: 502px;
+    width: 400px;
+    overflow: hidden;
+    background: linear-gradient(114deg, #363F4D -1.62%, #0E131B 64.19%);
+
+    &.position-sticky {
+      top: 80px;
+      background: linear-gradient(245deg, #2D9596 -0.58%, #3CADAE 64.09%);
+    }
+
+    .text {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding: 64px 32px;
+
+      h3 {
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      button {
+        display: inline-flex;
+        height: 48px;
+        width: 40%;
+        // padding: 12px 24px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+        border-radius: 32px;
+        border: 1px solid #FFF;
+        color: #fff;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+      }
+    }
+
+    img {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+    }
+  }
+}
+
+// end payment-order-section 
+
+
+
+// start how-work-section
+
+.how-work-section {
+  margin-top: $mainSpace;
+  margin-bottom: $footerSpace;
+
+  .text-container {
+    span {
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      color: $yellow;
+    }
+
+    h2 {
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 65px;
+      letter-spacing: -2px;
+      color: $black;
+      margin-top: 32px;
+      margin-bottom: 24px;
+      width: 359px;
+    }
+
+    p {
+      width: 339px;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      color: $sec;
+    }
+
+    button {
+      margin-top: 36px;
+      width: 170px;
+      height: 55px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 28px;
+      background: $primary;
+      color: #fff;
+      font-weight: 700;
+      box-shadow: -15px 20px 50px 0px rgba(45, 149, 150, 0.16);
+    }
+
+  }
+
+  .cards {
+    .main-card {
+      border-radius: 16px;
+      background: #F4F5F6;
+      height: 200px;
+      // align-items: center;
+      width: 100%;
+      margin-bottom: 15px;
+      gap: 20px;
+      padding: 0px 32px;
+      transition: 0.4s all;
+
+      .active {
+        display: none;
+      }
+
+      .num {
+        width: 105px;
+        height: 105px;
+        position: relative;
+        border-radius: 50%;
+
+
+        span {
+          font-size: 46px;
+          font-style: normal;
+          font-weight: 700;
+          color: $sec;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          top: 15%;
+        }
+      }
+
+      .text-card {
+        h5 {
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 700;
+          color: $black;
+          margin: 0px;
+          margin-bottom: 8px;
+        }
+
+        p {
+          margin: 0px;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+          width: 152px;
+          color: $sec;
+        }
+      }
+
+      &:hover {
+        position: relative;
+        width: 500px !important;
+        top: -20px;
+        z-index: 11;
+
+        .text-card {
+
+          h5,
+          p {
+            color: #fff;
+          }
+
+          p {
+            width: 181px;
+          }
+        }
+
+        .default {
+          display: none;
+        }
+
+        .active {
+          display: block;
+        }
+
+        background: $primary;
+        box-shadow: 0px 16px 56px 0px rgba(45, 149, 150, 0.56);
+
+        .num {
+          span {
+            color: $primary;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+// start how-work-section 
+
+
+
+// start product page 
+
+.product-page {
+  margin-top: 64px;
+  margin-bottom: 140px;
+
+  .details-container {
+    .comp-price {
+      display: inline-flex;
+      padding: 8px 8px 6px 8px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border-radius: 4px;
+      background: $yellow;
+      margin-bottom: 20px;
+      color: #fff;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    .nameCar {
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      color: #23262F;
+      margin-bottom: 25px;
+    }
+
+    .colors-container {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-bottom: 42px;
+
+      span {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        color: $sec;
+      }
+
+      .stallment-price {
+        h5 {
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 700;
+          color: $primary;
+        }
+      }
+
+      .seprator {
+        width: 1px;
+        height: 64px;
+        background: #DFE3EA;
+      }
+
+      .main-colors {
+        .colors {
+          display: flex;
+          align-items: center;
+          gap: 24px;
+
+          .color {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            .act-color {
+              background-color: #fff;
+              width: 20px;
+              height: 20px;
+              border-radius: 50%;
+              display: none;
+            }
+
+            &.active {
+              width: 32px;
+              height: 32px;
+
+              .act-color {
+                display: block;
+              }
+            }
+          }
+        }
+      }
+
+    }
+
+    .desc {
+      margin: 24px 0px;
+
+      h6 {
+        color: $neutrals1;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+      }
+
+      p {
+        width: 435px;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 28px;
+        /* 175% */
+        color: $sec;
+      }
+    }
+
+    .main-details {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-bottom: 40px;
+
+      .details {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .detail {
+          display: flex;
+          align-items: center;
+          gap: 50px;
+
+          span {
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            color: $sec;
+          }
+
+          h6 {
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 700;
+            color: $black;
+          }
+        }
+      }
+    }
+
+    .btns-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+
+      .buy {
+        display: flex;
+        width: 70%;
+        height: 56px;
+        padding: 16px 24px;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+        border-radius: 90px;
+        background: $primary;
+        color: #fff;
+        font-weight: 700;
+      }
+
+      .icons {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .icon {
+          display: inline-flex;
+          padding: 12px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          border-radius: 48px;
+          border: 2px solid #DFE3EA;
+          box-shadow: 0px 64px 64px -48px rgba(31, 47, 70, 0.12);
+        }
+      }
+    }
+
+    .main-seperator {
+      width: 100%;
+      height: 1px;
+      background: #DFE3EA;
+      margin: 40px 0px;
+    }
+
+    .change-btns {
+      display: flex;
+      width: 248px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border-radius: 32px;
+      margin-bottom: 40px;
+      border: 1px solid #DFE3EA;
+
+      button {
+        width: 50%;
+        font-weight: 400;
+        color: $sec;
+
+        &.active {
+          font-weight: 700;
+          border-radius: 24px;
+          background: $black;
+          color: #fff;
+          height: 100%;
+          box-shadow: 0px 3px 1px 0px rgba(0, 0, 0, 0.04);
+        }
+      }
+    }
+  }
+
+  .v-expansion-panel {
+    background-color: transparent !important;
+    color: $sec !important;
+    margin-bottom: 30px;
+
+    .custom-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      span {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        color: $black;
+      }
+    }
+  }
+
+  .v-expansion-panel__shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: none !important;
+    border-radius: inherit;
+    z-index: -1;
+  }
+}
+
+
+
+
+// end product page 
