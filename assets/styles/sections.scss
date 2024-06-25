@@ -1,13 +1,183 @@
+@import "./variables.scss";
 
+// start hero section
 
-
-
-// start hero section 
-
-.hero-section{
-    position: absolute;
-    top: 0;
-    z-index: -1;
+.hero-section {
+  position: relative;
+  top: -85px;
 }
 
-// end hero section 
+// end hero section
+
+// start search home
+
+.search-home {
+  //   margin-top: $mainSpace;
+  margin-top: 50px;
+  border-radius: 100px;
+  background: #f4f5f6;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0px;
+  z-index: 111111;
+  .inp {
+    display: flex;
+    flex-direction: column;
+    label {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      color: #64748b;
+    }
+  }
+  .searchBtn {
+    display: flex;
+    width: 170px;
+    height: 56px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 28px;
+    color: #fff;
+    background: $primary;
+    box-shadow: -15px 20px 50px 0px rgba(45, 149, 150, 0.16);
+  }
+}
+
+// start search home
+
+// start explore brands
+
+.explore-brands-section {
+  margin-top: $mainSpace;
+  position: relative;
+  h1 {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    color: $black;
+    span {
+      color: $primary;
+    }
+  }
+  p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 16px;
+    color: $sec;
+    width: 382px;
+    line-height: 24px;
+    margin-bottom: $space1;
+  }
+  .box {
+    padding: 20px;
+    border-radius: 16px;
+    background: #f4f5f6;
+    transition: 0.5s all;
+    cursor: pointer;
+    margin-bottom: 16px;
+    .icon {
+      opacity: 0;
+    }
+    h4 {
+      margin-top: 14px;
+      margin-bottom: 8px;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      color: $black;
+    }
+    span {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      color: $sec;
+    }
+    &:hover {
+      background: linear-gradient(114deg, #363f4d -1.62%, #0e131b 64.19%);
+      h4,
+      span {
+        color: #fff;
+      }
+      .icon {
+        opacity: 1;
+      }
+      img {
+        filter: invert(100%) brightness(10000%);
+      }
+    }
+  }
+}
+
+// end explore brands
+
+// start why-choose-section
+
+.why-choose-section {
+  margin-top: $mainSpace;
+  margin-bottom: 50px;
+  position: relative;
+  .text{
+      h2 {
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 700;
+        color: $black;
+        span {
+          color: $primary;
+        }
+      }
+      p {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        margin-top: 16px;
+        color: $sec;
+        width: 382px;
+        line-height: 24px;
+        margin-bottom: $space1;
+      }
+
+  }
+  .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 44px;
+    border-radius: 20px;
+    background: #F4F5F6;
+    transition: 0.4s all;
+    text-align: center;
+    img{
+        height: 56px;
+        width: 56px;
+        border-radius: 50%;
+    }
+    h5 {
+      margin-top: 32px;
+      margin-bottom: 16px;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      color: $black;
+    }
+    p{
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        // width: 210px;
+        line-height: 24px;
+        margin: 0;
+        color: $sec;
+        text-align: center;  
+    }
+    &:hover{
+background: #FFF;
+box-shadow: 0px 64px 64px -48px rgba(15, 15, 15, 0.10);
+    }
+  }
+}
+
+// end why-choose-section

@@ -104,54 +104,91 @@
             </div>
             <div v-if="overlay" class="searchBar">
               <div class="inp">
-                <label for="">dsd</label>
+                <label for="">الماركة</label>
+                <div
+                  :id="dropdown1.id"
+                  class="dropdown-container search"
+                  @click="dropdown1.toggle()"
+                >
+                  <button class="dropdown-toggle-container">
+                    {{ dropdown1.selected.title ? dropdown1.selected.title : dropdown1.selected }}
+                    <img src="~/assets/imgs/Small2.svg" alt="" />
+                    <div class="icon"></div>
+                  </button>
+                  <div v-if="dropdown1.isOpen" class="dropdown-menu" @click.stop>
+                      <!-- @click.prevent="dropdown1.select(item.title)" -->
+                    <div
+                      class="dropdown-item"
+                      @click.prevent="dropdown1.select(item)"
+                      v-for="item in dropdown1.items"
+                      :key="item.id"
+                      :for="`checkBox-${item.id}`"
+                    >
+                        <span>
+                          {{ item.title }}
+                        </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="inp">
+                <label for=""> الموديل </label>
                 <div
                   :id="dropdown2.id"
-                  class="dropdown"
+                  class="dropdown-container search"
                   @click="dropdown2.toggle()"
                 >
-                  <button class="dropdown-toggle">
-                    {{ dropdown2.selected }}
+                  <button class="dropdown-toggle-container">
+                    {{ dropdown2.selected.title ? dropdown2.selected.title : dropdown2.selected }}
+                    <img src="~/assets/imgs/Small2.svg" alt="" />
+                    <div class="icon"></div>
                   </button>
-                  <div v-if="dropdown2.isOpen"  class="dropdown-menu">
-                    <a
+                  <div v-if="dropdown2.isOpen" class="dropdown-menu" @click.stop>
+                      <!-- @click.prevent="dropdown1.select(item.title)" -->
+                    <div
                       class="dropdown-item"
-                      href="#"
                       @click.prevent="dropdown2.select(item)"
                       v-for="item in dropdown2.items"
-                      :key="item"
+                      :key="item.id"
+                      :for="`checkBox-${item.id}`"
                     >
-                      {{ item }}
-                    </a>
+                        <span>
+                          {{ item.title }}
+                        </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="inp">
+                <label for=""> الاسم </label>
+                <div
+                  :id="dropdown3.id"
+                  class="dropdown-container search"
+                  @click="dropdown3.toggle()"
+                >
+                  <button class="dropdown-toggle-container">
+                    {{ dropdown3.selected.title ? dropdown3.selected.title : dropdown3.selected }}
+                    <img src="~/assets/imgs/Small2.svg" alt="" />
+                    <div class="icon"></div>
+                  </button>
+                  <div v-if="dropdown3.isOpen" class="dropdown-menu" @click.stop>
+                      <!-- @click.prevent="dropdown1.select(item.title)" -->
+                    <div
+                      class="dropdown-item"
+                      @click.prevent="dropdown3.select(item)"
+                      v-for="item in dropdown3.items"
+                      :key="item.id"
+                      :for="`checkBox-${item.id}`"
+                    >
+                        <span>
+                          {{ item.title }}
+                        </span>
+                    </div>
                   </div>
                 </div>
               </div>
               
-              <div class="inp">
-                <label for="">dsd</label>
-                <!-- <CustomDropdown :items="['Option A', 'Option B', 'Option C']" /> -->
-                <div
-                  :id="dropdown1.id"
-                  class="dropdown"
-                  @click="dropdown1.toggle()"
-                >
-                  <button class="dropdown-toggle">
-                    {{ dropdown1.selected }}
-                  </button>
-                  <div v-if="dropdown1.isOpen"  class="dropdown-menu">
-                    <a
-                      class="dropdown-item"
-                      href="#"
-                      @click.prevent="dropdown1.select(item)"
-                      v-for="item in dropdown1.items"
-                      :key="item"
-                    >
-                      {{ item }}
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <button>{{ $t("search") }}</button>
+              <button class="searchBtn">{{ $t("search") }}</button>
               <!-- <div @click="goCarsFilterByName()" class="iconn">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -262,49 +299,34 @@ let overlay = ref(false);
 let router = useRouter();
 let route = useRoute();
 let activeNav = ref(false);
-class Dropdown {
-  constructor(selected = "Select an option", items = []) {
-    this.isOpen = false;
-    this.selected = selected;
-    this.items = items;
-    this.id = `dropdown-${Math.random().toString(36)}`;
-  }
 
-  toggle() {
-    // event.stopPropagation();
-    console.log(this);
-    this.isOpen = !this.isOpen;
-  }
 
-  select(item) {
-    this.selected = item;
-    this.isOpen = false;
-  }
-  handleClickOutside(event) {
-    const dropdownElement = document.getElementById(this.id);
-    if (this.isOpen && dropdownElement && !dropdownElement.contains(event.target)) {
-      this.isOpen = false;
-    console.log(this);
-    }
-  }
-}
+const dropdown1 = ref(
+  new Dropdown(" اختر ماركة السيارة ", [{id:1 , title:"option 1"} , {id:2 , title:"option 2"} , {id:3 , title:"option 3"} , {id:4 , title:"option 4"}])
+);
+const dropdown2 = ref(
+  new Dropdown(" اختر موديل السيارة ", [{id:1 , title:"option 1"} , {id:2 , title:"option 2"} , {id:3 , title:"option 3"} , {id:4 , title:"option 4"}])
+);
+const dropdown3 = ref(
+  new Dropdown(" اختر اسم السيارة ", [{id:1 , title:"option 1"} , {id:2 , title:"option 2"} , {id:3 , title:"option 3"} , {id:4 , title:"option 4"}])
+);
 
-const dropdown1 = ref(new Dropdown("Select an option", [
-  "Option 1",
-  "Option 2",
-  "Option 3",
-]));
-console.log(dropdown1);
-const dropdown2 = ref(new Dropdown("Select an option", [
-  "Option A",
-  "Option B",
-  "Option C",
-]));
+let obj = ref({
+  val1:"",
+  val2:"",
+  val3:"",
+});
+
+  watch([() => dropdown1.value.selected , () => dropdown2.value.selected  , () => dropdown3.value.selected  ], ([val1 , val2 , val3]) => {
+   obj.value.val1 = val1.id;
+   obj.value.val2 = val2.id;
+   obj.value.val3 = val3.id;
+    })
 
 const handleClickOutside = (event) => {
   dropdown1.value.handleClickOutside(event);
   dropdown2.value.handleClickOutside(event);
-  // Add more dropdowns handling as needed
+  dropdown3.value.handleClickOutside(event);
 };
 
 const changeLang = async () => {

@@ -145,47 +145,23 @@
     .inp {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
       label {
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
         color: $grey1;
       }
-      .dropdown {
-        position: relative;
-        display: inline-block;
-      }
-      
-      .dropdown-toggle {
-        padding: 10px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        cursor: pointer;
-      }
-      
-      .dropdown-menu {
-        display: block;
-        position: absolute;
-        background-color: white;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-        margin-top: 5px;
-        min-width: 160px;
-      }
-      
-      .dropdown-item {
-        padding: 10px;
-        cursor: pointer;
-        display: block;
-        text-decoration: none;
-        color: black;
-      }
-      
-      .dropdown-item:hover {
-        background-color: #f1f1f1;
-      }
+    }
+    .searchBtn{
+      display: flex;
+width: 160px;
+height: 56px;
+justify-content: center;
+align-items: center;
+gap: 8px;
+border-radius: 100px;
+background-color: $primary;
     }
   }
 
@@ -196,7 +172,7 @@
     left: 0;
     top: 0;
     right: 0;
-    background: rgba(45, 58, 74, 0.88);
+    background: rgba(14, 19, 27, 0.64);
     backdrop-filter: blur(2px);
     opacity: 0.88;
     z-index: 11;
