@@ -1,6 +1,7 @@
 <template>
     <div>
         <navBar />
+       
         <slot></slot>
         <mainFooter />
     </div>
@@ -9,6 +10,7 @@
 
 
 <script setup>
+
 
 </script>
 

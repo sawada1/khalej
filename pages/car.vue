@@ -94,7 +94,7 @@
 
                         </div>
                         <div class="btns-container">
-                            <button class="buy"> طلب شراء </button>
+                            <button @click="openPopup = !openPopup" class="buy"> طلب شراء </button>
                             <div class="icons">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -257,13 +257,42 @@
     </v-expansion-panels>
                     </div>
                 </div>
+                <div class="col-12 col-xl-7 col-lg-7 bg-dange">
+
+                  <swiper :pagination="{clickable: true}" :modules="[SwiperPagination , SwiperAutoplay]" class="mySwiper">
+    <swiper-slide v-for="i in 6">
+      <a  :data-src="carPageImage" href="javascript:;" data-fancybox="gallery" data-caption="Gallery A #1">
+        <img :src="carPageImage" alt="">
+      </a>
+    </swiper-slide>
+  </swiper>
+
+
+                </div>
             </div>
         </div>
       </div>
+       <popup-one :openPopup="openPopup" @update="handleUpdatePopup"></popup-one>
     </div>
 </template>
 
 <script setup>
+import 'swiper/css';
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import carPageImage from '../assets/imgs/carPage.png';
+import 'swiper/css/pagination';
 let activeColor = ref(1);
 let activeBtn = ref(2);
+let openPopup = ref(false);
+
+const handleUpdatePopup = (newState) => {
+  openPopup.value = newState;
+};
+
+onMounted(() => {
+  Fancybox.bind("[data-fancybox]", {
+  // Custom options for all galleries
+});
+});
 </script>

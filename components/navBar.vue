@@ -46,7 +46,7 @@
             <nuxt-link class="nav-link" :to="localePath('/market')">{{
               $t("market")
             }}</nuxt-link>
-            <div class="nav-link">
+            <div @click="openPopup = !openPopup" class="nav-link">
               {{ $t("reqOrd") }}
             </div>
             <!-- :class="{ 'active': store.state.newActive }" -->
@@ -285,12 +285,19 @@
         </div>
       </div>
     </nav>
+    <popup-one :openPopup="openPopup" @update="handleUpdatePopup"></popup-one>
+
   </div>
 </template>
 
 <script setup>
 import { useToast } from "vue-toastification";
 const toast = useToast();
+let openPopup = ref(false);
+
+const handleUpdatePopup = (newState) => {
+  openPopup.value = newState;
+};
 
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
