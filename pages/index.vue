@@ -199,7 +199,7 @@
             <div class="col-12 position-relative col-xl-6 col-lg-6 d-flex align-items-cente justify-content-">
               <div class="position-sticky   image-container">
                  <div class="text">
-                   <h3> افراد </h3>
+                   <h3> شركات </h3>
                    <button> 
                     طلب شراء
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">

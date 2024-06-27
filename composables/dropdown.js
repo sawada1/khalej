@@ -14,7 +14,7 @@ export class Dropdown {
   
     select(item) {
       this.selected = item;
-      this.isOpen = false;
+      // this.isOpen = false;
     }
     handleClickOutside(event) {
       const dropdownElement = document.getElementById(this.id);
