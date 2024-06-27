@@ -3,6 +3,7 @@
         <navBar />
        
         <slot></slot>
+        
         <mainFooter />
     </div>
 </template>
