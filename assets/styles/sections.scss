@@ -26,6 +26,7 @@
   .inp {
     display: flex;
     flex-direction: column;
+    // width: 250px;
 
     label {
       font-size: 14px;
@@ -405,7 +406,6 @@
         z-index: 11;
 
         .text-card {
-
           h5,
           p {
             color: #fff;
@@ -834,9 +834,11 @@
           width: 100%;
           height: 100%;
           border-radius: 16px;
-          background: linear-gradient(257deg,
-              #000 -83.16%,
-              rgba(38, 139, 202, 0) 101.18%);
+          background: linear-gradient(
+            257deg,
+            #000 -83.16%,
+            rgba(38, 139, 202, 0) 101.18%
+          );
         }
       }
 
@@ -881,7 +883,8 @@
       }
     }
 
-    .boxes {}
+    .boxes {
+    }
 
     .box {
       display: flex;
@@ -1050,9 +1053,11 @@
       top: 0;
       right: 0;
       border-radius: 16px;
-      background: linear-gradient(0deg,
-          rgba(0, 0, 0, 0.5) 0%,
-          rgba(0, 0, 0, 0) 104.75%);
+      background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0) 104.75%
+      );
       width: 100%;
       height: 100%;
     }
@@ -1098,10 +1103,10 @@
 
 .wishlist-page {
   margin-bottom: $footerSpace;
-  background: #F4F5F6;
+  background: #f4f5f6;
 
   .text-page {
-    background: #FCFCFC;
+    background: #fcfcfc;
     margin-top: 0px;
     padding: 64px 0px;
     margin-bottom: 72px;
@@ -1274,7 +1279,6 @@
       position: relative;
 
       &:not(:last-child) {
-
         // padding-left: 35px;
         // border-left: 1px solid #dfe3ea;
         &::before {
@@ -1431,7 +1435,8 @@
           display: none;
         }
 
-        &:not(:last-child) {}
+        &:not(:last-child) {
+        }
       }
     }
 
@@ -1553,24 +1558,21 @@
 
 // end jobs page
 
-
-// start all cars page 
+// start all cars page
 
 .all-cars-container {
-  margin-bottom: $footerSpace;
-  background: #F4F5F6;
+  // background: #fcfcfc;
   min-height: 100vh;
 
   .text-page {
-    background: #FCFCFC;
     align-items: flex-start;
 
     .filter-container {
       margin-top: 75px;
-      margin-bottom: 24px;
+      // margin-bottom: 24px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 30px;
 
       .inp {
         display: flex;
@@ -1584,23 +1586,206 @@
           color: $sec;
         }
       }
-
+      .main-filter {
+        width: 100%;
+        gap: 30px;
+      }
       .filter-btn {
         display: flex;
         width: 124px;
         height: 48px;
+        margin-top: 30px;
         padding: 16px 24px;
         justify-content: center;
         align-items: center;
         gap: 12px;
         flex-shrink: 0;
         border-radius: 90px;
-        border: 2px solid #DFE3EA;
+        border: 2px solid #dfe3ea;
         color: $black;
         font-weight: 700;
       }
+      .v-input__details {
+        display: none;
+      }
+      .v-slider-thumb__label {
+      }
+      .v-slider-thumb__ripple {
+      }
+      .v-slider-thumb__surface {
+        color: #fff !important;
+        width: 25px !important;
+        height: 25px !important;
+        border: 2px solid $black;
+      }
+
+      .v-input {
+        margin-top: 30px;
+      }
+      .v-slider-track__background {
+        background-color: #dedfe0 !important;
+      }
+      .v-slider-track__background,
+      .v-slider-track__fill {
+        height: 16px;
+      }
+
+      .currency {
+        margin-top: 7px;
+        span {
+          font-size: 13px;
+          font-style: normal;
+          font-weight: 700;
+          color: $black;
+        }
+      }
+    }
+  }
+  .allcars {
+    background: #f4f5f6;
+    padding-top: 50px;
+    padding-bottom: $footerSpace;
+    .progress-container {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      button {
+        display: flex;
+        width: 129px;
+        height: 40px;
+        padding: 0px 20px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 32px;
+        border: 1px solid $primary;
+        color: $primary;
+        margin-top: 15px;
+        font-weight: 700;
+      }
+    }
+    .v-progress-linear {
+      width: 500px;
     }
   }
 }
 
-// end all cars page 
+// end all cars page
+
+// start finance page
+
+.order-finance-container {
+  margin-top: $space1;
+  background-color: #fff;
+  border-radius: 24px;
+  padding: 56px;
+  margin-bottom: $footerSpace;
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #dfe3ea;
+    h1 {
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      color: $black;
+    }
+  }
+  .btn-container {
+    margin-top: 32px;
+    margin-bottom: 8px;
+    display: flex;
+    width: 248px;
+    height: 48px;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 32px;
+    background: #f4f5f6;
+    color: $sec;
+    font-weight: 400;
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 50%;
+      background-color: transparent;
+      border: none;
+      &.active {
+        border-radius: 24px;
+        color: #fff;
+        font-weight: 700;
+        background: $black;
+      }
+    }
+  }
+  .inputs {
+    padding-bottom: 25px;
+    border-bottom: 1px solid #dfe3ea;
+    input {
+      outline: none !important;
+    }
+    .input-custom {
+      margin-top: 24px;
+      .p-dropdown {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        .p-dropdown-label {
+          font-size: 16px;
+          color: $sec;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  .radio-container {
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+    // background-color: red;
+    gap: 40px;
+    height: 100%;
+    h6 {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      color: $black;
+    }
+    .v-selection-control-group {
+      flex-direction: row;
+      gap: 15px;
+      width: 100%;
+      direction: rtl;
+    }
+    .v-input {
+      margin: 0px !important;
+      .v-label {
+        overflow: visible !important;
+        letter-spacing: normal !important;
+        text-overflow: inherit !important;
+        word-break: normal;
+        white-space: nowrap !important;
+      }
+    }
+  }
+  .send-btn {
+    display: flex;
+    width: 388px;
+    padding: 16px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 90px;
+    background: $primary;
+    color: #fff;
+    font-weight: 700;
+    margin-top: 24px;
+  }
+}
+
+//end finance page
