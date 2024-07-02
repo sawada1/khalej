@@ -1,8 +1,9 @@
 <template>
-  <div style="min-height: 100vh">
+  <div class="container" style="min-height: 100vh">
     <div class="container order-finance-container">
       <div class="header">
         <h1>طلب شراء</h1>
+        <nuxt-link to="/">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -27,6 +28,7 @@
             stroke-linejoin="round"
           />
         </svg>
+        </nuxt-link>
       </div>
       <div class="btn-container">
         <button @click="activeBtn = 1" :class="{ active: activeBtn == 1 }">
@@ -467,15 +469,15 @@
             </div>
           </div>
           <div class="col-12 col-xl-6 col-lg-6 col-md-6">
-            <div class="radio-container">
-              <div class="d-flex flex-column gap-2">
+            <div class="radio-container flex-column flex-xl-row flex-lg-row">
+              <div class="d-flex radio-btn flex-column gap-2">
                 <h6>هل يوجد تعثرات</h6>
                 <v-radio-group>
                   <v-radio label="لا" color="#2D9596"  value="one"></v-radio>
                   <v-radio label="نعم" color="#2D9596" value="two"></v-radio>
                 </v-radio-group>
               </div>
-              <div class="d-flex flex-column gap-2">
+              <div class="d-flex radio-btn flex-column gap-2">
                 <h6> حالة رخصة القيادة  </h6>
                 <v-radio-group>
                   <v-radio label="سارية" color="#2D9596"  value="one"></v-radio>

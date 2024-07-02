@@ -84,6 +84,20 @@
             height: 350px;
         }
     }
+    .order-finance-container{
+        padding: 24px;
+        .radio-container{
+            gap: 10px;
+            .radio-btn{
+                align-items: center;
+            }
+        }
+        .send-btn , .text{
+         width: 100% !important;
+         margin-bottom: 0px;
+         text-align: center;
+        }
+    }
 }
 
 @media(max-width:950px){

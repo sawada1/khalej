@@ -11,7 +11,7 @@
     <div class="container">
       <div class="search-home">
         <div class="inp">
-          <label for="">الماركة</label>
+          <label for=""> {{ $t('brand') }} </label>
           <div
             v-if="dropdown1"
             :id="dropdown1.id"
@@ -44,7 +44,7 @@
           </div>
         </div>
         <div class="inp">
-          <label for=""> الموديل </label>
+          <label for=""> {{ $t('model') }} </label>
           <div
           v-if="dropdown2"
             :id="dropdown2.id"
@@ -77,7 +77,7 @@
           </div>
         </div>
         <div class="inp">
-          <label for=""> الاسم </label>
+          <label for=""> {{ $t('name') }} </label>
           <div
           v-if="dropdown3"
             :id="dropdown3.id"
@@ -115,60 +115,54 @@
     </div>
     <div class="container explore-brands-section mb-5">
       <div class="text d-flex flex-column align-items-center text-center">
-        <h1><span> استكشف </span> افضل الماركات</h1>
+        <h1><span> {{ $t('explore2') }} </span> {{ $t('explore1') }}</h1>
         <p>
-          استكشف تشكيلة متنوعة من أفضل الماركات العالمية لتلبية احتياجاتك
-          المختلفة وتجربة القيادة بأسلوب فريد.
+          {{ $t('explore3') }}
         </p>
       </div>
       <brands></brands>
     </div>
     <div class="container why-choose-section">
       <div class="text d-flex flex-column align-items-center text-center">
-        <h2>لماذا <span> تختارنا </span></h2>
+        <h2>{{ $t('why') }} <span> {{ $t('choose') }} </span></h2>
         <p>
-          استكشف تشكيلة متنوعة من أفضل الماركات العالمية لتلبية احتياجاتك
-          المختلفة وتجربة القيادة بأسلوب فريد.
+          {{ $t('choosetitle') }}
         </p>
       </div>
       <div class="row">
         <div class="col-12 col-xl-3 col-lg-4 col-md-6">
           <div class="box mb-5 mb-xl-0">
             <img src="~/assets/imgs/icon1.svg" alt="" />
-            <h5>تجربة شراء سلسة</h5>
+            <h5> {{ $t('choose1') }} </h5>
             <p>
-              نعمل جاهدين لجعل تجربة شراء السيارة أكثر سلاسة وراحة لعملائنا. مع
-              توفير إمكانية التصفح الإلكتروني لمختلف الماركات
+              {{ $t('chooseP1') }}
             </p>
           </div>
         </div>
         <div class="col-12 col-xl-3 col-lg-4 col-md-6">
           <div class="box mb-5 mb-xl-0">
             <img src="~/assets/imgs/icon2.svg" alt="" />
-            <h5>سعرنا هو الأفضل</h5>
+            <h5> {{ $t('choose2') }} </h5>
             <p>
-              نحرص دائمًا على تقديم أسعار تنافسية لا تقبل المنافسة، مما يجعل
-              تجربة الشراء معنا لا تضاهى من حيث القيمة والتميز
+              {{ $t('chooseP2') }}
             </p>
           </div>
         </div>
         <div class="col-12 col-xl-3 col-lg-4 col-md-6">
           <div class="box mb-5 mb-xl-0">
             <img src="~/assets/imgs/icon3.svg" alt="" />
-            <h5>خدمة عملاء مميزة</h5>
+            <h5> {{ $t('choose3') }}</h5>
             <p>
-              نتفرد بخدمة عملاء استثنائية ودعم شامل يضمن لك تجربة شراء لا تضاهى،
-              حيث نولي اهتمامًا فائقًا في كل مرحلة من مراحل الشراء
+              {{ $t('chooseP3') }}
             </p>
           </div>
         </div>
         <div class="col-12 col-xl-3 col-lg-4 col-md-6">
           <div class="box">
             <img src="~/assets/imgs/icon4.svg" alt="" />
-            <h5>الاستشارات الائتمانية </h5>
+            <h5> {{ $t('choose4') }} </h5>
             <p>
-              نتفرد بخدمة عملاء استثنائية ودعم شامل يضمن لك تجربة شراء لا تضاهى،
-              حيث نولي اهتمامًا فائقًا في كل مرحلة من مراحل الشراء
+              {{ $t('chooseP4') }}
             </p>
           </div>
         </div>
@@ -178,8 +172,8 @@
     <div class="cars-section-home">
       <div class="container">
         <div class="text">
-          <h2>السيارات</h2>
-          <p>انطلق في رحلة اختيار سيارتك المثالية</p>
+          <h2> {{ $t('cars') }} </h2>
+          <p> {{ $t('car1') }} </p>
         </div>
 
         <div class="row">
@@ -191,7 +185,7 @@
             <car-card></car-card>
           </div>
           <div class="d-flex align-items-center justify-content-center">
-            <button class="more-btn">المزيد</button>
+            <button class="more-btn"> {{ $t('more') }} </button>
           </div>
         </div>
       </div>
@@ -205,18 +199,16 @@
           >
             <div class="main-one d-flex flex-column">
               <div class="text-contaier">
-                <h2>طلب شراء</h2>
+                <h2> {{ $t('orderHome') }} </h2>
                 <p>
-                  إرفق البيانات المطلوبة وسنقوم بمساعدتك فورا لشراء السيارة التي
-                  ترغب بها, بأقل نسبة مرابحة وأفضل عرض تمويلي من مختلف البنوك
-                  وشركات التمويل المعتمدة لدينا.
+                 {{ $t('orderHome2') }}
                 </p>
               </div>
               <div class="image-container">
                 <div class="text">
-                  <h3>افراد</h3>
+                  <h3> {{ $t('indi') }} </h3>
                   <button>
-                    طلب شراء
+                    {{ $t('orderHome') }}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="18"
@@ -242,9 +234,9 @@
           >
             <div class="position-sticky image-container">
               <div class="text">
-                <h3>شركات</h3>
+                <h3> {{ $t('comp') }} </h3>
                 <button>
-                  طلب شراء
+                  {{ $t('orderHome') }}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
@@ -272,13 +264,13 @@
         <div class="row">
           <div class="col-12 col-xl-4 col-lg-4">
             <div class="text-container">
-              <span> كيف نعمل </span>
-              <h2>نبذل كل جهدنا لتحقيق سيارة احلامك</h2>
+              <span> {{ $t('how1') }} </span>
+              <h2> {{ $t('how2') }} </h2>
               <p>
                 هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
                 هذا النص من
               </p>
-              <button>تواصل معنا</button>
+              <button> {{ $t('contactUs') }} </button>
             </div>
           </div>
           <div class="col-12 col-xl-8 col-lg-8">
@@ -334,22 +326,27 @@
 </template>
 
 <script setup>
+const localePath = useLocalePath();
+const { locale, setLocale } = useI18n();
 let howArr = ref([
   {
-    title: "ابحث",
+    title: locale.value == 'ar' ? "ابحث" : "search",
   },
   {
-    title: "اختر",
+    title: locale.value == 'ar' ? "اختر" : "choose",
   },
   {
-    title: "اطلب",
+    title: locale.value == 'ar' ? "اطلب" : "order",
   },
   {
-    title: "نتواصل",
+    title: locale.value == 'ar' ? "نتواصل" : "contact",
   },
 ]);
+let dropdownVal1 = ref(locale.value == 'ar' ? 'اختر ماركة السيارة ' : 'choose car brand');
+let dropdownVal2 = ref(locale.value == 'ar' ? 'اختر موديل السيارة ' : 'choose car model');
+let dropdownVal3 = ref(locale.value == 'ar' ? 'اختر اسم السيارة ' : 'choose car name');
 const dropdown1 = ref(
-   process.client ? new Dropdown(" اختر ماركة السيارة ", [
+   process.client ? new Dropdown(dropdownVal1.value, [
     { id: 1, title: "option 1" },
     { id: 2, title: "option 2" },
     { id: 3, title: "option 3" },
@@ -358,7 +355,7 @@ const dropdown1 = ref(
 );
 const dropdown2 = ref(
   process.client ?
-  new Dropdown(" اختر موديل السيارة ", [
+  new Dropdown(dropdownVal2.value, [
     { id: 1, title: "option 1" },
     { id: 2, title: "option 2" },
     { id: 3, title: "option 3" },
@@ -367,7 +364,7 @@ const dropdown2 = ref(
 );
 const dropdown3 = ref(
   process.client ?
-  new Dropdown(" اختر اسم السيارة ", [
+  new Dropdown( dropdownVal3.value , [
     { id: 1, title: "option 1" },
     { id: 2, title: "option 2" },
     { id: 3, title: "option 3" },

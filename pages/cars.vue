@@ -6,7 +6,7 @@
           class="d-flex align-items-center flex-column w-100 justify-content-center"
         >
           <div class="breadline">
-            <span>الرئيسية</span>
+            <span> {{ $t('home') }} </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -23,10 +23,10 @@
                 stroke-linejoin="round"
               />
             </svg>
-            <span>المعرض</span>
+            <span> {{ $t('market') }} </span>
           </div>
           <div>
-            <h1 class="title">المعرض</h1>
+            <h1 class="title"> {{ $t('market') }} </h1>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="50"
@@ -83,11 +83,11 @@
                 fill="#363F4D"
               />
             </svg>
-            تصفية
+            {{ $t('filter') }}
           </button>
           <div v-if="showFilter" class="d-flex align-items-center flex-column flex-xl-row main-filter">
             <div class="inp">
-              <label for="">الماركة</label>
+              <label for=""> {{ $t('brand') }} </label>
               <div
                 v-if="dropdown1"
                 :id="dropdown1.id"
@@ -165,33 +165,33 @@
               </div>
             </div>
             <div class="inp">
-              <label for="">الموديلات</label>
+              <label for=""> {{ $t('models') }} </label>
               <div
-                v-if="dropdown1"
-                :id="dropdown1.id"
+                v-if="dropdown2"
+                :id="dropdown2.id"
                 class="dropdown-container cars"
-                @click="dropdown1.toggle()"
+                @click="dropdown2.toggle()"
               >
                 <button class="dropdown-toggle-container">
                   <span class="text-drop">
                     {{
-                      dropdown1.selected.title
-                        ? dropdown1.selected.title
-                        : dropdown1.selected
+                      dropdown2.selected.title
+                        ? dropdown2.selected.title
+                        : dropdown2.selected
                     }}
                   </span>
                   <img
                     class="icon"
-                    :class="{ active: dropdown1.isOpen }"
+                    :class="{ active: dropdown2.isOpen }"
                     src="~/assets/imgs/Small.svg"
                     alt=""
                   />
                 </button>
-                <div v-if="dropdown1.isOpen" class="dropdown-menu" @click.stop>
+                <div v-if="dropdown2.isOpen" class="dropdown-menu" @click.stop>
                   <label
                     class="dropdown-item"
-                    @click="dropdown1.select(item)"
-                    v-for="(item, index) in dropdown1.items"
+                    @click="dropdown2.select(item)"
+                    v-for="(item, index) in dropdown2.items"
                     :key="item.id"
                     :for="`checkBox-${item.id}`"
                   >
@@ -243,33 +243,33 @@
               </div>
             </div>
             <div class="inp">
-              <label for="">النمط</label>
+              <label for=""> {{ $t('pattern') }} </label>
               <div
-                v-if="dropdown1"
-                :id="dropdown1.id"
+                v-if="dropdown3"
+                :id="dropdown3.id"
                 class="dropdown-container cars"
-                @click="dropdown1.toggle()"
+                @click="dropdown3.toggle()"
               >
                 <button class="dropdown-toggle-container">
                   <span class="text-drop">
                     {{
-                      dropdown1.selected.title
-                        ? dropdown1.selected.title
-                        : dropdown1.selected
+                      dropdown3.selected.title
+                        ? dropdown3.selected.title
+                        : dropdown3.selected
                     }}
                   </span>
                   <img
                     class="icon"
-                    :class="{ active: dropdown1.isOpen }"
+                    :class="{ active: dropdown3.isOpen }"
                     src="~/assets/imgs/Small.svg"
                     alt=""
                   />
                 </button>
-                <div v-if="dropdown1.isOpen" class="dropdown-menu" @click.stop>
+                <div v-if="dropdown3.isOpen" class="dropdown-menu" @click.stop>
                   <label
                     class="dropdown-item"
-                    @click="dropdown1.select(item)"
-                    v-for="(item, index) in dropdown1.items"
+                    @click="dropdown3.select(item)"
+                    v-for="(item, index) in dropdown3.items"
                     :key="item.id"
                     :for="`checkBox-${item.id}`"
                   >
@@ -331,8 +331,8 @@
               <div
                 class="currency d-flex align-items-center justify-content-between"
               >
-                <span> {{ Math.round(value[0]) }} ر.س </span>
-                <span> {{ Math.round(value[1]) }} ر.س</span>
+                <span> {{ Math.round(value[0]) }} {{ $t('curr') }} </span>
+                <span> {{ Math.round(value[1]) }} {{ $t('curr') }}</span>
               </div>
             </div>
           </div>
@@ -350,7 +350,7 @@
        <div class="d-flex progress-container flex-column gap-3">
        <v-progress-linear :reverse="reverse" rounded color="#2D9596" model-value="50"  :height="6">
     </v-progress-linear>
-    <button> تصفح المزيد </button>
+    <button> {{ $t('more2') }} </button>
       
       </div>
        </div>
@@ -366,9 +366,32 @@ let showFilter = ref(false);
 let { locale } = useI18n();
 const localePath = useLocalePath();
 let reverse = ref(locale.value == "ar" ? true : false);
+let dropdownVal1 = ref(locale.value == 'ar' ? 'اختر ماركة السيارة ' : 'choose car brand');
+let dropdownVal2 = ref(locale.value == 'ar' ? 'اختر موديل السيارة ' : 'choose car model');
+let dropdownVal3 = ref(locale.value == 'ar' ? 'اختر اسم السيارة ' : 'choose car name');
 const dropdown1 = ref(
   process.client
-    ? new Dropdown("اختر بين الماركات", [
+    ? new Dropdown(dropdownVal1.value, [
+        { id: 1, title: "option 1" },
+        { id: 2, title: "option 2" },
+        { id: 3, title: "option 3" },
+        { id: 4, title: "option 4" },
+      ])
+    : null
+);
+const dropdown2 = ref(
+  process.client
+    ? new Dropdown(dropdownVal2.value, [
+        { id: 1, title: "option 1" },
+        { id: 2, title: "option 2" },
+        { id: 3, title: "option 3" },
+        { id: 4, title: "option 4" },
+      ])
+    : null
+);
+const dropdown3 = ref(
+  process.client
+    ? new Dropdown(dropdownVal3.value, [
         { id: 1, title: "option 1" },
         { id: 2, title: "option 2" },
         { id: 3, title: "option 3" },
@@ -379,6 +402,8 @@ const dropdown1 = ref(
 const handleClickOutside = (event) => {
   if (dropdown1.value) {
     dropdown1.value.handleClickOutside(event);
+    dropdown2.value.handleClickOutside(event);
+    dropdown3.value.handleClickOutside(event);
   }
 };
 

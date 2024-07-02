@@ -3,7 +3,7 @@
     <div class="container contact-page">
       <div class="text-page">
         <div class="breadline">
-          <span>الرئيسية</span>
+          <span>{{ $t('home') }}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -20,10 +20,10 @@
               stroke-linejoin="round"
             />
           </svg>
-          <span> اتصل بنا </span>
+          <span> {{ $t('contactt') }} </span>
         </div>
         <div>
-          <h1 class="title">اتصل بنا</h1>
+          <h1 class="title"> {{ $t('contactt') }} </h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="50"
@@ -64,7 +64,7 @@
                   fill="#A7B9D0"
                 />
               </svg>
-              <input type="text" placeholder="الاسم" />
+              <input type="text" :placeholder="$t('name')" />
             </div>
             <div class="input">
               <svg
@@ -93,7 +93,7 @@
                   </clipPath>
                 </defs>
               </svg>
-              <input type="email" placeholder="البريد الالكتروني " />
+              <input type="email" :placeholder="$t('email')" />
             </div>
             <div class="input area">
               <svg
@@ -114,13 +114,13 @@
               </svg>
               <textarea
                 name=""
-                placeholder="الرسالة"
+                :placeholder="$t('mssg')"
                 id=""
                 cols="30"
                 rows="10"
               ></textarea>
             </div>
-            <button>ارسال</button>
+            <button> {{ $t('send') }} </button>
           </div>
         </div>
         <div class="col-12 col-xl-6 col-lg-6">
@@ -156,7 +156,7 @@
                         fill="#2D9596"
                       />
                     </svg>
-                    <div class="tool">الذهاب الي الخريطة</div>
+                    <div class="tool"> {{ $t('map1') }} </div>
                   </button>
                 </div>
               </div>
@@ -172,22 +172,22 @@
       <div class="details">
        <div class="item">
         <img src="~/assets/imgs/contact-icon1.svg" alt="">
-        <span> العنوان الرئيسي </span>
+        <span> {{ $t('mainAddress') }} </span>
         <p> جدة - حي الربوة - شارع المكرونه </p>
        </div>
        <div class="item">
         <img src="~/assets/imgs/contact-icon2.svg" alt="">
-        <span> رقم الهاتف </span>
+        <span> {{ $t('phone') }} </span>
         <p> 00966555098590 </p>
        </div>
        <div class="item">
         <img src="~/assets/imgs/contact-icon3.svg" alt="">
-        <span> البريد الالكتروني </span>
+        <span> {{ $t('email') }} </span>
         <p> Autolease@Khalejauto.Sa </p>
        </div>
        <div class="item">
         <img src="~/assets/imgs/contact-icon4.svg" alt="">
-        <span> مواعيد العمل </span>
+        <span> {{ $t('appoint') }} </span>
         <p> من السبت الي الخميس من الساعه ال7 صباحا - حتي ال5 مساء
          </p>
        </div>

@@ -6,17 +6,17 @@
           <div class="col-12 col-xl-5 col-lg-5">
             <div class="details-container">
               <div class="comp-price">
-                <span> سعر منافس </span>
+                <span> {{ $t('comPrice') }} </span>
               </div>
               <h2 class="nameCar">مرسيدس GLC 300 2023</h2>
               <div class="colors-container">
                 <div class="d-flex flex-column gap-4 stallment-price">
-                  <span> القسط يبدأ من </span>
-                  <h5>130,000 ر.س</h5>
+                  <span> {{ $t('installCar') }} </span>
+                  <h5>130,000 {{ $t('curr') }}</h5>
                 </div>
                 <div class="seprator"></div>
                 <div class="d-flex flex-column gap-4 main-colors">
-                  <span> الالوان المتاحة </span>
+                  <span> {{ $t('availColors') }} </span>
                   <div class="colors">
                     <div
                       class="color"
@@ -58,7 +58,7 @@
                       fill="#23262F"
                     />
                   </svg>
-                  <h6>الوصف</h6>
+                  <h6> {{ $t('desc') }} </h6>
                 </div>
                 <p>
                   سيارة مرسيدس GLC 300 2023 واحدة من سيارات الدفع الرباعي
@@ -102,7 +102,7 @@
                           fill="#A7B9D0"
                         />
                       </svg>
-                      <span> نوع المحرك </span>
+                      <span> {{ $t('engineType') }} </span>
                     </div>
                     <h6>اوتوماتيك</h6>
                   </div>
@@ -124,7 +124,7 @@
                           fill="#A7B9D0"
                         />
                       </svg>
-                      <span> سنة الصنع </span>
+                      <span> {{ $t('year1') }} </span>
                     </div>
                     <h6>2023</h6>
                   </div>
@@ -144,7 +144,7 @@
                           fill="#A7B9D0"
                         />
                       </svg>
-                      <span> نوع الوقود</span>
+                      <span> {{ $t('gazType') }} </span>
                     </div>
                     <h6>بنزين</h6>
                   </div>
@@ -170,7 +170,7 @@
                           fill="#A7B9D0"
                         />
                       </svg>
-                      <span> المقاعد</span>
+                      <span> {{ $t('seats') }} </span>
                     </div>
                     <h6>جلد</h6>
                   </div>
@@ -178,7 +178,7 @@
               </div>
               <div class="btns-container">
                 <button @click="openPopup = !openPopup" class="buy">
-                  طلب شراء
+                  {{ $t('orderHome') }}
                 </button>
                 <div class="icons">
                   <div class="icon">
@@ -227,16 +227,16 @@
                   :class="{ active: activeBtn == 1 }"
                   @click="activeBtn = 1"
                 >
-                  الامكانيات
+                  {{ $t('abilites') }}
                 </button>
                 <button
                   :class="{ active: activeBtn == 2 }"
                   @click="activeBtn = 2"
                 >
-                  المميزات
+                  {{ $t('features') }}
                 </button>
               </div>
-              <v-expansion-panels v-if="activeBtn == 1">
+              <v-expansion-panels multiple v-if="activeBtn == 1">
                 <v-expansion-panel>
                   <v-expansion-panel-title
                     collapse-icon="mdi-minus"
@@ -275,7 +275,7 @@
                           fill="#363F4D"
                         />
                       </svg>
-                      <span> مواصفات المحرك </span>
+                      <span> {{ $t('engine2') }} </span>
                     </div>
                   </v-expansion-panel-title>
                   <v-expansion-panel-text>
@@ -314,7 +314,7 @@
                           fill="#363F4D"
                         />
                       </svg>
-                      <span> ناقل الحركة </span>
+                      <span> {{ $t('move') }} </span>
                     </div>
                   </v-expansion-panel-title>
                   <v-expansion-panel-text>
@@ -341,7 +341,7 @@
                           fill="#363F4D"
                         />
                       </svg>
-                      <span> القياسات </span>
+                      <span> {{ $t('measurments') }} </span>
                     </div>
                   </v-expansion-panel-title>
                   <v-expansion-panel-text>
@@ -368,7 +368,7 @@
                           fill="#363F4D"
                         />
                       </svg>
-                      <span> الهيكل </span>
+                      <span> {{ $t('skal') }} </span>
                     </div>
                   </v-expansion-panel-title>
                   <v-expansion-panel-text>
@@ -378,7 +378,7 @@
                   </v-expansion-panel-text>
                 </v-expansion-panel>
               </v-expansion-panels>
-              <v-expansion-panels v-if="activeBtn == 2">
+              <v-expansion-panels multiple v-if="activeBtn == 2">
                 <v-expansion-panel>
                   <v-expansion-panel-title
                     collapse-icon="mdi-minus"
@@ -428,7 +428,7 @@
                           </clipPath>
                         </defs>
                       </svg>
-                      <span> التجهيزات الخارجية </span>
+                      <span> {{ $t('out') }} </span>
                     </div>
                   </v-expansion-panel-title>
                   <v-expansion-panel-text>
@@ -455,7 +455,7 @@
                           fill="#363F4D"
                         />
                       </svg>
-                      <span> السهولة والراحة</span>
+                      <span> {{ $t('comfort') }} </span>
                     </div>
                   </v-expansion-panel-title>
                   <v-expansion-panel-text>
@@ -502,7 +502,7 @@
                           fill="#363F4D"
                         />
                       </svg>
-                      <span> المقاعد</span>
+                      <span> {{ $t('seats') }} </span>
                     </div>
                   </v-expansion-panel-title>
                   <v-expansion-panel-text>
@@ -537,7 +537,7 @@
                           fill="#363F4D"
                         />
                       </svg>
-                      <span> السلامة </span>
+                      <span> {{ $t('safety') }} </span>
                     </div>
                   </v-expansion-panel-title>
                   <v-expansion-panel-text>
