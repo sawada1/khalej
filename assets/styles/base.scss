@@ -11,7 +11,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p {
   margin: 0;
 }
 
@@ -36,6 +37,13 @@ body {
 body {
   background: $body;
   font-family: "Lama Sans", sans-serif;
+}
+
+html[dir="rtl"] body{
+  direction: rtl;
+}
+html[dir="ltr"] body{
+  direction: ltr;
 }
 
 // start product card
@@ -261,8 +269,16 @@ body {
 
 // end dropdown
 
-.fancybox__container {
+.fancybox__container , .swal2-container {
   z-index: 555555555555;
+}
+.swal2-actions{
+  width: 100%;
+}
+.swal2-confirm.swal2-styled{
+  // background-color: $primary !important;
+  width: 50% !important;
+  border-radius: 30px;
 }
 
 // start brands
@@ -338,7 +354,6 @@ body {
     font-weight: 400;
     color: $sec;
     resize: none;
-    direction: rtl;
 
     &::placeholder {
       color: $sec;
@@ -372,7 +387,6 @@ body {
     .label-container {
       // margin-top: 10px;
       position: absolute;
-      right: 50px;
       top: 40%;
 
       label {
@@ -394,6 +408,32 @@ body {
   &.area {
     align-items: flex-start;
   }
+}
+
+html[dir="rtl"] .input-custom{
+  input,
+  textarea {
+    direction: rtl;
+  }
+  &:focus-within {
+    .label-container {
+      right: 50px;
+    }
+
+  }
+}
+html[dir="ltr"] .input-custom{
+  input,
+  textarea {
+    direction: ltr;
+  }
+  &:focus-within {
+    .label-container {
+      left: 50px;
+    }
+
+  }
+
 }
 
 .p-dropdown-panel {

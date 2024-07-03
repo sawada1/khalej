@@ -2,7 +2,7 @@
   <div class="container" style="min-height: 100vh">
     <div class="container order-finance-container">
       <div class="header">
-        <h1>طلب شراء</h1>
+        <h1> {{ $t('reqOrd') }} </h1>
         <nuxt-link to="/">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -32,10 +32,10 @@
       </div>
       <div class="btn-container">
         <button @click="activeBtn = 1" :class="{ active: activeBtn == 1 }">
-          تمويل
+          {{ $t('finance') }}
         </button>
         <button @click="activeBtn = 2" :class="{ active: activeBtn == 2 }">
-          كاش
+          {{ $t('cash') }}
         </button>
       </div>
        <div v-if="activeBtn == 1">
@@ -86,7 +86,7 @@
                 :options="years"
                 filter
                 optionLabel=""
-                :placeholder="$t(' اسم السيارة ')"
+                :placeholder="$t('carName')"
                 class=""
               >
                 <template #option="slotProps">
@@ -120,7 +120,7 @@
                 :options="years"
                 filter
                 optionLabel=""
-                :placeholder="$t(' السعر ')"
+                :placeholder="$t('price')"
                 class=""
               >
                 <template #option="slotProps">
@@ -148,8 +148,8 @@
                 />
               </svg>
               <div class="label-container">
-                <label for=""> ادخل الاسم </label>
-                <input type="text" placeholder="الاسم" />
+                <label for="">{{ $t('enterName') }} </label>
+                <input type="text" :placeholder="$t('name')" />
               </div>
             </div>
           </div>
@@ -172,8 +172,8 @@
                 />
               </svg>
               <div class="label-container">
-                <label for=""> ادخل رقم الجوال </label>
-                <input type="text" placeholder="رقم الجوال" />
+                <label for=""> {{ $t('enterPhone') }} </label>
+                <input type="tel" :placeholder="$t('phone')" />
               </div>
             </div>
           </div>
@@ -215,8 +215,8 @@
                 </defs>
               </svg>
               <div class="label-container">
-                <label for=""> ادخل مبلغ الراتب في الصراف </label>
-                <input type="text" placeholder="مبلغ الراتب في الصراف " />
+                <label for=""> {{ $t('enterSal') }} </label>
+                <input type="text" :placeholder="$t('sal1')" />
               </div>
             </div>
           </div>
@@ -279,8 +279,8 @@
                 />
               </svg>
               <div class="label-container">
-                <label for=""> ادخل اجمالي الالتزامات </label>
-                <input type="text" placeholder="اجمالي الالتزامات" />
+                <label for=""> {{$t('enterComit')}} </label>
+                <input type="text" :placeholder="$t('comit')" />
               </div>
             </div>
           </div>
@@ -400,7 +400,7 @@
                 :options="years"
                 filter
                 optionLabel=""
-                :placeholder="$t(' البنك')"
+                :placeholder="$t('bank')"
                 class=""
               >
                 <template #option="slotProps">

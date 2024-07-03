@@ -5,7 +5,7 @@
       <div class="main-links-container">
         <div class="image-container">
           <img src="~/assets/imgs/Logo-active.svg" alt="">
-          <p>وجهتك الأولى لاستكشاف أوسع تشكيلة من السيارات</p>
+          <p> {{ $t('foot1') }} </p>
           <div class="icons">
             <div class="icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -59,20 +59,20 @@
         </div>
         <div class="all-links">
           <div class="links-container">
-            <h4>روابط مهمة</h4>
+            <h4> {{ $t('impLinks') }} </h4>
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="3" viewBox="0 0 50 3" fill="none">
               <rect x="11.9043" width="38.0952" height="3.00022" rx="1.50011" fill="#2D9596" />
               <rect opacity="0.9" width="7.14286" height="3.00022" rx="1.50011" fill="#2D9596" />
             </svg>
             <div class="links">
-              <nuxt-link to="/jobs" class="link"> التوظيف </nuxt-link>
-              <nuxt-link to="/contact" class="link"> اتصل بنا </nuxt-link>
-              <span class="link"> الشروط والاحكام </span>
-              <span class="link"> طلب شراء </span>
+              <nuxt-link :to="localePath('/jobs')" class="link"> {{ $t('employ') }} </nuxt-link>
+              <nuxt-link :to="localePath('/contact')" class="link"> {{ $t('contact') }} </nuxt-link>
+              <span class="link"> {{ $t('policy') }} </span>
+              <span @click="openPopup = !openPopup" class="link"> {{ $t('reqOrd') }}</span>
             </div>
           </div>
           <div class="links-container">
-            <h4> الفروع </h4>
+            <h4> {{ $t('branches') }} </h4>
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="3" viewBox="0 0 50 3" fill="none">
               <rect x="11.9043" width="38.0952" height="3.00022" rx="1.50011" fill="#2D9596" />
               <rect opacity="0.9" width="7.14286" height="3.00022" rx="1.50011" fill="#2D9596" />
@@ -87,9 +87,9 @@
         </div>
       </div>
       <div class="foot-line">
-        <span> © جميع الحقوق محفوظة لـ الخليج للسيارات </span>
+        <span> © {{ $t('foot') }}</span>
         <div class="d-flex align-items-center gap-4">
-          <span> تم تطوير بواسطة </span>
+          <span> {{ $t('devBy') }} </span>
           <svg xmlns="http://www.w3.org/2000/svg" width="44" height="18" viewBox="0 0 44 18" fill="none">
             <g clip-path="url(#clip0_158_2770)">
               <path
@@ -123,9 +123,18 @@
         </div>
       </div>
     </div>
+    <popup-one :openPopup="openPopup" @update="handleUpdatePopup"></popup-one>
   </div>
 </template>
 
 <script setup>
+const localePath = useLocalePath();
+const { locale, setLocale } = useI18n();
+
+let openPopup = ref(false);
+
+const handleUpdatePopup = (newState) => {
+  openPopup.value = newState;
+};
 
 </script>

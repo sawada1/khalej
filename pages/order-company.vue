@@ -2,7 +2,7 @@
   <div class="container" style="min-height: 100vh">
     <div class="container order-finance-container">
       <div class="header">
-        <h1>طلب شراء</h1>
+        <h1> {{ $t('reqOrd') }} </h1>
         <nuxt-link to="/">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -32,10 +32,10 @@
       </div>
       <div class="btn-container">
         <button @click="activeBtn = 1" :class="{ active: activeBtn == 1 }">
-          تمويل
+           {{ $t('finance') }}
         </button>
         <button @click="activeBtn = 2" :class="{ active: activeBtn == 2 }">
-          كاش
+          {{ $t('cash') }}
         </button>
       </div>
       <div v-if="activeBtn == 1">
@@ -86,7 +86,7 @@
                   :options="years"
                   filter
                   optionLabel=""
-                  :placeholder="$t(' اسم السيارة ')"
+                  :placeholder="$t('carName')"
                   class=""
                 >
                   <template #option="slotProps">
@@ -118,8 +118,8 @@
                   />
                 </svg>
                 <div class="label-container">
-                  <label for=""> ادخل اسم الشركة </label>
-                  <input type="text" placeholder="اسم الشركة" />
+                  <label for=""> {{ $t('enterComp') }} </label>
+                  <input type="text" :placeholder="$t('compName')" />
                 </div>
               </div>
             </div>
@@ -145,8 +145,8 @@
                   </defs>
                 </svg>
                 <div class="label-container">
-                  <label for=""> ادخل الكمية </label>
-                  <input type="number" min="1" placeholder="الكمية" />
+                  <label for=""> {{ $t('enterAmount') }} </label>
+                  <input type="number" min="1" :placeholder="$t('amount')" />
                 </div>
               </div>
             </div>
@@ -169,8 +169,8 @@
                   />
                 </svg>
                 <div class="label-container">
-                  <label for=""> ادخل رقم الجوال </label>
-                  <input type="text" placeholder="رقم الجوال" />
+                  <label for=""> {{ $t('enterPhone') }} </label>
+                  <input type="text" :placeholder="$t('phone')" />
                 </div>
               </div>
             </div>
@@ -195,10 +195,10 @@
                   />
                 </svg>
                 <div class="label-container">
-                  <label for=""> ادخل البريد الالكتروني </label>
+                  <label for="">{{ $t('enterEmail') }} </label>
                   <input
                     type="email"
-                    placeholder=" البريد الالكتروني الرسمي "
+                    :placeholder="$t('email')"
                   />
                 </div>
               </div>
@@ -218,8 +218,8 @@
                   />
                 </svg>
                 <div class="label-container">
-                  <label for=""> ادخل الاسم </label>
-                  <input type="text" placeholder=" المدير التنفيذي " />
+                  <label for=""> {{ $t('enterName') }} </label>
+                  <input type="text" :placeholder="$t('ceo')" />
                 </div>
               </div>
             </div>
@@ -238,8 +238,8 @@
                   />
                 </svg>
                 <div class="label-container">
-                  <label for=""> ادخل المقر </label>
-                  <input type="text" placeholder=" مقر الشركة " />
+                  <label for=""> {{ $t('enterTun') }} </label>
+                  <input type="text" :placeholder="$t('compBase')" />
                 </div>
               </div>
             </div>
@@ -278,8 +278,8 @@
                   </defs>
                 </svg>
                 <div class="label-container">
-                  <label for=""> ادخل رقم الدفعة الاخيرة </label>
-                  <input type="text" placeholder=" نشاط الشركة " />
+                  <label for=""> {{ $t('enterFirst') }} </label>
+                  <input type="text" :placeholder="$t('compAct')" />
                 </div>
               </div>
             </div>
@@ -308,7 +308,7 @@
                   :options="years"
                   filter
                   optionLabel=""
-                  :placeholder="$t(' البنك')"
+                  :placeholder="$t(`bank`)"
                   class=""
                 >
                   <template #option="slotProps">
@@ -325,9 +325,9 @@
         </div>
           <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row flex-lg-row gap-5">
 
-        <button class="send-btn">ارسال</button>
+        <button class="send-btn">{{ $t('send') }}</button>
           <p class="text">
-            .للتواصل بشكل مباشر مع مسؤول مبيعات الشركات سيتم الرد عليكم خلال مدة اقصاها 24 ساعة 
+            {{ $t('response1') }}
           </p>
           </div>
       </div>
@@ -379,7 +379,7 @@
                   :options="years"
                   filter
                   optionLabel=""
-                  :placeholder="$t(' اسم السيارة ')"
+                  :placeholder="$t('carName')"
                   class=""
                 >
                   <template #option="slotProps">
@@ -411,8 +411,8 @@
                   />
                 </svg>
                 <div class="label-container">
-                  <label for=""> ادخل اسم الشركة </label>
-                  <input type="text" placeholder="اسم الشركة" />
+                  <label for="">{{ $t('enterComp') }}</label>
+                  <input type="text" :placeholder="$t('compName')" />
                 </div>
               </div>
             </div>
@@ -438,8 +438,8 @@
                   </defs>
                 </svg>
                 <div class="label-container">
-                  <label for=""> ادخل الكمية </label>
-                  <input type="number" min="1" placeholder="الكمية" />
+                  <label for=""> {{ $t('enterAmount') }} </label>
+                  <input type="number" min="1" :placeholder="$t('amount')" />
                 </div>
               </div>
             </div>
@@ -462,8 +462,8 @@
                   />
                 </svg>
                 <div class="label-container">
-                  <label for=""> ادخل رقم الجوال </label>
-                  <input type="text" placeholder="رقم الجوال" />
+                  <label for=""> {{ $t('enterPhone') }} </label>
+                  <input type="text" :placeholder="$t('phone')" />
                 </div>
               </div>
             </div>
@@ -488,10 +488,10 @@
                   />
                 </svg>
                 <div class="label-container">
-                  <label for=""> ادخل البريد الالكتروني </label>
+                  <label for=""> {{ $t('enterEmail') }} </label>
                   <input
                     type="email"
-                    placeholder=" البريد الالكتروني الرسمي "
+                    :placeholder="$t('email')"
                   />
                 </div>
               </div>
@@ -511,8 +511,8 @@
                   />
                 </svg>
                 <div class="label-container">
-                  <label for=""> ادخل الاسم </label>
-                  <input type="text" placeholder=" المدير التنفيذي " />
+                  <label for=""> {{ $t('enterName') }}</label>
+                  <input type="text" :placeholder="$t('ceo')" />
                 </div>
               </div>
             </div>
@@ -520,9 +520,9 @@
         </div>
           <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row flex-lg-row gap-5">
           
-        <button class="send-btn">ارسال</button>
+        <button class="send-btn"> {{ $t('send') }} </button>
           <p class="text">
-            .للتواصل بشكل مباشر مع مسؤول مبيعات الشركات سيتم الرد عليكم خلال مدة اقصاها 24 ساعة 
+            {{ $t('response1') }}
           </p>
           </div>
       </div>

@@ -41,8 +41,8 @@
               fill="#A7B9D0"
             />
           </svg>
-          <h5>افراد</h5>
-          <p>منصتنا توفر فرصًا للشراكة مع موردين موثوقين وزيادة الكفاءة</p>
+          <h5>{{ $t('indi') }}</h5>
+          <p> {{ $t('modelP') }} </p>
         </div>
       </nuxt-link>
       <nuxt-link to="/order-company" @click="togglePopup">
@@ -67,8 +67,8 @@
               fill="#A7B9D0"
             />
           </svg>
-          <h5>شركات</h5>
-          <p>منصتنا توفر فرصًا للشراكة مع موردين موثوقين وزيادة الكفاءة</p>
+          <h5>{{ $t('comp') }}</h5>
+          <p> {{ $t('modelP') }} </p>
         </div>
       </nuxt-link>
         <button @click="togglePopup" class="close">

@@ -1,6 +1,6 @@
 <template>
     <div>
-      <nuxt-link :to="`/car`">
+      <nuxt-link :to="localePath('/car')">
         <div class="car-card">           
       <div class="image">
                 <img src="~/assets/imgs/car.png" alt="" />
@@ -8,7 +8,7 @@
       <!-- <span class="namee">{{ car.statue }}</span> -->
        <div class="d-flex w-100 align-items-center justify-content-between">
         <div class="compPrice">
-          <span> سعر منافس </span>
+          <span> {{ $t('comPrice') }} </span>
         </div>
         <button>
 
@@ -67,9 +67,9 @@
         </div>
       </div>
       <div class="price-container">
-        <span> السعر يبدأ من </span>
+        <span> {{ $t('startWith') }} </span>
         <div class="d-flex align-items-center justify-content-between w-100">
-          <h4> 130,000 ر.س  </h4>
+          <h4> 130,000 {{ $t('curr') }} </h4>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M16.7003 6.29999H6.30029L6.30029 16.7H7.70028L7.70029 8.68994L17.0003 17.9899L17.9902 17L8.69024 7.69999H16.7003V6.29999Z" fill="#363F4D"/>
 </svg>
@@ -82,5 +82,6 @@
 </template>
 
 <script setup>
-
+const localePath = useLocalePath();
+const { locale, setLocale } = useI18n();
 </script>

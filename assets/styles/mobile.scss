@@ -98,6 +98,29 @@
          text-align: center;
         }
     }
+    .modal-form{
+        width: 95% !important;
+        padding: 24px !important;
+        .folder-container{
+            height: 100px !important;
+        }
+        button{
+            height: 46px !important;
+            margin-top: 20px !important;
+        }
+    }
+    .jobs-container .all-jobs .job{
+        text-align: center;
+        padding: 30px;
+        div + div{
+            justify-content: center;
+            margin-top: 20px;
+        }
+        p{
+            width: 100%;
+        }
+    
+    }
 }
 
 @media(max-width:950px){

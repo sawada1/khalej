@@ -104,7 +104,7 @@
             </div>
             <div v-if="overlay" class="searchBar">
               <div class="inp">
-                <label for="">الماركة</label>
+                <label for=""> {{ $t('brand') }} </label>
                 <div
                   :id="dropdown1.id"
                   class="dropdown-container search"
@@ -132,7 +132,7 @@
                 </div>
               </div>
               <div class="inp">
-                <label for=""> الموديل </label>
+                <label for=""> {{ $t('model') }} </label>
                 <div
                   :id="dropdown2.id"
                   class="dropdown-container search"
@@ -160,7 +160,7 @@
                 </div>
               </div>
               <div class="inp">
-                <label for=""> الاسم </label>
+                <label for=""> {{ $t('name') }} </label>
                 <div
                   :id="dropdown3.id"
                   class="dropdown-container search"
@@ -308,14 +308,34 @@ let route = useRoute();
 let activeNav = ref(false);
 
 
+let dropdownVal1 = ref(locale.value == 'ar' ? 'اختر ماركة السيارة ' : 'choose car brand');
+let dropdownVal2 = ref(locale.value == 'ar' ? 'اختر موديل السيارة ' : 'choose car model');
+let dropdownVal3 = ref(locale.value == 'ar' ? 'اختر اسم السيارة ' : 'choose car name');
 const dropdown1 = ref(
-  new Dropdown(" اختر ماركة السيارة ", [{id:1 , title:"option 1"} , {id:2 , title:"option 2"} , {id:3 , title:"option 3"} , {id:4 , title:"option 4"}])
+   process.client ? new Dropdown(dropdownVal1.value, [
+    { id: 1, title: "option 1" },
+    { id: 2, title: "option 2" },
+    { id: 3, title: "option 3" },
+    { id: 4, title: "option 4" },
+  ]) : null
 );
 const dropdown2 = ref(
-  new Dropdown(" اختر موديل السيارة ", [{id:1 , title:"option 1"} , {id:2 , title:"option 2"} , {id:3 , title:"option 3"} , {id:4 , title:"option 4"}])
+  process.client ?
+  new Dropdown(dropdownVal2.value, [
+    { id: 1, title: "option 1" },
+    { id: 2, title: "option 2" },
+    { id: 3, title: "option 3" },
+    { id: 4, title: "option 4" },
+  ]) : null
 );
 const dropdown3 = ref(
-  new Dropdown(" اختر اسم السيارة ", [{id:1 , title:"option 1"} , {id:2 , title:"option 2"} , {id:3 , title:"option 3"} , {id:4 , title:"option 4"}])
+  process.client ?
+  new Dropdown( dropdownVal3.value , [
+    { id: 1, title: "option 1" },
+    { id: 2, title: "option 2" },
+    { id: 3, title: "option 3" },
+    { id: 4, title: "option 4" },
+  ]) : null
 );
 
 let obj = ref({
