@@ -16,10 +16,12 @@
   a,
   .nav-link {
     transition: 0.3s all;
+    opacity: 0.8;
 
     &:hover {
       // font-size: 18px !important;
       font-weight: 700 !important;
+      opacity: 1;
     }
   }
 
@@ -66,7 +68,7 @@
     .links {
       display: flex;
       align-items: center;
-      gap: 25px;
+      gap: 38px;
 
       a,
       .nav-link {
@@ -109,7 +111,7 @@
       }
     }
   }
-
+  &.mobile,
   &.back,
   &.active {
     background-color: #fff;
@@ -137,6 +139,7 @@
     a,
     .nav-link {
       color: #5a7184 !important;
+      opacity: 1;
       transition: 0.4s all;
     }
   }
@@ -144,6 +147,7 @@
   .router-link-active,
   .active {
     font-weight: 700 !important;
+    opacity: 1;
   }
 
   .searchBar {

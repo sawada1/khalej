@@ -22,7 +22,7 @@
 
             <div class="news-boxes">
                 <div class="row">
-                    <div v-for="i, index in 6" class="col-12 col-xl-4 col-lg-4 mb-5">
+                    <div v-for="i, index in 6" class="col-12 col-xl-4 col-lg-6 mb-5">
                         <nuxt-link :to="`/news/${index + 1}`" class="box">
                             <div class="image">
                                 <img src="~/assets/imgs/news1.png" alt="">

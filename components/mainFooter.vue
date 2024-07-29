@@ -78,10 +78,10 @@
               <rect opacity="0.9" width="7.14286" height="3.00022" rx="1.50011" fill="#2D9596" />
             </svg>
             <div class="links">
-              <span class="link"> جدة </span>
-              <span class="link"> الرياض </span>
-              <span class="link"> ابها </span>
-              <span class="link"> تبوك </span>
+              <span class="link"> {{ $t('Jeddah') }} </span>
+              <span class="link"> {{ $t('Riyadh') }} </span>
+              <span class="link"> {{ $t('abha') }} </span>
+              <span class="link"> {{ $t('Tabuk') }} </span>
             </div>
           </div>
         </div>

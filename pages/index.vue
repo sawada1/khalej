@@ -1,6 +1,7 @@
 <template>
   <div style="min-height: 100vh">
     <div class="hero-section" style="width: 100%; height: 100vh">
+      <div class="overlay"></div>
       <img
         class="w-100 h-100"
         style="object-fit: cover"
@@ -8,9 +9,9 @@
         alt=""
       />
     </div>
-    <div class="container">
-      <div class="search-home">
-        <div class="inp">
+    <div class="container search-home-p">
+      <div class="search-home row ">
+        <div class="inp col-12 col-lg-3">
           <label for=""> {{ $t('brand') }} </label>
           <div
             v-if="dropdown1"
@@ -25,7 +26,6 @@
                   : dropdown1.selected
               }}
               <img src="~/assets/imgs/Small2.svg" alt="" />
-              <div class="icon"></div>
             </button>
             <div v-if="dropdown1.isOpen" class="dropdown-menu" @click.stop>
               <!-- @click.prevent="dropdown1.select(item.title)" -->
@@ -43,7 +43,7 @@
             </div>
           </div>
         </div>
-        <div class="inp">
+        <div class="inp col-12 col-lg-3">
           <label for=""> {{ $t('model') }} </label>
           <div
           v-if="dropdown2"
@@ -58,7 +58,6 @@
                   : dropdown2.selected
               }}
               <img src="~/assets/imgs/Small2.svg" alt="" />
-              <div class="icon"></div>
             </button>
             <div v-if="dropdown2.isOpen" class="dropdown-menu" @click.stop>
               <!-- @click.prevent="dropdown1.select(item.title)" -->
@@ -76,7 +75,7 @@
             </div>
           </div>
         </div>
-        <div class="inp">
+        <div class="inp col-12 col-lg-3">
           <label for=""> {{ $t('name') }} </label>
           <div
           v-if="dropdown3"
@@ -91,7 +90,6 @@
                   : dropdown3.selected
               }}
               <img src="~/assets/imgs/Small2.svg" alt="" />
-              <div class="icon"></div>
             </button>
             <div v-if="dropdown3.isOpen" class="dropdown-menu" @click.stop>
               <!-- @click.prevent="dropdown1.select(item.title)" -->
@@ -110,7 +108,7 @@
           </div>
         </div>
 
-        <button class="searchBtn">{{ $t("search") }}</button>
+        <button class="searchBtn mt-2">{{ $t("search") }}</button>
       </div>
     </div>
     <div class="container explore-brands-section mb-5">
@@ -207,7 +205,7 @@
               <div class="image-container">
                 <div class="text">
                   <h3> {{ $t('indi') }} </h3>
-                  <button>
+                  <button class="paymentBTN">
                     {{ $t('orderHome') }}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -262,7 +260,7 @@
     <div class="container">
       <div class="how-work-section">
         <div class="row">
-          <div class="col-12 col-xl-4 col-lg-4">
+          <div class="col-12 col-xl-4 col-lg-16">
             <div class="text-container">
               <span> {{ $t('how1') }} </span>
               <h2> {{ $t('how2') }} </h2>
@@ -273,12 +271,9 @@
               <button> {{ $t('contactUs') }} </button>
             </div>
           </div>
-          <div class="col-12 col-xl-8 col-lg-8">
+          <div class="col-12 col-xl-8 col-lg-12">
             <div class="row cards">
-              <div
-                v-for="(item, index) in howArr"
-                class="col-12 col-xl-6 col-lg-6"
-              >
+              <div   v-for="(item, index) in howArr"  class="col-12 col-xl-6 col-lg-6" >
                 <div
                   class="main-card d-flex align-items-center justify-content-center"
                 >

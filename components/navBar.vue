@@ -2,9 +2,11 @@
   <div>
     <nav
       class="navbar navbar-expand-xl"
+
       :class="{
-        active: activeNav,
-        back:
+        active: activeNav, 
+      mobile: toggleNav,
+        back: 
           route.name !=
           `${locale == 'ar' ? 'index___ar___default' : 'index___en'}`,
       }"
@@ -25,6 +27,7 @@
           </nuxt-link>
         </div>
         <button
+        @click="mobileNav()"
           class="navbar-toggler collapsed"
           type="button"
           data-bs-toggle="collapse"
@@ -306,6 +309,7 @@ let overlay = ref(false);
 let router = useRouter();
 let route = useRoute();
 let activeNav = ref(false);
+let toggleNav = ref(false);
 
 
 let dropdownVal1 = ref(locale.value == 'ar' ? 'اختر ماركة السيارة ' : 'choose car brand');
@@ -408,10 +412,32 @@ onMounted(() => {
 });
 onUnmounted(() => {
   document.removeEventListener("click", handleClickOutside);
-});
+}); 
+
+function mobileNav(){
+  toggleNav.value= !toggleNav.value
+  
+}
+
+
+
+
+
+
+
+
 </script>
 
-<style lang="scss">
+<!-- Style -->
+
+
+
+
+
+
+
+
+<style lang="scss" scoped>
 .navbar-toggler .icon-bar {
   display: block;
   width: 22px;
@@ -433,6 +459,7 @@ onUnmounted(() => {
     color: transparent !important;
   }
 
+  &.mobile,
   &.back,
   &.active {
     .icon-bar {
