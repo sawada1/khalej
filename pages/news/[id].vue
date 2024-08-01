@@ -72,7 +72,7 @@
           <div class="col-12 col-xl-7 col-lg-7">
             <div class="img-box">
               <div class="image">
-                <img src="~/assets/imgs/news1.png" alt="" />
+                <img src="~/assets/imgs/news1.png" alt="car" />
                 <div class="overlay"></div>
               </div>
 
@@ -100,7 +100,7 @@
                 <div class="boxes">
                   <div v-for="i in 4" class="box my-2">
                     <div class="image">
-                      <img src="~/assets/imgs/news1.png" alt="" />
+                      <img src="~/assets/imgs/news1.png" alt="car" />
                     </div>
                     <div class="text w-100">
                       <h6>dsd</h6>
@@ -152,7 +152,7 @@
                 <h5>{{ $t("newss2") }}</h5>
                 <div class="icons">
                   <button @click="copyToClipboard()" class="iconn">
-                    <img v-if="check" src="~/assets/imgs/share1.svg" alt="" />
+                    <img v-if="check" src="~/assets/imgs/share1.svg" alt="copy" />
                     <svg
                       v-else
                       xmlns="http://www.w3.org/2000/svg"
@@ -171,35 +171,35 @@
                     target="_blank"
                     class="iconn"
                   >
-                    <img src="~/assets/imgs/share2.svg" alt="" />
+                    <img src="~/assets/imgs/share2.svg" alt="instagram" />
                   </a>
                   <a
                     :href="`https://www.facebook.com/sharer/sharer.php?${routee}`"
                     target="_blank"
                     class="iconn"
                   >
-                    <img src="~/assets/imgs/share3.svg" alt="" />
+                    <img src="~/assets/imgs/share3.svg" alt="facebook" />
                   </a>
                   <a
                     :href="`https://www.snapchat.com/share?url=${routee}`"
                     target="_blank"
                     class="iconn"
                   >
-                    <img src="~/assets/imgs/share4.svg" alt="" />
+                    <img src="~/assets/imgs/share4.svg" alt="snapchat" />
                   </a>
                   <a
                     :href="`https://twitter.com/intent/tweet?url=${routee}`"
                     target="_blank"
                     class="iconn"
                   >
-                    <img src="~/assets/imgs/share5.svg" alt="" />
+                    <img src="~/assets/imgs/share5.svg" alt="X" />
                   </a>
                   <a
                     :href="`https://wa.me/?text=${routee}/`"
                     target="_blank"
                     class="iconn"
                   >
-                    <img src="~/assets/imgs/share6.svg" alt="" />
+                    <img src="~/assets/imgs/share6.svg" alt="whatsup" />
                   </a>
                 </div>
               </div>

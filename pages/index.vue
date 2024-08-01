@@ -6,7 +6,7 @@
         class="w-100 h-100"
         style="object-fit: cover"
         src="~/assets/imgs/hero.png"
-        alt=""
+        alt="hero"
       />
     </div>
     <div class="container search-home-p">
@@ -25,7 +25,7 @@
                   ? dropdown1.selected.title
                   : dropdown1.selected
               }}
-              <img src="~/assets/imgs/Small2.svg" alt="" />
+              <img src="~/assets/imgs/Small2.svg" alt="arrow" />
             </button>
             <div v-if="dropdown1.isOpen" class="dropdown-menu" @click.stop>
               <!-- @click.prevent="dropdown1.select(item.title)" -->
@@ -57,7 +57,7 @@
                   ? dropdown2.selected.title
                   : dropdown2.selected
               }}
-              <img src="~/assets/imgs/Small2.svg" alt="" />
+              <img src="~/assets/imgs/Small2.svg" alt="arrow" />
             </button>
             <div v-if="dropdown2.isOpen" class="dropdown-menu" @click.stop>
               <!-- @click.prevent="dropdown1.select(item.title)" -->
@@ -89,7 +89,7 @@
                   ? dropdown3.selected.title
                   : dropdown3.selected
               }}
-              <img src="~/assets/imgs/Small2.svg" alt="" />
+              <img src="~/assets/imgs/Small2.svg" alt="arrow" />
             </button>
             <div v-if="dropdown3.isOpen" class="dropdown-menu" @click.stop>
               <!-- @click.prevent="dropdown1.select(item.title)" -->
@@ -130,7 +130,7 @@
       <div class="row">
         <div class="col-12 col-xl-3 col-lg-4 col-md-6">
           <div class="box mb-5 mb-xl-0">
-            <img src="~/assets/imgs/icon1.svg" alt="" />
+            <img src="~/assets/imgs/icon1.svg" alt="prucher icon" />
             <h5> {{ $t('choose1') }} </h5>
             <p>
               {{ $t('chooseP1') }}
@@ -139,7 +139,7 @@
         </div>
         <div class="col-12 col-xl-3 col-lg-4 col-md-6">
           <div class="box mb-5 mb-xl-0">
-            <img src="~/assets/imgs/icon2.svg" alt="" />
+            <img src="~/assets/imgs/icon2.svg" alt="best price icon" />
             <h5> {{ $t('choose2') }} </h5>
             <p>
               {{ $t('chooseP2') }}
@@ -148,7 +148,7 @@
         </div>
         <div class="col-12 col-xl-3 col-lg-4 col-md-6">
           <div class="box mb-5 mb-xl-0">
-            <img src="~/assets/imgs/icon3.svg" alt="" />
+            <img src="~/assets/imgs/icon3.svg" alt="customer service icon" />
             <h5> {{ $t('choose3') }}</h5>
             <p>
               {{ $t('chooseP3') }}
@@ -157,7 +157,7 @@
         </div>
         <div class="col-12 col-xl-3 col-lg-4 col-md-6">
           <div class="box">
-            <img src="~/assets/imgs/icon4.svg" alt="" />
+            <img src="~/assets/imgs/icon4.svg" alt="credit icon" />
             <h5> {{ $t('choose4') }} </h5>
             <p>
               {{ $t('chooseP4') }}
@@ -222,7 +222,7 @@
                       />
                     </svg>
                   </button>
-                  <img src="~/assets/imgs/order2.png" alt="" />
+                  <img src="~/assets/imgs/order2.png" alt="car" />
                 </div>
               </div>
             </div>
@@ -250,7 +250,7 @@
                     />
                   </svg>
                 </button>
-                <img src="~/assets/imgs/order1.png" alt="" />
+                <img src="~/assets/imgs/order1.png" alt="order" />
               </div>
             </div>
           </div>

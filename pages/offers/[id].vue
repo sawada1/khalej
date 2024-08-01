@@ -67,7 +67,7 @@
       </div>
 
       <div class="main-offer-img">
-        <img src="~/assets/imgs/offer.jpeg" alt="" />
+        <img src="~/assets/imgs/offer.jpeg" alt="car" />
         <div class="overlay"></div>
       </div>
 

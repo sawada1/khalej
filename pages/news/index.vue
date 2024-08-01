@@ -25,7 +25,7 @@
                     <div v-for="i, index in 6" class="col-12 col-xl-4 col-lg-6 mb-5">
                         <nuxt-link :to="`/news/${index + 1}`" class="box">
                             <div class="image">
-                                <img src="~/assets/imgs/news1.png" alt="">
+                                <img src="~/assets/imgs/news1.png" alt="car">
                             </div>
                            <h4> تعرف على نيسان صني 2024   </h4>
                            <p> سيارة نيسان صني من فئة سيدان والتي تعتبر واحدة من ضمن السيارات التي يحبها الكثير في العالم بأكمله  </p>

@@ -161,8 +161,8 @@
                 </div>
               </div>
               <button>
-              <img v-if="actMap"  @click="actMap = !actMap" src="~/assets/imgs/pin-active.svg" alt="" />
-              <img v-if="!actMap" @click="actMap = !actMap" src="~/assets/imgs/pin.svg" alt="" />
+              <img v-if="actMap"  @click="actMap = !actMap" src="~/assets/imgs/pin-active.svg" alt="pin" />
+              <img v-if="!actMap" @click="actMap = !actMap" src="~/assets/imgs/pin.svg" alt="pin" />
               </button>
             </div>
           </div>
@@ -171,22 +171,22 @@
 
       <div class="details">
        <div class="item">
-        <img src="~/assets/imgs/contact-icon1.svg" alt="">
+        <img src="~/assets/imgs/contact-icon1.svg" alt="pin icon">
         <span> {{ $t('mainAddress') }} </span>
         <p> جدة - حي الربوة - شارع المكرونه </p>
        </div>
        <div class="item">
-        <img src="~/assets/imgs/contact-icon2.svg" alt="">
+        <img src="~/assets/imgs/contact-icon2.svg" alt="phone icon">
         <span> {{ $t('phone') }} </span>
         <p> 00966555098590 </p>
        </div>
        <div class="item">
-        <img src="~/assets/imgs/contact-icon3.svg" alt="">
+        <img src="~/assets/imgs/contact-icon3.svg" alt="email icon">
         <span> {{ $t('email') }} </span>
         <p> Autolease@Khalejauto.Sa </p>
        </div>
        <div class="item">
-        <img src="~/assets/imgs/contact-icon4.svg" alt="">
+        <img src="~/assets/imgs/contact-icon4.svg" alt="time icon">
         <span> {{ $t('appoint') }} </span>
         <p> من السبت الي الخميس من الساعه ال7 صباحا - حتي ال5 مساء
          </p>

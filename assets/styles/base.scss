@@ -329,6 +329,14 @@ html[dir="ltr"] body{
       }
     }
   }
+  .showmoreBTN {
+  button{
+    background-color: $primary;
+    padding: 15px;
+    border-radius:15px ;
+    color: $body;
+  }
+  }
 }
 
 // end brands

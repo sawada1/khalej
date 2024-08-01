@@ -17,11 +17,11 @@
         <div class="logo navbar-brand">
           <nuxt-link :to="localePath('/')">
             <div class="logo-container">
-              <img class="dark-img" src="~/assets/imgs/Logo.svg" alt="" />
+              <img class="dark-img" src="~/assets/imgs/Logo.svg" alt="khalej" />
               <img
                 class="white-img"
                 src="~/assets/imgs/Logo-active.svg"
-                alt=""
+                alt="khalej"
               />
             </div>
           </nuxt-link>
@@ -143,7 +143,7 @@
                 >
                   <button class="dropdown-toggle-container">
                     {{ dropdown2.selected.title ? dropdown2.selected.title : dropdown2.selected }}
-                    <img src="~/assets/imgs/Small2.svg" alt="" />
+                    <img src="~/assets/imgs/Small2.svg" alt="arrow" />
                     <div class="icon"></div>
                   </button>
                   <div v-if="dropdown2.isOpen" class="dropdown-menu" @click.stop>
@@ -171,7 +171,7 @@
                 >
                   <button class="dropdown-toggle-container">
                     {{ dropdown3.selected.title ? dropdown3.selected.title : dropdown3.selected }}
-                    <img src="~/assets/imgs/Small2.svg" alt="" />
+                    <img src="~/assets/imgs/Small2.svg" alt="arrow" />
                     <div class="icon"></div>
                   </button>
                   <div v-if="dropdown3.isOpen" class="dropdown-menu" @click.stop>
@@ -397,7 +397,7 @@ const goCarsFilterByName = () => {
 
 onMounted(() => {
   window.addEventListener("scroll", function () {
-    if (this.window.scrollY >= 300) {
+    if (this.window.scrollY >= 100) {
       activeNav.value = true;
     } else if (window.scrollY == 0) {
       activeNav.value = false;

@@ -3,7 +3,7 @@
       <nuxt-link :to="localePath('/car')">
         <div class="car-card">           
       <div class="image">
-                <img src="~/assets/imgs/car.png" alt="" />
+                <img src="~/assets/imgs/car.png" alt="car" />
             </div>
       <!-- <span class="namee">{{ car.statue }}</span> -->
        <div class="d-flex w-100 align-items-center justify-content-between">

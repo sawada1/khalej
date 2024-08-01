@@ -562,7 +562,7 @@
                   data-fancybox="gallery"
                   data-caption="Gallery A #1"
                 >
-                  <img :src="carPageImage" alt="" />
+                  <img :src="carPageImage" alt="car" />
                 </a>
               </swiper-slide>
             </swiper>

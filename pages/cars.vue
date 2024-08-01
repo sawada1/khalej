@@ -106,7 +106,7 @@
                     class="icon"
                     :class="{ active: dropdown1.isOpen }"
                     src="~/assets/imgs/Small.svg"
-                    alt=""
+                    alt="arrow"
                   />
                 </button>
                 <div v-if="dropdown1.isOpen" class="dropdown-menu" @click.stop>
@@ -184,7 +184,7 @@
                     class="icon"
                     :class="{ active: dropdown2.isOpen }"
                     src="~/assets/imgs/Small.svg"
-                    alt=""
+                    alt="arrow"
                   />
                 </button>
                 <div v-if="dropdown2.isOpen" class="dropdown-menu" @click.stop>
@@ -262,7 +262,7 @@
                     class="icon"
                     :class="{ active: dropdown3.isOpen }"
                     src="~/assets/imgs/Small.svg"
-                    alt=""
+                    alt="arrow"
                   />
                 </button>
                 <div v-if="dropdown3.isOpen" class="dropdown-menu" @click.stop>
