@@ -64,17 +64,15 @@
 // start payment-order-section
 .payment-order-section{
     .image-container{
-        .text{ 
+        .text{
+            button{
+                z-index: 1;
+            } 
             h3{
-              z-index: 9999;
+              z-index: 1;
               margin-top: -15px;
 
             }
-            .paymentBTN{
-            z-index: 9999;
-            background-color:$primary ;
-            border: $primary;
-        }
     }
 }
 }
@@ -244,10 +242,20 @@
     // start popup-container
     .popup-container{
         .modal-custom-container{
-            padding: 56px 30px;
+            padding: 56px 20px;
 
             .item{
-                width: 200px;
+                width: 140px;
+                height: 200px;
+                gap: 8px;
+                h5{
+                    margin: 0px;
+                }
+                p{
+                    width: 100%;
+                    font-size: 13px;
+                    padding: 0px 5px;
+                }
             }
         }
     }
@@ -267,20 +275,3 @@
     
 }
 
-
-// max width 550px
-@media(max-width:550px){
- // start popup-container
- .popup-container{
-    padding: 0 35px;
-    .modal-custom-container{
-        
-        flex-direction: column !important;
-
-      
-}
-// end popup-container
-
-
-}
-}

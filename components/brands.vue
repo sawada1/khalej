@@ -18,7 +18,7 @@
          </div>
         </div>
         <div v-if="hidde" class="showmoreBTN d-flex justify-content-center mt-4 "  >
-            <button @click="showmore()">showmore</button>
+            <button @click="showmore()"> {{ $t('showmore') }} </button>
         </div>
     </div>
     </div>
@@ -29,36 +29,35 @@ import { ref } from 'vue'
 
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
-const sliced=ref(null)
-const X =ref(6)
-const hidde=ref(true)
-const brands= [
-    {img:'/_nuxt//public/brands/brand1.svg',name:'تويوتا',carnumbrs:320},
-    {img:'/_nuxt//public/brands/brand2.svg',name:'Audi',carnumbrs:45},
-    {img:'/_nuxt//public/brands/brand3.svg',name:'بي ام دبليو',carnumbrs:90},
-    {img:'/_nuxt//public/brands/brand4.svg',name:'فورد',carnumbrs:100},
-    {img:'/_nuxt//public/brands/brand5.svg',name:'لامبوجيني',carnumbrs:24},
-    {img:'/_nuxt//public/brands/brand6.svg',name:'بنتلي',carnumbrs:88},
+const items = ref(6)
+const hidde = ref(true)
+const brands =  ref([
+    {img:'/brands/brand1.svg',name:'تويوتا',carnumbrs:320},
+    {img:'/brands/brand2.svg',name:'Audi',carnumbrs:45},
+    {img:'/brands/brand3.svg',name:'بي ام دبليو',carnumbrs:90},
+    {img:'/brands/brand4.svg',name:'فورد',carnumbrs:100},
+    {img:'/brands/brand5.svg',name:'لامبوجيني',carnumbrs:24},
+    {img:'/brands/brand6.svg',name:'بنتلي',carnumbrs:88},
     // 
-    {img:'/_nuxt//public/brands/brand3.svg',name:'بي ام دبليو',carnumbrs:90},
-    {img:'/_nuxt//public/brands/brand5.svg',name:'لامبوجيني',carnumbrs:24},
-    {img:'/_nuxt//public/brands/brand1.svg',name:'تويوتا',carnumbrs:320},
-    {img:'/_nuxt//public/brands/brand2.svg',name:'Audi',carnumbrs:45},
-    {img:'/_nuxt//public/brands/brand6.svg',name:'بنتلي',carnumbrs:88},
-    {img:'/_nuxt//public/brands/brand4.svg',name:'فورد',carnumbrs:100},
+    {img:'/brands/brand3.svg',name:'بي ام دبليو',carnumbrs:90},
+    {img:'/brands/brand5.svg',name:'لامبوجيني',carnumbrs:24},
+    {img:'/brands/brand1.svg',name:'تويوتا',carnumbrs:320},
+    {img:'/brands/brand2.svg',name:'Audi',carnumbrs:45},
+    {img:'/brands/brand6.svg',name:'بنتلي',carnumbrs:88},
+    {img:'/brands/brand4.svg',name:'فورد',carnumbrs:100},
     // 
-    {img:'/_nuxt//public/brands/brand6.svg',name:'بنتلي',carnumbrs:88},
-    {img:'/_nuxt//public/brands/brand4.svg',name:'فورد',carnumbrs:100},
-    {img:'/_nuxt//public/brands/brand3.svg',name:'بي ام دبليو',carnumbrs:90},
-    {img:'/_nuxt//public/brands/brand1.svg',name:'تويوتا',carnumbrs:320},
-    {img:'/_nuxt//public/brands/brand2.svg',name:'Audi',carnumbrs:45},
-    {img:'/_nuxt//public/brands/brand5.svg',name:'لامبوجيني',carnumbrs:24},
+    {img:'/brands/brand6.svg',name:'بنتلي',carnumbrs:88},
+    {img:'/brands/brand4.svg',name:'فورد',carnumbrs:100},
+    {img:'/brands/brand3.svg',name:'بي ام دبليو',carnumbrs:90},
+    {img:'/brands/brand1.svg',name:'تويوتا',carnumbrs:320},
+    {img:'/brands/brand2.svg',name:'Audi',carnumbrs:45},
+    {img:'/brands/brand5.svg',name:'لامبوجيني',carnumbrs:24},
+    
+]);
 
-]
-
-sliced.value=brands.slice(0,X.value)
+const sliced = ref(brands.value.slice(0,items.value))
 
 function showmore(){
-    sliced.value=brands.slice(0,X.value+=4)    
+    sliced.value = brands.value.slice(0,items.value+=4)    
 }
 </script>

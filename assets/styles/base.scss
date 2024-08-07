@@ -331,10 +331,13 @@ html[dir="ltr"] body{
   }
   .showmoreBTN {
   button{
-    background-color: $primary;
-    padding: 15px;
-    border-radius:15px ;
-    color: $body;
+    background-color: transparent;
+    padding: 0px 20px;
+    height: 40px;
+    border-radius:32px;
+    color: $primary;
+    font-weight: bolder;
+    border: 1px solid $primary;
   }
   }
 }
