@@ -26,12 +26,12 @@
 
 <script setup>
 import { useHomeStore } from "@/stores/home";
- let store = useHomeStore();
+let store = useHomeStore();
 const localePath = useLocalePath();
 const props = defineProps(["brandsArr"]);
 const { locale, setLocale } = useI18n();
 const items = ref(6)
-const hidde = ref(true)
+const hidde = ref(false);
 // const brands =  ref([
 //     {img:'/brands/brand1.svg',name:'تويوتا',carnumbrs:320},
 //     {img:'/brands/brand2.svg',name:'Audi',carnumbrs:45},
@@ -64,6 +64,5 @@ function showmore(){
 }
 onMounted(() => {
     // store.getBrands();
-    console.log(props.brands);
 })
 </script>

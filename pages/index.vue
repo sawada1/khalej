@@ -175,19 +175,18 @@
           <h2> {{ $t('cars') }} </h2>
           <p> {{ $t('car1') }} </p>
         </div>
-
-        <div class="row">
+        <div v-if="store.cars" class="row">
           <div
             v-for="(item, index) in cars"
             class="col-12 col-xl-3 col-lg-4 col-md-6"
-            :class="{ 'mb-5 mb-xl-0': index != 3 }"
+            :class="{ 'mb-5 mb-xl-0': index != 3 }" 
           >
             <car-card :item="item"></car-card>
           </div>
+        </div>
           <div class="d-flex align-items-center justify-content-center">
             <button class="more-btn"> {{ $t('more') }} </button>
           </div>
-        </div>
       </div>
     </div>
 
@@ -377,6 +376,7 @@ watch(
     brandsArr.value = val2;
     dropdown1.value.items = val2;
     dropdown2.value.items = val3;
+    console.log(val1);
   }
 );
 
