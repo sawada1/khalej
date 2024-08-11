@@ -9,6 +9,7 @@
         alt="hero"
       />
     </div>
+    {{ models }}
     <div class="container search-home-p">
       <div class="search-home row ">
         <div class="inp col-12 col-lg-3">
@@ -21,8 +22,8 @@
           >
             <button class="dropdown-toggle-container">
               {{
-                dropdown1.selected.title
-                  ? dropdown1.selected.title
+                dropdown1.selected.name
+                  ? dropdown1.selected.name
                   : dropdown1.selected
               }}
               <img src="~/assets/imgs/Small2.svg" alt="arrow" />
@@ -37,7 +38,7 @@
                 :for="`checkBox-${item.id}`"
               >
                 <span>
-                  {{ item.title }}
+                  {{ item.name }}
                 </span>
               </div>
             </div>
@@ -53,8 +54,8 @@
           >
             <button class="dropdown-toggle-container">
               {{
-                dropdown2.selected.title
-                  ? dropdown2.selected.title
+                dropdown2.selected.name
+                  ? dropdown2.selected.name_ar
                   : dropdown2.selected
               }}
               <img src="~/assets/imgs/Small2.svg" alt="arrow" />
@@ -69,7 +70,7 @@
                 :for="`checkBox-${item.id}`"
               >
                 <span>
-                  {{ item.title }}
+                  {{ item.name_ar }}
                 </span>
               </div>
             </div>
@@ -118,7 +119,8 @@
           {{ $t('explore3') }}
         </p>
       </div>
-      <brands></brands>
+      
+      <brands :brandsArr="brandsArr"/>
     </div>
     <div class="container why-choose-section">
       <div class="text d-flex flex-column align-items-center text-center">
@@ -176,11 +178,11 @@
 
         <div class="row">
           <div
-            v-for="(i, index) in 4"
+            v-for="(item, index) in cars"
             class="col-12 col-xl-3 col-lg-4 col-md-6"
             :class="{ 'mb-5 mb-xl-0': index != 3 }"
           >
-            <car-card></car-card>
+            <car-card :item="item"></car-card>
           </div>
           <div class="d-flex align-items-center justify-content-center">
             <button class="more-btn"> {{ $t('more') }} </button>
@@ -323,6 +325,14 @@
 <script setup>
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
+import { useHomeStore } from "@/stores/home";
+ let store = useHomeStore();
+ store.getBrands();
+ store.getCars();
+ store.getModels();
+ let cars = ref(store.cars);
+ let brandsArr = ref(store.brands);
+ let modelsArr = ref(store.models);
 let howArr = ref([
   {
     title: locale.value == 'ar' ? "ابحث" : "search",
@@ -341,21 +351,10 @@ let dropdownVal1 = ref(locale.value == 'ar' ? 'اختر ماركة السيار�
 let dropdownVal2 = ref(locale.value == 'ar' ? 'اختر موديل السيارة ' : 'choose car model');
 let dropdownVal3 = ref(locale.value == 'ar' ? 'اختر اسم السيارة ' : 'choose car name');
 const dropdown1 = ref(
-   process.client ? new Dropdown(dropdownVal1.value, [
-    { id: 1, title: "option 1" },
-    { id: 2, title: "option 2" },
-    { id: 3, title: "option 3" },
-    { id: 4, title: "option 4" },
-  ]) : null
+   process.client ? new Dropdown(dropdownVal1.value) : null
 );
 const dropdown2 = ref(
-  process.client ?
-  new Dropdown(dropdownVal2.value, [
-    { id: 1, title: "option 1" },
-    { id: 2, title: "option 2" },
-    { id: 3, title: "option 3" },
-    { id: 4, title: "option 4" },
-  ]) : null
+  process.client ? new Dropdown(dropdownVal2.value) : null
 );
 const dropdown3 = ref(
   process.client ?
@@ -367,22 +366,17 @@ const dropdown3 = ref(
   ]) : null
 );
 
-let obj = ref({
-  val1: "",
-  val2: "",
-  val3: "",
-});
 
 watch(
-  [
-    () => dropdown1.value.selected,
-    () => dropdown2.value.selected,
-    () => dropdown3.value.selected,
-  ],
-  ([val1, val2, val3]) => {
-    obj.value.val1 = val1.id;
-    obj.value.val2 = val2.id;
-    obj.value.val3 = val3.id;
+  [ ()=> store.cars , ()=> store.brands , ()=> store.models],
+  ([ val1 , val2 , val3]) => {
+    // obj.value.val1 = val1.id;
+    // obj.value.val2 = val2.id;
+    // obj.value.val3 = val3.id;
+    cars.value = val1;
+    brandsArr.value = val2;
+    dropdown1.value.items = val2;
+    dropdown2.value.items = val3;
   }
 );
 

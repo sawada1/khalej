@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["nuxt-swiper", "@nuxtjs/i18n", "nuxt-primevue", "nuxt-aos"],
-  plugins: [],
+  plugins: ['~/plugins/pinia.js' , '~/plugins/axios.js'],
   i18n: {
     // lazy: true,
     langDir: "locales",

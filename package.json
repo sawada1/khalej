@@ -20,6 +20,7 @@
     "nuxt-aos": "^1.2.4",
     "nuxt-primevue": "^3.0.0",
     "nuxt-swiper": "^1.2.2",
+    "pinia": "^2.2.1",
     "sass": "^1.77.6",
     "sweetalert2": "^11.12.1",
     "vue": "^3.4.29",

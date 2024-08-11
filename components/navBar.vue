@@ -379,9 +379,8 @@ const changeLang = async () => {
     });
     setLocale("en");
   }
-  console.log(route);
+  // console.log(route);
   const query = useRoute().query;
-  getFooterData();
   await navigateTo(
     localePath({ path: useRoute().path, query: query }, undefined, {
       preserveQuery: true,
