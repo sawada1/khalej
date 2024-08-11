@@ -22,7 +22,7 @@
 
             <div class="offers-boxes">
                 <div class="row">
-                    <div v-for="i, index in 6" class="col-12 col-xl-4 col-lg-6 mb-5">
+                    <div v-for="item, index in offers" class="col-12 col-xl-4 col-lg-6 mb-5">
                         <div :to="`/news/${index + 1}`" class="box">
                             <div class="image">
                                 <img src="~/assets/imgs/offer.jpeg" alt="car">
@@ -30,7 +30,7 @@
                             <div class="text">
                                 <h4> لا تفوتك عروض رمضان  </h4>
                                 <p> هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى..  </p>
-                                <nuxt-link :to="`/offers/${index + 1}`" >
+                                <nuxt-link :to="`/offers/${item.id}`" >
                                     <button> {{ $t('offerBtn') }} </button>
                                 </nuxt-link>
                             </div>
@@ -43,5 +43,10 @@
 </template>
 
 <script setup>
-
+let offers = ref([]);
+onMounted(() => {
+   setTimeout(() => {
+    offers.value = [{id:1} , {id:2} , {id:3} , {id:4} , {id:5} , {id:6}]
+   }, 100); 
+});
 </script>
