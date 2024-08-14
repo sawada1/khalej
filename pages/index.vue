@@ -178,6 +178,7 @@
         <div v-if="store.cars" class="row">
           <div
             v-for="(item, index) in cars"
+            :key="index"
             class="col-12 col-xl-3 col-lg-4 col-md-6"
             :class="{ 'mb-5 mb-xl-0': index != 3 }" 
           >
@@ -274,7 +275,7 @@
           </div>
           <div class="col-12 col-xl-8 col-lg-12">
             <div class="row cards">
-              <div   v-for="(item, index) in howArr"  class="col-12 col-xl-6 col-lg-6" >
+              <div   v-for="(item, index) in howArr" :key="index" class="col-12 col-xl-6 col-lg-6" >
                 <div
                   class="main-card d-flex align-items-center justify-content-center"
                 >
@@ -364,7 +365,6 @@ const dropdown3 = ref(
     { id: 4, title: "option 4" },
   ]) : null
 );
-
 
 watch(
   [ ()=> store.cars , ()=> store.brands , ()=> store.models],

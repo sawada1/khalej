@@ -41,25 +41,25 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse"  id="navbarNav">
           <div class="links navbar-nav justify-content-center w-100">
-            <nuxt-link class="nav-link" :to="localePath('/')">{{
+            <nuxt-link  @click="closeNav" class="nav-link" :to="localePath('/')">{{
               $t("home")
             }}</nuxt-link>
-            <nuxt-link class="nav-link" :to="localePath('/market')">{{
+            <nuxt-link  @click="closeNav" class="nav-link" :to="localePath('/market')">{{
               $t("market")
             }}</nuxt-link>
-            <div @click="openPopup = !openPopup" class="nav-link">
+            <div @click="openPopup = !openPopup  " class="nav-link">
               {{ $t("reqOrd") }}
             </div>
             <!-- :class="{ 'active': store.state.newActive }" -->
-            <nuxt-link class="nav-link" :to="localePath('/news')">
+            <nuxt-link  @click="closeNav" class="nav-link" :to="localePath('/news')">
               {{ $t("news") }}
             </nuxt-link>
-            <nuxt-link class="nav-link" :to="localePath('/offers')">{{
+            <nuxt-link  @click="closeNav" class="nav-link" :to="localePath('/offers')">{{
               $t("offers")
             }}</nuxt-link>
-            <nuxt-link class="nav-link" :to="localePath('/contact')">
+            <nuxt-link  @click="closeNav" class="nav-link" :to="localePath('/contact')">
               {{ $t("contact") }}
             </nuxt-link>
           </div>
@@ -310,6 +310,7 @@ let router = useRouter();
 let route = useRoute();
 let activeNav = ref(false);
 let toggleNav = ref(false);
+let navClose =ref(false)
 
 
 let dropdownVal1 = ref(locale.value == 'ar' ? 'اختر ماركة السيارة ' : 'choose car brand');
@@ -418,6 +419,14 @@ function mobileNav(){
   
 }
 
+const closeNav = () => {
+  // Get the collapse element
+  const navbarCollapse = document.getElementById('navbarNav');
+  const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+    toggle: false
+  });
+  bsCollapse.hide();
+};
 
 
 

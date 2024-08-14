@@ -86,7 +86,6 @@ export const useHomeStore = defineStore("home", () => {
       }
     }
   }
-
   return {
     errors,
     brands,
