@@ -517,11 +517,14 @@
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            background-color: red;
+            // background-color: red;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            &.light-color{
+              background-color: #ededf3 !important;
+            }
 
             .act-color {
               background-color: #fff;

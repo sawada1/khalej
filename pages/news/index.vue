@@ -1,6 +1,7 @@
 <template>
   <div style="min-height: 100vh">
     <div class="container news-page">
+    
       <div class="text-page">
         <div class="breadline">
           <span>{{ $t("home") }}</span>
@@ -59,13 +60,13 @@
           >
             <nuxt-link :to="`/news/${item.id}`" class="box">
               <div class="image">
-                <img src="~/assets/imgs/news1.png" alt="car" />
+                <!-- ~/assets/imgs/news1.png -->
+                <img :src="item.main_image" alt="car" />
               </div>
-              <h4>تعرف على نيسان صني 2024</h4>
+              <h4> {{ item.title }}  </h4>
               <p>
-                سيارة نيسان صني من فئة سيدان والتي تعتبر واحدة من ضمن السيارات
-                التي يحبها الكثير في العالم بأكمله 
-              </p>
+              {{ item.description }}
+               </p>
               <div class="d-flex align-items-center gap-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -94,28 +95,29 @@
                     </clipPath>
                   </defs>
                 </svg>
-                <span> 2023-10-19 </span>
+                <span> {{ item.created_at }} </span>
               </div>
             </nuxt-link>
           </div>
         </div>
       </div>
     </div>
+    <loading v-if="isLoading"/>
+
   </div>
 </template>
 
 <script setup>
+import { useNewStore } from "@/stores/news";
+let store = useNewStore();
+let isLoading = ref(store.isLoading);
+store.getNews();
 let newss = ref([]);
+
+watch([()=> store.news , store.isLoading] , ([val1 , val2])=>{
+  newss.value = val1;
+  isLoading.value = val2;
+})
 onMounted(() => {
-  setTimeout(() => {
-    newss.value = [
-      { id: 1 },
-      { id: 2 },
-      { id: 3 },
-      { id: 4 },
-      { id: 5 },
-      { id: 6 },
-    ];
-  }, 100);
 });
 </script>

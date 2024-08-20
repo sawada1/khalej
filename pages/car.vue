@@ -1,41 +1,31 @@
 <template>
   <div style="min-height: 100vh">
-    <div class="container">
+    <div v-if="mainCar" class="container">
       <div class="product-page">
+      
         <div class="row">
           <div class="col-12 col-xl-5 col-lg-5">
             <div class="details-container">
               <div class="comp-price">
                 <span> {{ $t('comPrice') }} </span>
               </div>
-              <h2 class="nameCar">مرسيدس GLC 300 2023</h2>
+              <h2 class="nameCar"> {{ mainCar.CarName }} </h2>
               <div class="colors-container">
                 <div class="d-flex flex-column gap-4 stallment-price">
                   <span> {{ $t('installCar') }} </span>
-                  <h5>130,000 {{ $t('curr') }}</h5>
+                  <h5>{{ mainCar.price }} {{ $t('curr') }}</h5>
                 </div>
                 <div class="seprator"></div>
                 <div class="d-flex flex-column gap-4 main-colors">
                   <span> {{ $t('availColors') }} </span>
                   <div class="colors">
                     <div
+                    v-for="color , index in mainCar.color"
+                      :key="index"
                       class="color"
-                      @click="activeColor = 1"
-                      :class="{ active: activeColor == 1 }"
-                    >
-                      <div class="act-color"></div>
-                    </div>
-                    <div
-                      class="color"
-                      @click="activeColor = 2"
-                      :class="{ active: activeColor == 2 }"
-                    >
-                      <div class="act-color"></div>
-                    </div>
-                    <div
-                      class="color"
-                      @click="activeColor = 3"
-                      :class="{ active: activeColor == 3 }"
+                      :style="{ backgroundColor: color.hex_code }"
+                      @click="activeColor = index + 1"
+                      :class="{ active: activeColor == index + 1 , 'light-color': isLightColor(color.hex_code) }"
                     >
                       <div class="act-color"></div>
                     </div>
@@ -61,9 +51,7 @@
                   <h6> {{ $t('desc') }} </h6>
                 </div>
                 <p>
-                  سيارة مرسيدس GLC 300 2023 واحدة من سيارات الدفع الرباعي
-                  الفاخرة بالتصميم الجذاب بقوة 245 حصان ناقل حركة اتوماتيك دفع
-                  رباعي و سعة 2 لتر ومن الداخل بها أعلى الدرجات من الراحة.
+                  {{ mainCar.description }}
                 </p>
               </div>
               <div class="main-details">
@@ -104,7 +92,7 @@
                       </svg>
                       <span> {{ $t('engineType') }} </span>
                     </div>
-                    <h6>اوتوماتيك</h6>
+                    <h6>{{ mainCar.gear_shifter }}</h6>
                   </div>
                   <div class="detail">
                     <div class="d-flex align-items-center gap-3">
@@ -126,7 +114,7 @@
                       </svg>
                       <span> {{ $t('year1') }} </span>
                     </div>
-                    <h6>2023</h6>
+                    <h6>{{ mainCar.year }}</h6>
                   </div>
                 </div>
                 <div class="details">
@@ -146,7 +134,7 @@
                       </svg>
                       <span> {{ $t('gazType') }} </span>
                     </div>
-                    <h6>بنزين</h6>
+                    <h6>{{ mainCar.fuel_type }}</h6>
                   </div>
                   <div class="detail">
                     <div class="d-flex align-items-center gap-3">
@@ -555,14 +543,14 @@
               :modules="[SwiperPagination, SwiperAutoplay]"
               class="mySwiper"
             >
-              <swiper-slide v-for="i in 6">
+              <swiper-slide v-for="i in mainCar.images">
                 <a
-                  :data-src="carPageImage"
+                  :data-src="i"
                   href="javascript:;"
                   data-fancybox="gallery"
                   data-caption="Gallery A #1"
                 >
-                  <img :src="carPageImage" alt="car" />
+                  <img :src="i" alt="car" />
                 </a>
               </swiper-slide>
             </swiper>
@@ -571,6 +559,8 @@
       </div>
     </div>
     <popup-one :openPopup="openPopup" @update="handleUpdatePopup"></popup-one>
+    
+    <loading v-if="isLoading"/>
   </div>
 </template>
 
@@ -580,13 +570,48 @@ import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import carPageImage from "../assets/imgs/carPage.png";
 import "swiper/css/pagination";
+import { useCarStore } from "@/stores/car";
+let store = useCarStore();
 let activeColor = ref(1);
 let activeBtn = ref(2);
 let openPopup = ref(false);
+const route = useRoute();
+let isLoading = ref(store.isLoading);
+let id = ref(route.query.id);
+store.getCar(id.value);
+let mainCar = ref();
+const hexToRgb = (hex) => {
+  // Remove '#' from hex string
+  hex = hex.replace(/^#/, "");
+  // Parse the hex string to get RGB values
+  let bigint = parseInt(hex, 16);
+  let r = (bigint >> 16) & 255;
+  let g = (bigint >> 8) & 255;
+  let b = bigint & 255;
+  return { r, g, b };
+};
+const isLightColor = (hex) => {
+  // Convert hex color to RGB
+  let rgb = hexToRgb(hex);
+  // Calculate the luminance of the color
+  let luminance = (0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b) / 255;
+  // If luminance is greater than 0.5, color is considered light
+  return luminance > 0.5;
+};
+
 
 const handleUpdatePopup = (newState) => {
   openPopup.value = newState;
 };
+
+watch(
+  [ ()=> store.car , store.isLoading],
+  ([ val1 , val2 ]) => {
+    mainCar.value = val1;
+    isLoading.value = val2;
+  }
+);
+
 
 onMounted(() => {
   Fancybox.bind("[data-fancybox]", {

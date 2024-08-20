@@ -6,7 +6,7 @@
           class="d-flex align-items-center flex-column w-100 justify-content-center"
         >
           <div class="breadline">
-            <span> {{ $t('home') }} </span>
+            <span> {{ $t("home") }} </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -23,10 +23,10 @@
                 stroke-linejoin="round"
               />
             </svg>
-            <span> {{ $t('market') }} </span>
+            <span> {{ $t("market") }} </span>
           </div>
           <div>
-            <h1 class="title"> {{ $t('market') }} </h1>
+            <h1 class="title">{{ $t("market") }}</h1>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="50"
@@ -54,7 +54,7 @@
         <div class="container filter-container flex-column flex-xl-row">
           <button @click="showFilter = !showFilter" class="filter-btn">
             <svg
-            v-if="!showFilter"
+              v-if="!showFilter"
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
@@ -69,7 +69,7 @@
               />
             </svg>
             <svg
-            v-if="showFilter"
+              v-if="showFilter"
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
@@ -83,11 +83,14 @@
                 fill="#363F4D"
               />
             </svg>
-            {{ $t('filter') }}
+            {{ $t("filter") }}
           </button>
-          <div v-if="showFilter" class="d-flex align-items-center flex-column flex-xl-row main-filter">
+          <div
+            v-if="showFilter"
+            class="d-flex align-items-center flex-column flex-xl-row main-filter"
+          >
             <div class="inp">
-              <label for=""> {{ $t('brand') }} </label>
+              <label for=""> {{ $t("brand") }} </label>
               <div
                 v-if="dropdown1"
                 :id="dropdown1.id"
@@ -97,8 +100,8 @@
                 <button class="dropdown-toggle-container">
                   <span class="text-drop">
                     {{
-                      dropdown1.selected.title
-                        ? dropdown1.selected.title
+                      dropdown1.selected.name
+                        ? dropdown1.selected.name
                         : dropdown1.selected
                     }}
                   </span>
@@ -150,7 +153,7 @@
                           />
                         </svg>
                         <span>
-                          {{ item.title }}
+                          {{ item.name }}
                         </span>
                       </div>
                       <input
@@ -165,7 +168,7 @@
               </div>
             </div>
             <div class="inp">
-              <label for=""> {{ $t('models') }} </label>
+              <label for=""> {{ $t("models") }} </label>
               <div
                 v-if="dropdown2"
                 :id="dropdown2.id"
@@ -175,8 +178,8 @@
                 <button class="dropdown-toggle-container">
                   <span class="text-drop">
                     {{
-                      dropdown2.selected.title
-                        ? dropdown2.selected.title
+                      dropdown2.selected.name
+                        ? dropdown2.selected.name
                         : dropdown2.selected
                     }}
                   </span>
@@ -228,13 +231,13 @@
                           />
                         </svg>
                         <span>
-                          {{ item.title }}
+                          {{ item.name }}
                         </span>
                       </div>
                       <input
                         :id="`checkBox-${item.id}`"
                         type="checkbox"
-                        v-model="arr"
+                        v-model="arr2"
                         :value="item.id"
                       />
                     </div>
@@ -243,7 +246,7 @@
               </div>
             </div>
             <div class="inp">
-              <label for=""> {{ $t('pattern') }} </label>
+              <label for=""> {{ $t("pattern") }} </label>
               <div
                 v-if="dropdown3"
                 :id="dropdown3.id"
@@ -312,7 +315,7 @@
                       <input
                         :id="`checkBox-${item.id}`"
                         type="checkbox"
-                        v-model="arr"
+                        v-model="arr3"
                         :value="item.id"
                       />
                     </div>
@@ -331,74 +334,96 @@
               <div
                 class="currency d-flex align-items-center justify-content-between"
               >
-                <span> {{ Math.round(value[0]) }} {{ $t('curr') }} </span>
-                <span> {{ Math.round(value[1]) }} {{ $t('curr') }}</span>
+                <span> {{ Math.round(value[0]) }} {{ $t("curr") }} </span>
+                <span> {{ Math.round(value[1]) }} {{ $t("curr") }}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="allcars ">
-      <div class="container">
-       <div class="row">
-        <div v-for="i in 10" class="col-12 col-xl-3 col-lg-3 col-md-6 mb-5">
-         <car-card></car-card>
+      <div class="allcars">
+        <div v-if="pendingState" class="empty-state">
+          <client-only>
+            <Vue3Lottie :animation-data="search" :height="200" :width="200" />
+          </client-only>
+          <h4>{{ $t("not1") }}</h4>
+          <p>{{ $t("not2") }}</p>
+          <!-- <button></button> -->
         </div>
-       </div>
-       <!-- :model-value="progressValue" -->
-       <div class="d-flex progress-container flex-column gap-3">
-       <v-progress-linear :reverse="reverse" rounded color="#2D9596" model-value="50"  :height="6">
-    </v-progress-linear>
-    <button> {{ $t('more2') }} </button>
-      
-      </div>
-       </div>
+        <div class="container">
+          <div class="row">
+            <div
+              v-for="item in filteredCar"
+              class="col-12 col-xl-3 col-lg-3 col-md-6 mb-5"
+            >
+              <car-card :item="item"></car-card>
+            </div>
+          </div>
+          <!-- :model-value="progressValue" -->
+          <div class="d-flex progress-container flex-column gap-3">
+            <v-progress-linear
+              :reverse="reverse"
+              rounded
+              color="#2D9596"
+              model-value="50"
+              :height="6"
+            >
+            </v-progress-linear>
+            <button>{{ $t("showmore") }}</button>
+          </div>
+        </div>
       </div>
     </div>
+    <loading v-if="isLoading" />
   </div>
 </template>
 
 <script setup>
-let arr = ref([]);
+import { useCarStore } from "@/stores/car";
+import { Vue3Lottie } from "vue3-lottie";
+import search from "~/assets/animations/search.json";
+import { useHomeStore } from "@/stores/home";
+let store2 = useHomeStore();
+store2.getBrands();
+store2.getCars();
+store2.getModels();
+let store = useCarStore();
+let route = useRoute();
+let brandId = ref(route.query.id);
+let modelId = ref(route.query.model);
+let carId = ref(route.query.car_id);
+let cars = ref(store2.cars);
+let brandsArr = ref(store2.brands);
+let modelsArr = ref(store2.models);
+let pendingState = ref(false);
+let filteredCar = ref(store.filteredCar);
+let isLoading = ref(store.isLoading2);
+let arr = ref(brandId.value ? [brandId.value] : []);
+let arr2 = ref(modelId.value ? [modelId.value] : []);
+let arr3 = ref(carId.value ? [carId.value] : []);
 let value = ref([200000, 400000]);
 let showFilter = ref(false);
 let { locale } = useI18n();
 const localePath = useLocalePath();
+
+store.getSearchCars({
+  model_id: modelId.value,
+  brand_id: brandId.value,
+  car_id: carId.value,
+});
 let reverse = ref(locale.value == "ar" ? true : false);
-let dropdownVal1 = ref(locale.value == 'ar' ? 'اختر ماركة السيارة ' : 'choose car brand');
-let dropdownVal2 = ref(locale.value == 'ar' ? 'اختر موديل السيارة ' : 'choose car model');
-let dropdownVal3 = ref(locale.value == 'ar' ? 'اختر اسم السيارة ' : 'choose car name');
-const dropdown1 = ref(
-  process.client
-    ? new Dropdown(dropdownVal1.value, [
-        { id: 1, title: "option 1" },
-        { id: 2, title: "option 2" },
-        { id: 3, title: "option 3" },
-        { id: 4, title: "option 4" },
-      ])
-    : null
+let dropdownVal1 = ref(
+  locale.value == "ar" ? "اختر ماركة السيارة " : "choose car brand"
 );
-const dropdown2 = ref(
-  process.client
-    ? new Dropdown(dropdownVal2.value, [
-        { id: 1, title: "option 1" },
-        { id: 2, title: "option 2" },
-        { id: 3, title: "option 3" },
-        { id: 4, title: "option 4" },
-      ])
-    : null
+let dropdownVal2 = ref(
+  locale.value == "ar" ? "اختر موديل السيارة " : "choose car model"
 );
-const dropdown3 = ref(
-  process.client
-    ? new Dropdown(dropdownVal3.value, [
-        { id: 1, title: "option 1" },
-        { id: 2, title: "option 2" },
-        { id: 3, title: "option 3" },
-        { id: 4, title: "option 4" },
-      ])
-    : null
+let dropdownVal3 = ref(
+  locale.value == "ar" ? "اختر اسم السيارة " : "choose car name"
 );
+const dropdown1 = ref(process.client ? new Dropdown(dropdownVal1.value) : null);
+const dropdown2 = ref(process.client ? new Dropdown(dropdownVal2.value) : null);
+const dropdown3 = ref(process.client ? new Dropdown(dropdownVal3.value) : null);
 const handleClickOutside = (event) => {
   if (dropdown1.value) {
     dropdown1.value.handleClickOutside(event);
@@ -494,9 +519,6 @@ const handleClickOutside = (event) => {
 //   }
 // };
 
-
-
-
 // const pageCount = computed(() => {
 //   return Math.ceil(total.value / per_page.value);
 // });
@@ -511,11 +533,31 @@ const handleClickOutside = (event) => {
 //   }
 // };
 
-
+watch(
+  [
+    () => store.filteredCar,
+    store.isLoading2,
+    store.pendingState,
+    () => store2.cars,
+    () => store2.brands,
+    () => store2.models,
+  ],
+  ([val1, val2, val3, val4, val5, val6]) => {
+    filteredCar.value = val1;
+    isLoading.value = val2;
+    pendingState.value = filteredCar.value.length < 1 ? true : false;
+    dropdown1.value.items = val5;
+    dropdown2.value.items = val6;
+    dropdown3.value.items = val4;
+  }
+);
 onMounted(() => {
   document.addEventListener("click", handleClickOutside);
+  dropdown1.value.items = brandsArr.value;
+  dropdown2.value.items = modelsArr.value;
+  dropdown3.value.items = cars.value;
 });
 onUnmounted(() => {
-    document.removeEventListener("click", handleClickOutside);
+  document.removeEventListener("click", handleClickOutside);
 });
 </script>

@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div class="allBrands  ">
+        <div class="allBrands ">
          <div class="row"  >
             <div v-for="item in brandsArr" :key="item" class="col-6 col-xl-2 col-lg-3 col-md-4">      
-            <nuxt-link :to="localePath('/cars')"  >
+            <nuxt-link :to="localePath({ path: '/cars', query: { id: item.id } })"  >
                 <div class="box  ">
                  <img :src="item.image" alt="brand">
                  <h4> {{ item.name }} </h4>

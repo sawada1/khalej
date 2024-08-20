@@ -25,11 +25,12 @@
                     <div v-for="item, index in offers" class="col-12 col-xl-4 col-lg-6 mb-5">
                         <div :to="`/news/${index + 1}`" class="box">
                             <div class="image">
-                                <img src="~/assets/imgs/offer.jpeg" alt="car">
+                                <!-- ~/assets/imgs/offer.jpeg -->
+                                <img :src="item.image" alt="car">
                             </div>
                             <div class="text">
-                                <h4> لا تفوتك عروض رمضان  </h4>
-                                <p> هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى..  </p>
+                                <h4> {{ item.title_ar }} </h4>
+                                <p> {{ item.description_ar }} </p>
                                 <nuxt-link :to="`/offers/${item.id}`" >
                                     <button> {{ $t('offerBtn') }} </button>
                                 </nuxt-link>
@@ -38,15 +39,21 @@
                     </div>
                 </div>
             </div>
+
      </div>
+    <loading v-if="isLoading"/>
     </div>
 </template>
 
 <script setup>
+import { useOfferStore } from "@/stores/offers";
+let store = useOfferStore();
+let isLoading = ref(store.isLoading);
+store.getOffers();
 let offers = ref([]);
-onMounted(() => {
-   setTimeout(() => {
-    offers.value = [{id:1} , {id:2} , {id:3} , {id:4} , {id:5} , {id:6}]
-   }, 100); 
-});
+
+watch([()=> store.offers , store.isLoading] , ([val1 , val2])=>{
+    offers.value = val1;
+  isLoading.value = val2;
+})
 </script>

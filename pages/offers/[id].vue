@@ -1,6 +1,6 @@
 <template>
   <div style="min-height: 100vh">
-    <div class="container offer-page">
+    <div v-if="offer" class="container offer-page">
       <div class="text-page">
         <div class="breadline">
           <span>{{ $t("home") }}</span>
@@ -40,7 +40,7 @@
           <span class="fw-bold"> {{ $t("offer") }} </span>
         </div>
         <div>
-          <h1 class="title">سيارة كيا K4 2025 الجديدة</h1>
+          <h1 class="title">  {{ offer.Offers.title_ar }}  </h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="150"
@@ -67,7 +67,8 @@
       </div>
 
       <div class="main-offer-img">
-        <img src="~/assets/imgs/offer.jpeg" alt="car" />
+        <!-- ~/assets/imgs/offer.jpeg -->
+        <img :src="offer.Offers.cover" alt="car" />
         <div class="overlay"></div>
       </div>
 
@@ -76,26 +77,29 @@
           <h5>{{ $t("carOffer") }}</h5>
         </div>
         <div class="row">
-          <div v-for="item in 6" class="col-12 col-xl-3 col-lg-3 col-md-6 my-3">
-            <carCard />
+          <div v-for="item in offer.Offers.car" class="col-12 col-xl-3 col-lg-3 col-md-6 my-3">
+            <carCard :item="item" />
           </div>
         </div>
       </div>
     </div>
 
-    <!-- <Loader v-if="pending"></Loader>  -->
+    <loading v-if="isLoading"/>
   </div>
 </template>
 
 <script setup>
 import * as clipboard from "clipboard-polyfill";
-import axios from "axios";
+import { useOfferStore } from "@/stores/offers";
 const localePath = useLocalePath();
 const { locale } = useI18n();
 const route = useRoute();
 const itemId = ref(route.params.id);
-
 const router = useRouter();
+let store = useOfferStore();
+let isLoading = ref(store.isLoading2);
+store.getOffer(itemId.value);
+let offer = ref(store.offer);
 
 // let cars = ref([]);
 
@@ -119,4 +123,10 @@ const router = useRouter();
 // }
 
 // }
+
+
+watch([()=> store.offer , store.isLoading2] , ([val1 , val2])=>{
+    offer.value = val1;
+  isLoading.value = val2;
+})
 </script>

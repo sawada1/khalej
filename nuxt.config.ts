@@ -1,8 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["nuxt-swiper", "@nuxtjs/i18n", "nuxt-primevue", "nuxt-aos"],
-  plugins: ['~/plugins/pinia.js' , '~/plugins/axios.js'],
+  modules: ["nuxt-swiper", "@nuxtjs/i18n", 'nuxt-primevue' , "nuxt-aos"],
+  plugins: ['~/plugins/pinia.js' , '~/plugins/axios.js' , '~/plugins/sweetalert2.js'],
   i18n: {
     // lazy: true,
     langDir: "locales",

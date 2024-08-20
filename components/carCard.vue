@@ -1,7 +1,6 @@
 <template>
-    <div>
-      <nuxt-link v-if="item" :to="localePath('/car')">
-        <div class="car-card">           
+    <div v-if="item">
+        <div @click="goToCar(item.id)" class="car-card">           
       <div class="image">
                 <!-- <img src="~/assets/imgs/car.png" alt="car" /> -->
                 <img :src="item.main_image" alt="car" />
@@ -77,8 +76,6 @@
         </div>
       </div>
     </div>
-
-      </nuxt-link>
     </div>
 </template>
 
@@ -86,4 +83,28 @@
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
 const props = defineProps(["item"]);
+let router = useRouter();
+
+const goToCar = (id) => {
+  const queryParams = {
+    id: id,
+  };
+  const url = "/car";
+
+  const updatedRoute = {
+    path: url,
+    query: {
+      ...queryParams,
+    },
+  };
+
+  const fullLocalePath = localePath(updatedRoute);
+  router.push(fullLocalePath);
+  if (process.client) {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+}
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div style="min-height: 100vh">
-    <div class="container single-new-container">
+    <div v-if="mainItem" class="container single-new-container">
       <div class="text-page">
         <div class="breadline">
           <span>{{ $t("home") }}</span>
@@ -40,7 +40,7 @@
           <span class="fw-bold"> {{ $t("new") }} </span>
         </div>
         <div>
-          <h1 class="title">سيارة كيا K4 2025 الجديدة</h1>
+          <h1 class="title"> {{ mainItem.news.title }} </h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="150"
@@ -72,7 +72,8 @@
           <div class="col-12 col-xl-7 col-lg-7">
             <div class="img-box">
               <div class="image">
-                <img src="~/assets/imgs/news1.png" alt="car" />
+                <!-- <img src="~/assets/imgs/news1.png" alt="car" /> -->
+                <img :src="mainItem.news.main_image" alt="car" />
                 <div class="overlay"></div>
               </div>
 
@@ -80,16 +81,7 @@
                               
                             </div> -->
               <div class="text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit
-                quidem perspiciatis voluptatem, labore libero iusto optio,
-                minima exercitationem ullam at repellendus nesciunt quia id enim
-                quam voluptate error veritatis amet. Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Sit quidem perspiciatis
-                voluptatem, labore libero iusto optio, minima exercitationem
-                ullam at repellendus nesciunt quia id enim quam voluptate error
-                veritatis amet. perspiciatis voluptatem, labore libero iusto
-                optio, minima exercitationem ullam at repellendus nesciunt quia
-                id enim quam voluptate error veritatis amet.
+               {{ mainItem.news.description }}
               </div>
             </div>
           </div>
@@ -208,19 +200,23 @@
         </div>
       </div>
     </div>
-    <!-- <Loader v-if="pending"></Loader> -->
+    <loading v-if="isLoading"/>
   </div>
 </template>
 
 <script setup>
 import * as clipboard from "clipboard-polyfill";
 import axios from "axios";
+import { useNewStore } from "@/stores/news";
 const localePath = useLocalePath();
 const { locale } = useI18n();
 const route = useRoute();
 const itemId = ref(route.params.id);
-
 const router = useRouter();
+let store = useNewStore();
+let mainItem = ref(store.newItem);
+let isLoading = ref(store.isLoading2);
+store.getNew(itemId.value);
 let pending = ref(false);
 
 // let newsArr = ref([]);
@@ -275,8 +271,8 @@ function copyToClipboard() {
 //     }
 // }
 
-// watch(id, (newId) => {
-//   // Update the route with the new id
-//   router.push({ query: { id: newId } });
-// });
+watch([()=> store.newItem , store.isLoading2] , ([val1 , val2])=>{
+  mainItem.value = val1;
+  isLoading.value = val2;
+})
 </script>

@@ -21,6 +21,10 @@ a {
   text-decoration: none;
 }
 
+.mosha__toast{
+  z-index: 1111111111111111 !important;
+}
+
 @font-face {
   font-family: "Lama Sans";
   src: url("/assets/fonts/LamaSans-Regular.ttf") format("truetype");
@@ -57,6 +61,7 @@ html[dir="ltr"] body{
   position: relative;
   // width: 100%;
   height: fit-content;
+  cursor: pointer;
 
   .disc2 {
     font-weight: 300 !important;
@@ -270,7 +275,7 @@ html[dir="ltr"] body{
 // end dropdown
 
 .fancybox__container , .swal2-container {
-  z-index: 555555555555;
+  z-index: 555555555555 !important;
 }
 .swal2-actions{
   width: 100%;
@@ -279,6 +284,7 @@ html[dir="ltr"] body{
   // background-color: $primary !important;
   width: 50% !important;
   border-radius: 30px;
+  color: #fff;
 }
 
 // start brands
@@ -294,6 +300,10 @@ html[dir="ltr"] body{
 
     .icon {
       opacity: 0;
+    }
+
+    img{
+     width: 50px;
     }
 
     h4 {
@@ -534,6 +544,33 @@ box-shadow: 0px 64px 64px -48px rgba(15, 15, 15, 0.10);
   }
 }
 // end inputs style
+
+
+// start empty states 
+
+.empty-state{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  text-align: center;
+  margin-bottom: 70px;
+  h4{
+    color: $primary;
+    font-weight: 700;
+    font-size: 25px;
+  }
+  p{
+    width: 380px;
+    font-size: 17px;
+    line-height: 32px;
+    color: $black;
+  }
+}
+
+
+// end empty states 
 
 // start popups
 

@@ -9,8 +9,10 @@
         alt="hero"
       />
     </div>
-    {{ models }}
     <div class="container search-home-p">
+    {{ selectedBrand }}
+    {{ selectedCar }}
+    {{ selectedmodel }}
       <div class="search-home row ">
         <div class="inp col-12 col-lg-3">
           <label for=""> {{ $t('brand') }} </label>
@@ -31,9 +33,10 @@
             <div v-if="dropdown1.isOpen" class="dropdown-menu" @click.stop>
               <!-- @click.prevent="dropdown1.select(item.title)" -->
               <div
+              v-if="dropdown1.items"
                 class="dropdown-item"
-                @click.prevent="dropdown1.select2(item)"
                 v-for="item in dropdown1.items"
+                @click.prevent="dropdown1.select2(item) , selectedBrand = item.id"
                 :key="item.id"
                 :for="`checkBox-${item.id}`"
               >
@@ -55,7 +58,7 @@
             <button class="dropdown-toggle-container">
               {{
                 dropdown2.selected.name
-                  ? dropdown2.selected.name_ar
+                  ? dropdown2.selected.name
                   : dropdown2.selected
               }}
               <img src="~/assets/imgs/Small2.svg" alt="arrow" />
@@ -64,13 +67,13 @@
               <!-- @click.prevent="dropdown1.select(item.title)" -->
               <div
                 class="dropdown-item"
-                @click.prevent="dropdown2.select2(item)"
                 v-for="item in dropdown2.items"
+                @click.prevent="dropdown2.select2(item) , selectedmodel = item.id"
                 :key="item.id"
                 :for="`checkBox-${item.id}`"
               >
                 <span>
-                  {{ item.name_ar }}
+                  {{ item.name }}
                 </span>
               </div>
             </div>
@@ -96,8 +99,8 @@
               <!-- @click.prevent="dropdown1.select(item.title)" -->
               <div
                 class="dropdown-item"
-                @click.prevent="dropdown3.select2(item)"
                 v-for="item in dropdown3.items"
+                @click.prevent="dropdown3.select2(item) , selectedCar = item.id"
                 :key="item.id"
                 :for="`checkBox-${item.id}`"
               >
@@ -108,8 +111,11 @@
             </div>
           </div>
         </div>
-
-        <button class="searchBtn mt-2">{{ $t("search") }}</button>
+        <nuxt-link
+        class="searchBtn mt-2"
+          :to="localePath({ path: '/cars', query: { car_id: selectedCar, id: selectedBrand, model: selectedmodel } })">
+        {{ $t("search") }}
+        </nuxt-link>
       </div>
     </div>
     <div class="container explore-brands-section mb-5">
@@ -332,6 +338,9 @@ import { useHomeStore } from "@/stores/home";
  let cars = ref(store.cars);
  let brandsArr = ref(store.brands);
  let modelsArr = ref(store.models);
+ let selectedBrand = ref();
+let selectedmodel = ref();
+let selectedCar = ref();
 let howArr = ref([
   {
     title: locale.value == 'ar' ? "ابحث" : "search",
@@ -357,12 +366,7 @@ const dropdown2 = ref(
 );
 const dropdown3 = ref(
   process.client ?
-  new Dropdown( dropdownVal3.value , [
-    { id: 1, title: "option 1" },
-    { id: 2, title: "option 2" },
-    { id: 3, title: "option 3" },
-    { id: 4, title: "option 4" },
-  ]) : null
+  new Dropdown( dropdownVal3.value) : null
 );
 
 
@@ -374,8 +378,10 @@ watch(
     // obj.value.val3 = val3.id;
     cars.value = val1;
     brandsArr.value = val2;
+    modelsArr.value = val3;
     dropdown1.value.items = val2;
     dropdown2.value.items = val3;
+    dropdown3.value.items = val1;
     console.log(val1);
   }
 );
@@ -390,6 +396,9 @@ const handleClickOutside = (event) => {
 
 onMounted(() => {
   document.addEventListener("click", handleClickOutside);
+  dropdown1.value.items = brandsArr.value;
+  dropdown2.value.items = modelsArr.value;
+  dropdown3.value.items = cars.value;
 });
 onUnmounted(() => {
   document.removeEventListener("click", handleClickOutside);
