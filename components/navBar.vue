@@ -2,11 +2,10 @@
   <div>
     <nav
       class="navbar navbar-expand-xl"
-
       :class="{
-        active: activeNav, 
-      mobile: toggleNav,
-        back: 
+        active: activeNav,
+        mobile: toggleNav,
+        back:
           route.name !=
           `${locale == 'ar' ? 'index___ar___default' : 'index___en'}`,
       }"
@@ -27,7 +26,7 @@
           </nuxt-link>
         </div>
         <button
-        @click="mobileNav()"
+          @click="mobileNav()"
           class="navbar-toggler collapsed"
           type="button"
           data-bs-toggle="collapse"
@@ -107,91 +106,137 @@
             </div>
             <div v-if="overlay" class="searchBar">
               <div class="inp">
-                <label for=""> {{ $t('brand') }} </label>
+                <label for=""> {{ $t("brand") }} </label>
                 <div
+                  v-if="dropdown1"
                   :id="dropdown1.id"
                   class="dropdown-container search"
                   @click="dropdown1.toggle()"
                 >
                   <button class="dropdown-toggle-container">
-                    {{ dropdown1.selected.title ? dropdown1.selected.title : dropdown1.selected }}
-                    <img src="~/assets/imgs/Small2.svg" alt="" />
-                    <div class="icon"></div>
+                    {{
+                      dropdown1.selected.name
+                        ? dropdown1.selected.name
+                        : dropdown1.selected
+                    }}
+                    <img src="~/assets/imgs/Small2.svg" alt="arrow" />
                   </button>
-                  <div v-if="dropdown1.isOpen" class="dropdown-menu" @click.stop>
-                      <!-- @click.prevent="dropdown1.select(item.title)" -->
+                  <div
+                    v-if="dropdown1.isOpen"
+                    class="dropdown-menu"
+                    @click.stop
+                  >
+                    <!-- @click.prevent="dropdown1.select(item.title)" -->
                     <div
+                      v-if="dropdown1.items"
                       class="dropdown-item"
-                      @click.prevent="dropdown1.select(item)"
                       v-for="item in dropdown1.items"
+                      @click.prevent="
+                        dropdown1.select2(item), (selectedBrand = item.id)
+                      "
                       :key="item.id"
                       :for="`checkBox-${item.id}`"
                     >
-                        <span>
-                          {{ item.title }}
-                        </span>
+                      <span>
+                        {{ item.name }}
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="inp">
-                <label for=""> {{ $t('model') }} </label>
+                <label for=""> {{ $t("model") }} </label>
                 <div
+                  v-if="dropdown2"
                   :id="dropdown2.id"
                   class="dropdown-container search"
                   @click="dropdown2.toggle()"
                 >
                   <button class="dropdown-toggle-container">
-                    {{ dropdown2.selected.title ? dropdown2.selected.title : dropdown2.selected }}
+                    {{
+                      dropdown2.selected.name
+                        ? dropdown2.selected.name
+                        : dropdown2.selected
+                    }}
                     <img src="~/assets/imgs/Small2.svg" alt="arrow" />
-                    <div class="icon"></div>
                   </button>
-                  <div v-if="dropdown2.isOpen" class="dropdown-menu" @click.stop>
-                      <!-- @click.prevent="dropdown1.select(item.title)" -->
+                  <div
+                    v-if="dropdown2.isOpen"
+                    class="dropdown-menu"
+                    @click.stop
+                  >
+                    <!-- @click.prevent="dropdown1.select(item.title)" -->
                     <div
                       class="dropdown-item"
-                      @click.prevent="dropdown2.select(item)"
                       v-for="item in dropdown2.items"
+                      @click.prevent="
+                        dropdown2.select2(item), (selectedmodel = item.id)
+                      "
                       :key="item.id"
                       :for="`checkBox-${item.id}`"
                     >
-                        <span>
-                          {{ item.title }}
-                        </span>
+                      <span>
+                        {{ item.name }}
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="inp">
-                <label for=""> {{ $t('name') }} </label>
+                <label for=""> {{ $t("name") }} </label>
                 <div
+                  v-if="dropdown3"
                   :id="dropdown3.id"
                   class="dropdown-container search"
                   @click="dropdown3.toggle()"
                 >
                   <button class="dropdown-toggle-container">
-                    {{ dropdown3.selected.title ? dropdown3.selected.title : dropdown3.selected }}
+                    {{
+                      dropdown3.selected.name
+                        ? dropdown3.selected.name
+                        : dropdown3.selected
+                    }}
                     <img src="~/assets/imgs/Small2.svg" alt="arrow" />
-                    <div class="icon"></div>
                   </button>
-                  <div v-if="dropdown3.isOpen" class="dropdown-menu" @click.stop>
-                      <!-- @click.prevent="dropdown1.select(item.title)" -->
+                  <div
+                    v-if="dropdown3.isOpen"
+                    class="dropdown-menu"
+                    @click.stop
+                  >
+                    <!-- @click.prevent="dropdown1.select(item.title)" -->
                     <div
                       class="dropdown-item"
-                      @click.prevent="dropdown3.select(item)"
                       v-for="item in dropdown3.items"
+                      @click.prevent="
+                        dropdown3.select2(item), (selectedCar = item.id)
+                      "
                       :key="item.id"
                       :for="`checkBox-${item.id}`"
                     >
-                        <span>
-                          {{ item.title }}
-                        </span>
+                      <span>
+                        {{ item.name }}
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
-              
-              <button class="searchBtn">{{ $t("search") }}</button>
+
+              <nuxt-link
+                class="searchBtn mt-2"
+                @click="overlay = false"
+                :to="
+                  localePath({
+                    path: '/cars',
+                    query: {
+                      car_id: selectedCar,
+                      id: selectedBrand,
+                      model: selectedmodel,
+                    },
+                  })
+                "
+              >
+                {{ $t("search") }}
+              </nuxt-link>
               <!-- <div @click="goCarsFilterByName()" class="iconn">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -289,13 +334,22 @@
       </div>
     </nav>
     <popup-one :openPopup="openPopup" @update="handleUpdatePopup"></popup-one>
-
   </div>
 </template>
 
 <script setup>
 import { useToast } from "vue-toastification";
-const toast = useToast();
+import { useHomeStore } from "@/stores/home";
+let store = useHomeStore();
+store.getBrands();
+store.getCars();
+store.getModels();
+let cars = ref(store.cars);
+let brandsArr = ref(store.brands);
+let modelsArr = ref(store.models);
+let selectedBrand = ref();
+let selectedmodel = ref();
+let selectedCar = ref();
 let openPopup = ref(false);
 
 const handleUpdatePopup = (newState) => {
@@ -311,53 +365,37 @@ let route = useRoute();
 let activeNav = ref(false);
 let toggleNav = ref(false);
 
-
-let dropdownVal1 = ref(locale.value == 'ar' ? 'اختر ماركة السيارة ' : 'choose car brand');
-let dropdownVal2 = ref(locale.value == 'ar' ? 'اختر موديل السيارة ' : 'choose car model');
-let dropdownVal3 = ref(locale.value == 'ar' ? 'اختر اسم السيارة ' : 'choose car name');
-const dropdown1 = ref(
-   process.client ? new Dropdown(dropdownVal1.value, [
-    { id: 1, title: "option 1" },
-    { id: 2, title: "option 2" },
-    { id: 3, title: "option 3" },
-    { id: 4, title: "option 4" },
-  ]) : null
+let dropdownVal1 = ref(
+  locale.value == "ar" ? "اختر ماركة السيارة " : "choose car brand"
 );
-const dropdown2 = ref(
-  process.client ?
-  new Dropdown(dropdownVal2.value, [
-    { id: 1, title: "option 1" },
-    { id: 2, title: "option 2" },
-    { id: 3, title: "option 3" },
-    { id: 4, title: "option 4" },
-  ]) : null
+let dropdownVal2 = ref(
+  locale.value == "ar" ? "اختر موديل السيارة " : "choose car model"
 );
-const dropdown3 = ref(
-  process.client ?
-  new Dropdown( dropdownVal3.value , [
-    { id: 1, title: "option 1" },
-    { id: 2, title: "option 2" },
-    { id: 3, title: "option 3" },
-    { id: 4, title: "option 4" },
-  ]) : null
+let dropdownVal3 = ref(
+  locale.value == "ar" ? "اختر اسم السيارة " : "choose car name"
 );
+const dropdown1 = ref(process.client ? new Dropdown(dropdownVal1.value) : null);
+const dropdown2 = ref(process.client ? new Dropdown(dropdownVal2.value) : null);
+const dropdown3 = ref(process.client ? new Dropdown(dropdownVal3.value) : null);
 
-let obj = ref({
-  val1:"",
-  val2:"",
-  val3:"",
-});
-
-  watch([() => dropdown1.value.selected , () => dropdown2.value.selected  , () => dropdown3.value.selected  ], ([val1 , val2 , val3]) => {
-   obj.value.val1 = val1.id;
-   obj.value.val2 = val2.id;
-   obj.value.val3 = val3.id;
-    })
+watch(
+  [() => store.cars, () => store.brands, () => store.models],
+  ([val1, val2, val3]) => {
+    cars.value = val1;
+    brandsArr.value = val2;
+    modelsArr.value = val3;
+    dropdown1.value.items = val2;
+    dropdown2.value.items = val3;
+    dropdown3.value.items = val1;
+  }
+);
 
 const handleClickOutside = (event) => {
-  dropdown1.value.handleClickOutside(event);
-  dropdown2.value.handleClickOutside(event);
-  dropdown3.value.handleClickOutside(event);
+  if (dropdown1.value) {
+    dropdown1.value.handleClickOutside(event);
+    dropdown2.value.handleClickOutside(event);
+    dropdown3.value.handleClickOutside(event);
+  }
 };
 
 const changeLang = async () => {
@@ -387,12 +425,6 @@ const changeLang = async () => {
     })
   );
 };
-const goCarsFilterByName = () => {
-  router.push(
-    localePath({ path: "/cars", query: { search: searchValue.value } })
-  );
-  overlay.value = false;
-};
 
 onMounted(() => {
   window.addEventListener("scroll", function () {
@@ -408,33 +440,18 @@ onMounted(() => {
     // }
   });
   document.addEventListener("click", handleClickOutside);
+  dropdown1.value.items = brandsArr.value;
+  dropdown2.value.items = modelsArr.value;
+  dropdown3.value.items = cars.value;
 });
 onUnmounted(() => {
   document.removeEventListener("click", handleClickOutside);
-}); 
+});
 
-function mobileNav(){
-  toggleNav.value= !toggleNav.value
-  
+function mobileNav() {
+  toggleNav.value = !toggleNav.value;
 }
-
-
-
-
-
-
-
-
 </script>
-
-<!-- Style -->
-
-
-
-
-
-
-
 
 <style lang="scss" scoped>
 .navbar-toggler .icon-bar {

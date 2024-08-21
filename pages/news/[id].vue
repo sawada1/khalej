@@ -76,10 +76,6 @@
                 <img :src="mainItem.news.main_image" alt="car" />
                 <div class="overlay"></div>
               </div>
-
-              <!-- <div class="text" v-html="newsArr.news.description ">
-                              
-                            </div> -->
               <div class="text">
                {{ mainItem.news.description }}
               </div>

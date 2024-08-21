@@ -183,7 +183,7 @@
                 {{ errorsApi.message ? errorsApi.message[0] : "" }}
               </div>
             </div>
-            <button @click="onSubmit()" class="gap-4">
+            <button @click="onSubmit()" :disabled="pending" class="gap-4">
               {{ $t("send") }}
 
               <v-progress-circular

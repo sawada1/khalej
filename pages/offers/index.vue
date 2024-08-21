@@ -31,7 +31,7 @@
                             <div class="text">
                                 <h4> {{ item.title_ar }} </h4>
                                 <p> {{ item.description_ar }} </p>
-                                <nuxt-link :to="`/offers/${item.id}`" >
+                                <nuxt-link :to="localePath(`/offers/${item.id}`)" >
                                     <button> {{ $t('offerBtn') }} </button>
                                 </nuxt-link>
                             </div>
@@ -47,6 +47,7 @@
 
 <script setup>
 import { useOfferStore } from "@/stores/offers";
+const localePath = useLocalePath();
 let store = useOfferStore();
 let isLoading = ref(store.isLoading);
 store.getOffers();

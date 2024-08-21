@@ -256,8 +256,8 @@
                 <button class="dropdown-toggle-container">
                   <span class="text-drop">
                     {{
-                      dropdown3.selected.title
-                        ? dropdown3.selected.title
+                      dropdown3.selected.name
+                        ? dropdown3.selected.name
                         : dropdown3.selected
                     }}
                   </span>
@@ -309,7 +309,7 @@
                           />
                         </svg>
                         <span>
-                          {{ item.title }}
+                          {{ item.name }}
                         </span>
                       </div>
                       <input
@@ -338,10 +338,16 @@
                 <span> {{ Math.round(value[1]) }} {{ $t("curr") }}</span>
               </div>
             </div>
+            <button @click="filter()" class="searchBtn2">{{ $t("search") }}</button>
           </div>
         </div>
       </div>
+      
       <div class="allcars">
+      <div v-if="isLoading3" class="d-flex align-items-center justify-content-center" style="min-height: 50vh;">
+        <img class="animated-image" src="../assets/imgs/loader.svg" alt="">
+      </div>
+
         <div v-if="pendingState" class="empty-state">
           <client-only>
             <Vue3Lottie :animation-data="search" :height="200" :width="200" />
@@ -398,19 +404,15 @@ let modelsArr = ref(store2.models);
 let pendingState = ref(false);
 let filteredCar = ref(store.filteredCar);
 let isLoading = ref(store.isLoading2);
-let arr = ref(brandId.value ? [brandId.value] : []);
-let arr2 = ref(modelId.value ? [modelId.value] : []);
-let arr3 = ref(carId.value ? [carId.value] : []);
+let isLoading3 = ref(store.isLoading3);
+let arr = ref(route.query.id ? [route.query.id] : []);
+let arr2 = ref(route.query.model ? [route.query.model] : []);
+let arr3 = ref(route.query.car_id ? [route.query.car_id] : []);
 let value = ref([200000, 400000]);
 let showFilter = ref(false);
 let { locale } = useI18n();
 const localePath = useLocalePath();
 
-store.getSearchCars({
-  model_id: modelId.value,
-  brand_id: brandId.value,
-  car_id: carId.value,
-});
 let reverse = ref(locale.value == "ar" ? true : false);
 let dropdownVal1 = ref(
   locale.value == "ar" ? "اختر ماركة السيارة " : "choose car brand"
@@ -432,6 +434,13 @@ const handleClickOutside = (event) => {
   }
 };
 
+const filter = () => {
+  store.getSearchCars({
+    brand_id: arr.value,
+    model_id: arr2.value,
+    car_id: arr3.value,
+  });
+};
 // const filterCars = async () => {
 //   spinnerProducts.value = true;
 //   pendingState.value = false;
@@ -536,22 +545,44 @@ const handleClickOutside = (event) => {
 watch(
   [
     () => store.filteredCar,
-    store.isLoading2,
-    store.pendingState,
+    () => store.isLoading2,
+    () => store.pendingState,
     () => store2.cars,
     () => store2.brands,
     () => store2.models,
+    () => store.isLoading3,
   ],
-  ([val1, val2, val3, val4, val5, val6]) => {
+  ([val1, val2, val3, val4, val5, val6 , val7]) => {
     filteredCar.value = val1;
     isLoading.value = val2;
+    isLoading3.value = val7;
     pendingState.value = filteredCar.value.length < 1 ? true : false;
     dropdown1.value.items = val5;
     dropdown2.value.items = val6;
     dropdown3.value.items = val4;
   }
 );
+watch(
+  [() => route.query.id, () => route.query.model, () => route.query.car_id],
+  ([val7, val8, val9]) => {
+    if (val7 || val8 || val9) {
+      arr.value = val7 ? [val7] : [];
+      arr2.value = val8 ? [val8] : [];
+      arr3.value = val9 ? [val9] : [];
+      store.getSearchCars({
+        brand_id: val7,
+        model_id: val8,
+        car_id: val9,
+      });
+    }
+  }
+);
 onMounted(() => {
+  store.getSearchCars({
+    brand_id: route.query.id,
+    model_id: route.query.model,
+    car_id: route.query.car_id,
+  });
   document.addEventListener("click", handleClickOutside);
   dropdown1.value.items = brandsArr.value;
   dropdown2.value.items = modelsArr.value;

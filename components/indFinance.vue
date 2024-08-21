@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="inputs">
-    
       <div class="row">
         <div class="col-12 col-xl-6 col-lg-6 col-md-6">
           <div class="input-custom">
@@ -41,31 +40,31 @@
                 fill="#A7B9D0"
               />
             </svg>
-            <!-- <label for=""> ادخل البريد </label> -->
             <Dropdown
               :filter-placeholder="$t('search')"
               v-model="car_id"
               v-bind="car_idAttrs"
               :options="cars"
               filter
-               optionLabel="name"
-               optionValue="id"
+              optionLabel="name"
+              optionValue="id"
               :placeholder="$t('carName')"
               class=""
             >
               <template #option="slotProps">
                 <div class="flex align-items-center">
-                  <div>{{ slotProps.option.name }}</div>
+                  <div @click="price = slotProps.option.price">
+                    {{ slotProps.option.name }}
+                  </div>
                 </div>
               </template>
             </Dropdown>
-            <!-- <div class="label-container">
-            </div> -->
+           
           </div>
           <div class="text-danger">{{ errors.car_id }}</div>
-              <div class="text-danger" v-if="errorsApi">
-                {{ errorsApi.car_id ? errorsApi.car_id[0] : "" }}
-              </div>
+          <div class="text-danger" v-if="errorsApi">
+            {{ errorsApi.car_id ? errorsApi.car_id[0] : "" }}
+          </div>
         </div>
         <div class="col-12 col-xl-6 col-lg-6 col-md-6">
           <div class="input-custom">
@@ -81,14 +80,19 @@
                 fill="#A7B9D0"
               />
             </svg>
-             <input type="number" v-model="price" v-bind="priceAttrs"  :placeholder="$t('price')">
+            <input
+              type="number"
+              v-model="price"
+              v-bind="priceAttrs"
+              :placeholder="$t('price')"
+            />
             <!-- <div class="label-container">
             </div> -->
           </div>
           <div class="text-danger">{{ errors.price }}</div>
-              <div class="text-danger" v-if="errorsApi">
-                {{ errorsApi.price ? errorsApi.price[0] : "" }}
-              </div>
+          <div class="text-danger" v-if="errorsApi">
+            {{ errorsApi.price ? errorsApi.price[0] : "" }}
+          </div>
         </div>
         <div class="col-12 col-xl-6 col-lg-6 col-md-6">
           <div class="input-custom">
@@ -106,13 +110,18 @@
             </svg>
             <div class="label-container">
               <label for="">{{ $t("enterName") }} </label>
-              <input type="text" v-model="name" v-bind="nameAttrs" :placeholder="$t('name')" />
+              <input
+                type="text"
+                v-model="name"
+                v-bind="nameAttrs"
+                :placeholder="$t('name')"
+              />
             </div>
           </div>
           <div class="text-danger">{{ errors.name }}</div>
-              <div class="text-danger" v-if="errorsApi">
-                {{ errorsApi.name ? errorsApi.name[0] : "" }}
-              </div>
+          <div class="text-danger" v-if="errorsApi">
+            {{ errorsApi.name ? errorsApi.name[0] : "" }}
+          </div>
         </div>
         <div class="col-12 col-xl-6 col-lg-6 col-md-6">
           <div class="input-custom">
@@ -134,13 +143,21 @@
             </svg>
             <div class="label-container">
               <label for=""> {{ $t("enterPhone") }} </label>
-              <input type="tel" v-model="phone" v-bind="phoneAttrs" :placeholder="$t('phone')" />
+              <input
+                type="tel"
+                v-model="phone"
+                name="phone"
+                maxlength="10"
+                v-bind="phoneAttrs"
+                :placeholder="$t('phone')"
+              />
             </div>
+            <div class="num">966+</div>
           </div>
           <div class="text-danger">{{ errors.phone }}</div>
-              <div class="text-danger" v-if="errorsApi">
-                {{ errorsApi.phone ? errorsApi.phone[0] : "" }}
-              </div>
+          <div class="text-danger" v-if="errorsApi">
+            {{ errorsApi.phone ? errorsApi.phone[0] : "" }}
+          </div>
         </div>
       </div>
     </div>
@@ -181,13 +198,18 @@
             </svg>
             <div class="label-container">
               <label for=""> {{ $t("enterSal") }} </label>
-              <input type="text" v-model="salary" v-bind="salaryAttrs" :placeholder="$t('sal1')" />
+              <input
+                type="number"
+                v-model="salary"
+                v-bind="salaryAttrs"
+                :placeholder="$t('sal1')"
+              />
             </div>
           </div>
           <div class="text-danger">{{ errors.salary }}</div>
-              <div class="text-danger" v-if="errorsApi">
-                {{ errorsApi.salary ? errorsApi.salary[0] : "" }}
-              </div>
+          <div class="text-danger" v-if="errorsApi">
+            {{ errorsApi.salary ? errorsApi.salary[0] : "" }}
+          </div>
         </div>
         <div class="col-12 col-xl-6 col-lg-6 col-md-6">
           <div class="input-custom">
@@ -249,13 +271,18 @@
             </svg>
             <div class="label-container">
               <label for=""> {{ $t("enterComit") }} </label>
-              <input type="text" v-model="commitments" v-bind="commitmentsAttrs" :placeholder="$t('comit')" />
+              <input
+                type="number"
+                v-model="commitments"
+                v-bind="commitmentsAttrs"
+                :placeholder="$t('comit')"
+              />
             </div>
           </div>
           <div class="text-danger">{{ errors.commitments }}</div>
-              <div class="text-danger" v-if="errorsApi">
-                {{ errorsApi.commitments ? errorsApi.commitments[0] : "" }}
-              </div>
+          <div class="text-danger" v-if="errorsApi">
+            {{ errorsApi.commitments ? errorsApi.commitments[0] : "" }}
+          </div>
         </div>
         <div class="col-12 col-xl-6 col-lg-6 col-md-6">
           <div class="input-custom">
@@ -300,13 +327,22 @@
             </svg>
             <div class="label-container">
               <label for=""> ادخل الدفعة الاولي </label>
-              <input type="text" v-model="first_payment_value" v-bind="first_payment_valueAttrs" placeholder="الدفعة الاولي" />
+              <input
+                type="number"
+                v-model="first_payment_value"
+                v-bind="first_payment_valueAttrs"
+                placeholder="الدفعة الاولي"
+              />
             </div>
           </div>
           <div class="text-danger">{{ errors.first_payment_value }}</div>
-              <div class="text-danger" v-if="errorsApi">
-                {{ errorsApi.first_payment_value ? errorsApi.first_payment_value[0] : "" }}
-              </div>
+          <div class="text-danger" v-if="errorsApi">
+            {{
+              errorsApi.first_payment_value
+                ? errorsApi.first_payment_value[0]
+                : ""
+            }}
+          </div>
         </div>
         <div class="col-12 col-xl-6 col-lg-6 col-md-6">
           <div class="input-custom">
@@ -344,15 +380,23 @@
             </svg>
             <div class="label-container">
               <label for=""> ادخل رقم الدفعة الاخيرة </label>
-              <input type="text" v-model="last_payment_value" v-bind="last_payment_valueAttrs"  placeholder="الدفعة الاخيرة" />
+              <input
+                type="number"
+                v-model="last_payment_value"
+                v-bind="last_payment_valueAttrs"
+                placeholder="الدفعة الاخيرة"
+              />
             </div>
           </div>
           <div class="text-danger">{{ errors.last_payment_value }}</div>
-              <div class="text-danger" v-if="errorsApi">
-                {{ errorsApi.last_payment_value ? errorsApi.last_payment_value[0] : "" }}
-              </div>
+          <div class="text-danger" v-if="errorsApi">
+            {{
+              errorsApi.last_payment_value
+                ? errorsApi.last_payment_value[0]
+                : ""
+            }}
+          </div>
         </div>
-        
       </div>
     </div>
     <div class="inputs">
@@ -375,7 +419,6 @@
                 fill="#A7B9D0"
               />
             </svg>
-            <!-- <label for=""> ادخل البريد </label> -->
             <Dropdown
               :filter-placeholder="$t('search')"
               v-model="bank_id"
@@ -392,13 +435,11 @@
                 </div>
               </template>
             </Dropdown>
-            <!-- <div class="label-container">
-            </div> -->
           </div>
           <div class="text-danger">{{ errors.bank_id }}</div>
-              <div class="text-danger" v-if="errorsApi">
-                {{ errorsApi.bank_id ? errorsApi.bank_id[0] : "" }}
-              </div>
+          <div class="text-danger" v-if="errorsApi">
+            {{ errorsApi.bank_id ? errorsApi.bank_id[0] : "" }}
+          </div>
         </div>
         <div class="col-12 col-xl-6 col-lg-6 col-md-6">
           <div class="input-custom">
@@ -414,9 +455,7 @@
                 fill="#A7B9D0"
               />
             </svg>
-            <div class="label-container">
-              <label for=""> ادخل المدينة </label>
-              <Dropdown
+            <Dropdown
               :filter-placeholder="$t('search')"
               v-model="city_id"
               v-bind="city_idAttrs"
@@ -424,6 +463,7 @@
               filter
               optionLabel=""
               :placeholder="$t('city')"
+              class=""
             >
               <template #option="slotProps">
                 <div class="flex align-items-center">
@@ -431,13 +471,11 @@
                 </div>
               </template>
             </Dropdown>
-            </div>
-            
           </div>
           <div class="text-danger">{{ errors.city_id }}</div>
-              <div class="text-danger" v-if="errorsApi">
-                {{ errorsApi.city_id ? errorsApi.city_id[0] : "" }}
-              </div>
+          <div class="text-danger" v-if="errorsApi">
+            {{ errorsApi.city_id ? errorsApi.city_id[0] : "" }}
+          </div>
         </div>
         <div class="col-12 col-xl-6 col-lg-6 col-md-6">
           <div class="input-custom">
@@ -470,61 +508,81 @@
             </svg>
             <div class="label-container">
               <label for=""> ادخل قطاع العمل </label>
-              <input type="text" v-model="work" v-bind="workAttrs" placeholder=" قطاع العمل " />
+              <input
+                type="text"
+                v-model="work"
+                v-bind="workAttrs"
+                placeholder=" قطاع العمل "
+              />
             </div>
           </div>
           <div class="text-danger">{{ errors.work }}</div>
-              <div class="text-danger" v-if="errorsApi">
-                {{ errorsApi.work ? errorsApi.work[0] : "" }}
-              </div>
+          <div class="text-danger" v-if="errorsApi">
+            {{ errorsApi.work ? errorsApi.work[0] : "" }}
+          </div>
         </div>
         <div class="col-12 col-xl-6 col-lg-6 col-md-6">
-        <div>
-          <div class="radio-container flex-column flex-xl-row flex-lg-row">
-            <div class="d-flex radio-btn flex-column gap-2">
-              <h6>هل يوجد تعثرات</h6>
-              <v-radio-group v-model="stumbles" v-bind="stumblesAttrs">
-                <v-radio label="لا" color="#2D9596" value="one"></v-radio>
-                <v-radio label="نعم" color="#2D9596" value="two"></v-radio>
-              </v-radio-group>
+          <div>
+            <div class="radio-container flex-column flex-xl-row flex-lg-row">
+              <div class="d-flex radio-btn flex-column gap-2">
+                <h6>هل يوجد تعثرات</h6>
+                <v-radio-group v-model="stumbles" v-bind="stumblesAttrs">
+                  <v-radio label="لا" color="#2D9596" value="0"></v-radio>
+                  <v-radio label="نعم" color="#2D9596" value="1"></v-radio>
+                </v-radio-group>
+              </div>
+
+              <div class="d-flex radio-btn flex-column gap-2">
+                <h6>حالة رخصة القيادة</h6>
+                <v-radio-group
+                  v-model="driving_license"
+                  v-bind="driving_licenseAttrs"
+                >
+                  <v-radio
+                    label="سارية"
+                    color="#2D9596"
+                    value="available"
+                  ></v-radio>
+                  <v-radio label="منتهية" color="#2D9596" value="two"></v-radio>
+                  <v-radio
+                    label="غير متاح"
+                    color="#2D9596"
+                    value="unavailable"
+                  ></v-radio>
+                </v-radio-group>
+              </div>
             </div>
-            
-            <div class="d-flex radio-btn flex-column gap-2">
-              <h6>حالة رخصة القيادة</h6>
-              <v-radio-group v-model="driving_license" v-bind="driving_licenseAttrs">
-                <v-radio label="سارية" color="#2D9596" value="one"></v-radio>
-                <v-radio label="منتهية" color="#2D9596" value="two"></v-radio>
-                <v-radio label="غير متاح" color="#2D9596" value="three"></v-radio>
-              </v-radio-group>
-            </div>
-            
-          </div>
-          <div class="w-100 d-flex align-items-center justify-content-around">
-          <div class="text-danger">{{ errors.stumbles }}</div>
+            <div class="w-100 d-flex align-items-center justify-content-around">
+              <div class="text-danger">{{ errors.stumbles }}</div>
               <div class="text-danger" v-if="errorsApi">
                 {{ errorsApi.stumbles ? errorsApi.stumbles[0] : "" }}
               </div>
-          <div class="text-danger">{{ errors.driving_license }}</div>
+              <div class="text-danger">{{ errors.driving_license }}</div>
               <div class="text-danger" v-if="errorsApi">
-                {{ errorsApi.driving_license ? errorsApi.driving_license[0] : "" }}
+                {{
+                  errorsApi.driving_license ? errorsApi.driving_license[0] : ""
+                }}
               </div>
-          
+            </div>
           </div>
         </div>
-          
-        </div>
-        
       </div>
     </div>
-    <button @click="onSubmit()" class="send-btn">ارسال</button>
+    <button @click="onSubmit()" :disabled="pending" class="send-btn gap-4">
+      {{ $t("send") }}
+      <v-progress-circular
+        v-if="pending"
+        indeterminate
+        :size="30"
+        :width="4"
+      ></v-progress-circular>
+    </button>
   </div>
 </template>
 
 <script setup>
 import { useindividualsStore } from "@/stores/individuals";
-import { useHomeStore } from "@/stores/home";
- let store2 = useHomeStore();
- store2.getCars();
+
 let store = useindividualsStore();
 import { createToast } from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";
@@ -533,11 +591,10 @@ import * as yup from "yup";
 let formFinance = ref({
   year: "",
 });
-let cars = ref(store2.cars);
 let years = ref([1, 2, 3, 4, 5, 6]);
-let actMap = ref(false);
 const { locale } = useI18n();
 let errorsApi = ref();
+const props = defineProps(["cars"]);
 const { errors, handleSubmit, values, resetForm, defineField } = useForm({
   validationSchema: yup.object({
     // email: yup.string().email().required(),
@@ -564,39 +621,26 @@ const [name, nameAttrs] = defineField("name");
 const [price, priceAttrs] = defineField("price");
 const [commitments, commitmentsAttrs] = defineField("commitments");
 const [phone, phoneAttrs] = defineField("phone");
-const [first_payment_value, first_payment_valueAttrs] = defineField("first_payment_value");
-const [last_payment_value, last_payment_valueAttrs] = defineField("last_payment_value");
+const [first_payment_value, first_payment_valueAttrs] = defineField(
+  "first_payment_value"
+);
+const [last_payment_value, last_payment_valueAttrs] =
+  defineField("last_payment_value");
 const [bank_id, bank_idAttrs] = defineField("bank_id");
 const [work, workAttrs] = defineField("work");
 const [city_id, city_idAttrs] = defineField("city_id");
 const [driving_license, driving_licenseAttrs] = defineField("driving_license");
 const [stumbles, stumblesAttrs] = defineField("stumbles");
-const toast = () => {
-  createToast("Some text", {
-    toastBackgroundColor: "#dcba95",
-    position: "top-right",
-    type: "success",
-    transition: "bounce",
-    showIcon: "true",
-    timeout: 30000,
-  });
-};
 
-const showAlert = () => {
-  Swal.fire({
-    title: "Good job!",
-    text: "You clicked the button!",
-    icon: "success",
-    confirmButtonColor: "green",
-  });
-};
 const onSubmit = handleSubmit(() => {
-//   store.getContact(values, resetForm, createToast);
+  store.getContact(values, resetForm, createToast);
 });
 
-watch([() => store.isLoading, () => store.errors , ()=> store2.cars], ([val1, val2 , val3]) => {
-  pending.value = val1;
-  errorsApi.value = val2;
-  cars.value = val3;
-});
+watch(
+  [() => store.isLoading, () => store.errors],
+  ([val1, val2]) => {
+    pending.value = val1;
+    errorsApi.value = val2;
+  }
+);
 </script>

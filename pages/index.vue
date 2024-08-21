@@ -10,9 +10,6 @@
       />
     </div>
     <div class="container search-home-p">
-    {{ selectedBrand }}
-    {{ selectedCar }}
-    {{ selectedmodel }}
       <div class="search-home row ">
         <div class="inp col-12 col-lg-3">
           <label for=""> {{ $t('brand') }} </label>
@@ -89,8 +86,8 @@
           >
             <button class="dropdown-toggle-container">
               {{
-                dropdown3.selected.title
-                  ? dropdown3.selected.title
+                dropdown3.selected.name
+                  ? dropdown3.selected.name
                   : dropdown3.selected
               }}
               <img src="~/assets/imgs/Small2.svg" alt="arrow" />
@@ -105,7 +102,7 @@
                 :for="`checkBox-${item.id}`"
               >
                 <span>
-                  {{ item.title }}
+                  {{ item.name }}
                 </span>
               </div>
             </div>
@@ -191,7 +188,9 @@
           </div>
         </div>
           <div class="d-flex align-items-center justify-content-center">
+          <nuxt-link :to="localePath('/cars')">
             <button class="more-btn"> {{ $t('more') }} </button>
+          </nuxt-link>
           </div>
       </div>
     </div>
@@ -212,6 +211,7 @@
               <div class="image-container">
                 <div class="text">
                   <h3> {{ $t('indi') }} </h3>
+                  <nuxt-link :to="localePath('/order-individuals')">
                   <button class="paymentBTN">
                     {{ $t('orderHome') }}
                     <svg
@@ -229,6 +229,7 @@
                       />
                     </svg>
                   </button>
+                  </nuxt-link>
                   <img src="~/assets/imgs/order2.png" alt="car" />
                 </div>
               </div>
@@ -240,6 +241,7 @@
             <div class="position-sticky image-container">
               <div class="text">
                 <h3> {{ $t('comp') }} </h3>
+                <nuxt-link :to="localePath('/order-company')">
                 <button>
                   {{ $t('orderHome') }}
                   <svg
@@ -257,6 +259,7 @@
                     />
                   </svg>
                 </button>
+                </nuxt-link>
                 <img src="~/assets/imgs/order1.png" alt="order" />
               </div>
             </div>

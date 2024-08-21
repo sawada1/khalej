@@ -1,0 +1,444 @@
+<template>
+  <div>
+    <div class="inputs">
+      <div class="row">
+        <div class="col-12 col-xl-6 col-lg-6 col-md-6">
+          <div class="input-custom">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="23"
+              height="23"
+              viewBox="0 0 23 23"
+              fill="none"
+            >
+              <path
+                d="M17.3792 17.5658C17.3797 17.8446 17.4909 18.1117 17.6883 18.3084C17.8858 18.5052 18.1533 18.6155 18.432 18.6151H19.8155C20.0942 18.6155 20.3617 18.5052 20.5592 18.3084C20.7566 18.1117 20.8678 17.8446 20.8684 17.5658V16.9082H17.3792V17.5658Z"
+                fill="#A7B9D0"
+              />
+              <path
+                d="M14.9643 14.9785H8.03612C7.94762 14.979 7.86287 15.0143 7.80029 15.0769C7.73771 15.1395 7.70235 15.2242 7.7019 15.3127V16.1895H15.2984V15.3127C15.298 15.2242 15.2626 15.1395 15.2001 15.0769C15.1375 15.0143 15.0527 14.979 14.9643 14.9785Z"
+                fill="#A7B9D0"
+              />
+              <path
+                d="M3.33582 11.6403C3.14282 11.4483 2.88213 11.3399 2.60994 11.3384H1.43848V12.0068H3.70236L3.33582 11.6403Z"
+                fill="#A7B9D0"
+              />
+              <path
+                d="M19.6644 11.6403L19.2979 12.0068H21.5617V11.3384H20.3903C20.1181 11.3399 19.8574 11.4483 19.6644 11.6403Z"
+                fill="#A7B9D0"
+              />
+              <path
+                d="M14.9859 9.20731C15.2924 9.20777 15.5962 9.14922 15.8806 9.03483L18.4499 7.99632L17.336 5.67496C17.1182 5.27108 16.7918 4.93621 16.3936 4.70823C15.9955 4.48024 15.5414 4.36825 15.0829 4.38492H7.91759C7.45906 4.36825 7.00502 4.48024 6.60684 4.70822C6.20866 4.93621 5.88223 5.27108 5.66449 5.67496L4.55054 7.99632L7.12342 9.03847C7.41742 9.37151 14.4378 9.1457 14.9859 9.20731Z"
+                fill="#A7B9D0"
+              />
+              <path
+                d="M18.1767 12.1108L19.1577 11.1334C19.3186 10.9701 19.5105 10.8405 19.7222 10.7522C19.9338 10.664 20.161 10.6189 20.3903 10.6196C20.3897 10.6126 21.5764 10.6331 21.5617 10.6124C21.5597 10.2776 21.4776 9.94818 21.3224 9.6516C21.1671 9.35501 20.9431 9.09988 20.6691 8.9075C20.3951 8.71511 20.0791 8.59107 19.7474 8.54572C19.4157 8.50036 19.078 8.53502 18.7624 8.64679L18.0941 8.91627C17.3158 9.19083 15.8197 9.98218 14.9858 9.92602H8.01449C7.18506 9.98329 5.67086 9.18582 4.90614 8.91627L4.23779 8.64678C3.92165 8.53498 3.58333 8.50054 3.25114 8.54633C2.91896 8.59213 2.60258 8.71683 2.32848 8.91C2.05438 9.10317 1.83055 9.35919 1.67571 9.65663C1.52087 9.95407 1.43954 10.2843 1.43851 10.6196L2.60995 10.6196C3.53088 10.5546 4.22803 11.5623 4.82352 12.1109C4.87302 12.1616 4.90654 12.2257 4.91991 12.2953C4.93328 12.3649 4.92593 12.4369 4.89875 12.5023C4.87157 12.5677 4.82577 12.6238 4.76704 12.6634C4.70831 12.7031 4.63922 12.7246 4.56837 12.7253L1.43848 12.7253V15.4851C1.43878 15.6699 1.51161 15.8473 1.6413 15.979C1.77099 16.1107 1.94719 16.1862 2.13201 16.1894H6.98316V15.3126C6.98305 15.1743 7.01021 15.0373 7.06309 14.9095C7.11596 14.7818 7.19351 14.6656 7.29131 14.5679C7.3891 14.4701 7.50521 14.3925 7.633 14.3396C7.76079 14.2868 7.89776 14.2596 8.03605 14.2597H14.9642C15.1025 14.2596 15.2394 14.2868 15.3672 14.3396C15.495 14.3925 15.6111 14.4701 15.7089 14.5679C15.8067 14.6656 15.8843 14.7818 15.9371 14.9095C15.99 15.0373 16.0172 15.1743 16.0171 15.3126V16.1894H20.8682C21.053 16.1862 21.2292 16.1107 21.3589 15.979C21.4886 15.8473 21.5614 15.6699 21.5617 15.4851V12.7253H18.4319C18.361 12.7246 18.2919 12.703 18.2332 12.6634C18.1744 12.6237 18.1287 12.5677 18.1015 12.5023C18.0743 12.4368 18.067 12.3648 18.0803 12.2953C18.0937 12.2257 18.1272 12.1615 18.1767 12.1108ZM14.2707 12.7253H8.72958C8.63542 12.7236 8.54571 12.685 8.47974 12.6178C8.41377 12.5505 8.37681 12.4601 8.37681 12.366C8.37682 12.2718 8.41378 12.1814 8.47976 12.1142C8.54573 12.047 8.63545 12.0084 8.7296 12.0066H14.2707C14.3648 12.0084 14.4545 12.047 14.5205 12.1142C14.5865 12.1814 14.6234 12.2718 14.6234 12.366C14.6234 12.4601 14.5865 12.5506 14.5205 12.6178C14.4545 12.685 14.3648 12.7236 14.2707 12.7253Z"
+                fill="#A7B9D0"
+              />
+              <path
+                d="M2.13208 17.5658C2.13262 17.8446 2.24384 18.1117 2.44128 18.3084C2.63872 18.5052 2.90623 18.6155 3.18498 18.6151H4.56844C4.84718 18.6155 5.11468 18.5052 5.31212 18.3084C5.50956 18.1117 5.62077 17.8446 5.6213 17.5658V16.9082H2.13208V17.5658Z"
+                fill="#A7B9D0"
+              />
+            </svg>
+            <Dropdown
+              :filter-placeholder="$t('search')"
+              v-model="car_id"
+              v-bind="car_idAttrs"
+              :options="cars"
+              filter
+              optionLabel="name"
+              optionValue="id"
+              :placeholder="$t('carName')"
+              class=""
+            >
+              <template #option="slotProps">
+                <div class="flex align-items-center">
+                  <div @click="price = slotProps.option.price">
+                    {{ slotProps.option.name }}
+                  </div>
+                </div>
+              </template>
+            </Dropdown>
+          </div>
+          <div class="text-danger">{{ errors.car_id }}</div>
+          <div class="text-danger" v-if="errorsApi">
+            {{ errorsApi.car_id ? errorsApi.car_id[0] : "" }}
+          </div>
+        </div>
+        <div class="col-12 col-xl-6 col-lg-6 col-md-6">
+          <div class="input-custom">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="21"
+              viewBox="0 0 20 21"
+              fill="none"
+            >
+              <path
+                d="M18.3334 18.0476H1.66675C1.32508 18.0476 1.04175 18.3309 1.04175 18.6726C1.04175 19.0143 1.32508 19.2976 1.66675 19.2976H18.3334C18.6751 19.2976 18.9584 19.0143 18.9584 18.6726C18.9584 18.3309 18.6751 18.0476 18.3334 18.0476Z"
+                fill="#A7B9D0"
+              />
+              <path
+                d="M14.1667 2.0061H5.83333C3.33333 2.0061 2.5 3.49777 2.5 5.33944V18.6728H17.5V5.33944C17.5 3.49777 16.6667 2.0061 14.1667 2.0061ZM8.33333 14.7144H5.83333C5.49167 14.7144 5.20833 14.4311 5.20833 14.0894C5.20833 13.7478 5.49167 13.4644 5.83333 13.4644H8.33333C8.675 13.4644 8.95833 13.7478 8.95833 14.0894C8.95833 14.4311 8.675 14.7144 8.33333 14.7144ZM8.33333 10.9644H5.83333C5.49167 10.9644 5.20833 10.6811 5.20833 10.3394C5.20833 9.99777 5.49167 9.71444 5.83333 9.71444H8.33333C8.675 9.71444 8.95833 9.99777 8.95833 10.3394C8.95833 10.6811 8.675 10.9644 8.33333 10.9644ZM8.33333 7.21444H5.83333C5.49167 7.21444 5.20833 6.9311 5.20833 6.58944C5.20833 6.24777 5.49167 5.96444 5.83333 5.96444H8.33333C8.675 5.96444 8.95833 6.24777 8.95833 6.58944C8.95833 6.9311 8.675 7.21444 8.33333 7.21444ZM14.1667 14.7144H11.6667C11.325 14.7144 11.0417 14.4311 11.0417 14.0894C11.0417 13.7478 11.325 13.4644 11.6667 13.4644H14.1667C14.5083 13.4644 14.7917 13.7478 14.7917 14.0894C14.7917 14.4311 14.5083 14.7144 14.1667 14.7144ZM14.1667 10.9644H11.6667C11.325 10.9644 11.0417 10.6811 11.0417 10.3394C11.0417 9.99777 11.325 9.71444 11.6667 9.71444H14.1667C14.5083 9.71444 14.7917 9.99777 14.7917 10.3394C14.7917 10.6811 14.5083 10.9644 14.1667 10.9644ZM14.1667 7.21444H11.6667C11.325 7.21444 11.0417 6.9311 11.0417 6.58944C11.0417 6.24777 11.325 5.96444 11.6667 5.96444H14.1667C14.5083 5.96444 14.7917 6.24777 14.7917 6.58944C14.7917 6.9311 14.5083 7.21444 14.1667 7.21444Z"
+                fill="#A7B9D0"
+              />
+            </svg>
+            <div class="label-container">
+              <label for=""> {{ $t("enterComp") }} </label>
+              <input
+                type="text"
+                v-model="organization_name"
+                v-bind="organization_nameAttrs"
+                :placeholder="$t('compName')"
+              />
+            </div>
+          </div>
+          <div class="text-danger">{{ errors.organization_name }}</div>
+          <div class="text-danger" v-if="errorsApi">
+            {{
+              errorsApi.organization_name ? errorsApi.organization_name[0] : ""
+            }}
+          </div>
+        </div>
+        <div class="col-12 col-xl-6 col-lg-6 col-md-6">
+          <div class="input-custom">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="23"
+              height="23"
+              viewBox="0 0 23 23"
+              fill="none"
+            >
+              <g clip-path="url(#clip0_175_3898)">
+                <path
+                  d="M20.628 17.7574C20.54 16.0613 19.137 14.7132 17.4191 14.7132C15.7012 14.7132 14.2982 16.0613 14.2103 17.7574H12.1765C11.4293 17.7574 10.8235 17.1516 10.8235 16.4044V14.2789C10.8235 13.6111 11.3107 13.0432 11.9708 12.9417L15.5336 12.3935L17.8716 9.471C18.1283 9.15006 18.5171 8.96324 18.9281 8.96324H22.3235C22.6971 8.96324 23 9.2661 23 9.63971V17.0809C23 17.4545 22.6971 17.7574 22.3235 17.7574H20.628ZM17.4191 20.125C16.2049 20.125 15.2206 19.1407 15.2206 17.9265C15.2206 16.7123 16.2049 15.7279 17.4191 15.7279C18.6333 15.7279 19.6176 16.7123 19.6176 17.9265C19.6176 19.1407 18.6333 20.125 17.4191 20.125ZM17.4191 18.7721C17.8861 18.7721 18.2647 18.3935 18.2647 17.9265C18.2647 17.4595 17.8861 17.0809 17.4191 17.0809C16.9521 17.0809 16.5735 17.4595 16.5735 17.9265C16.5735 18.3935 16.9521 18.7721 17.4191 18.7721ZM0 11.6691H8.79412V14.7132H0V11.6691ZM0 16.0662H8.79412V17.7574C8.79412 18.5046 8.18839 19.1103 7.44118 19.1103H0.676471C0.302866 19.1103 0 18.8074 0 18.4338V16.0662ZM0 7.27206H8.79412V10.3162H0V7.27206ZM0 5.91912V3.55147C0 3.17787 0.302866 2.875 0.676471 2.875H7.44118C8.18839 2.875 8.79412 3.48073 8.79412 4.22794V5.91912H0Z"
+                  fill="#A7B9D0"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_175_3898">
+                  <rect width="23" height="23" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+            <div class="label-container">
+              <label for=""> {{ $t("enterAmount") }} </label>
+              <input
+                type="number"
+                v-model="quantity"
+                v-bind="quantityAttrs"
+                min="1"
+                :placeholder="$t('amount')"
+              />
+            </div>
+          </div>
+          <div class="text-danger">{{ errors.quantity }}</div>
+          <div class="text-danger" v-if="errorsApi">
+            {{ errorsApi.quantity ? errorsApi.quantity[0] : "" }}
+          </div>
+        </div>
+        <div class="col-12 col-xl-6 col-lg-6 col-md-6">
+          <div class="input-custom">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+            >
+              <path
+                d="M9.20841 12.4584L7.66675 14.0001C7.34175 14.3251 6.82508 14.3251 6.49175 14.0084C6.40008 13.9167 6.30841 13.8334 6.21675 13.7417C5.35841 12.8751 4.58341 11.9667 3.89175 11.0167C3.20841 10.0667 2.65841 9.11675 2.25841 8.17508C1.86675 7.22508 1.66675 6.31675 1.66675 5.45008C1.66675 4.88341 1.76675 4.34175 1.96675 3.84175C2.16675 3.33341 2.48341 2.86675 2.92508 2.45008C3.45841 1.92508 4.04175 1.66675 4.65841 1.66675C4.89175 1.66675 5.12508 1.71675 5.33341 1.81675C5.55008 1.91675 5.74175 2.06675 5.89175 2.28341L7.82508 5.00841C7.97508 5.21675 8.08341 5.40841 8.15841 5.59175C8.23341 5.76675 8.27508 5.94175 8.27508 6.10008C8.27508 6.30008 8.21675 6.50008 8.10008 6.69175C7.99175 6.88341 7.83341 7.08341 7.63341 7.28341L7.00008 7.94175C6.90841 8.03341 6.86675 8.14175 6.86675 8.27508C6.86675 8.34175 6.87508 8.40008 6.89175 8.46675C6.91675 8.53341 6.94175 8.58341 6.95842 8.63341C7.10842 8.90841 7.36675 9.26675 7.73341 9.70008C8.10841 10.1334 8.50841 10.5751 8.94175 11.0167C9.02508 11.1001 9.11675 11.1834 9.20008 11.2667C9.53341 11.5917 9.54175 12.1251 9.20841 12.4584Z"
+                fill="#A7B9D0"
+              />
+              <path
+                d="M18.3083 15.275C18.3083 15.5083 18.2667 15.75 18.1833 15.9833C18.1583 16.05 18.1333 16.1166 18.1 16.1833C17.9583 16.4833 17.775 16.7666 17.5333 17.0333C17.125 17.4833 16.675 17.8083 16.1667 18.0166C16.1583 18.0166 16.15 18.025 16.1417 18.025C15.65 18.225 15.1167 18.3333 14.5417 18.3333C13.6917 18.3333 12.7833 18.1333 11.825 17.725C10.8667 17.3166 9.90833 16.7666 8.95833 16.075C8.63333 15.8333 8.30833 15.5916 8 15.3333L10.725 12.6083C10.9583 12.7833 11.1667 12.9166 11.3417 13.0083C11.3833 13.025 11.4333 13.05 11.4917 13.075C11.5583 13.1 11.625 13.1083 11.7 13.1083C11.8417 13.1083 11.95 13.0583 12.0417 12.9666L12.675 12.3416C12.8833 12.1333 13.0833 11.975 13.275 11.875C13.4667 11.7583 13.6583 11.7 13.8667 11.7C14.025 11.7 14.1917 11.7333 14.375 11.8083C14.5583 11.8833 14.75 11.9916 14.9583 12.1333L17.7167 14.0916C17.9333 14.2416 18.0833 14.4166 18.175 14.625C18.2583 14.8333 18.3083 15.0416 18.3083 15.275Z"
+                fill="#A7B9D0"
+              />
+            </svg>
+            <div class="label-container">
+              <label for=""> {{ $t("enterPhone") }} </label>
+              <input
+                type="tel"
+                maxlength="10"
+                name="phone"
+                v-model="phone"
+                v-bind="phoneAttrs"
+                :placeholder="$t('phone')"
+              />
+            </div>
+            <div class="num">966+</div>
+          </div>
+          <div class="text-danger">{{ errors.phone }}</div>
+          <div class="text-danger" v-if="errorsApi">
+            {{ errorsApi.phone ? errorsApi.phone[0] : "" }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="inputs">
+      <div class="row">
+        <div class="col-12 col-xl-6 col-lg-6 col-md-6">
+          <div class="input-custom">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="21"
+              viewBox="0 0 20 21"
+              fill="none"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M3.33337 2.83936C1.95266 2.83936 0.833374 3.95864 0.833374 5.33936V15.3394C0.833374 16.7201 1.95266 17.8394 3.33337 17.8394H16.6667C18.0474 17.8394 19.1667 16.7201 19.1667 15.3394V5.33936C19.1667 3.95864 18.0474 2.83936 16.6667 2.83936H3.33337ZM5.53355 6.36586C5.17998 6.07122 4.65451 6.11899 4.35988 6.47256C4.06524 6.82612 4.11301 7.35159 4.46657 7.64623L8.3996 10.9237C9.32672 11.6963 10.6734 11.6963 11.6005 10.9237L15.5335 7.64623C15.8871 7.35159 15.9349 6.82612 15.6402 6.47256C15.3456 6.11899 14.8201 6.07122 14.4666 6.36586L10.5335 9.64338C10.2245 9.90091 9.77561 9.90091 9.46657 9.64338L5.53355 6.36586Z"
+                fill="#A7B9D0"
+              />
+            </svg>
+            <div class="label-container">
+              <label for="">{{ $t("enterEmail") }} </label>
+              <input
+                type="email"
+                v-model="organization_email"
+                v-bind="organization_emailAttrs"
+                :placeholder="$t('email')"
+              />
+            </div>
+          </div>
+          <div class="text-danger">{{ errors.organization_email }}</div>
+          <div class="text-danger" v-if="errorsApi">
+            {{
+              errorsApi.organization_email
+                ? errorsApi.organization_email[0]
+                : ""
+            }}
+          </div>
+        </div>
+        <div class="col-12 col-xl-6 col-lg-6 col-md-6">
+          <div class="input-custom">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="21"
+              viewBox="0 0 20 21"
+              fill="none"
+            >
+              <path
+                d="M15 2.00598H5C3.61667 2.00598 2.5 3.11431 2.5 4.48098V13.5726C2.5 14.9393 3.61667 16.056 5 16.056H5.63333C6.29167 16.056 6.93333 16.3143 7.4 16.781L8.825 18.1893C9.475 18.831 10.525 18.831 11.175 18.1893L12.6 16.781C13.0667 16.3143 13.7083 16.056 14.3667 16.056H15C16.3833 16.056 17.5 14.9393 17.5 13.5726V4.48098C17.5 3.11431 16.3833 2.00598 15 2.00598ZM10 4.96432C10.9 4.96432 11.625 5.69765 11.625 6.58931C11.625 7.47265 10.925 8.18098 10.0583 8.21431C10.025 8.21431 9.975 8.21431 9.93333 8.21431C9.05833 8.18098 8.36667 7.47265 8.36667 6.58931C8.375 5.69765 9.1 4.96432 10 4.96432ZM12.2917 12.581C11.0333 13.4226 8.96667 13.4226 7.70833 12.581C6.6 11.8476 6.6 10.631 7.70833 9.88932C8.975 9.04765 11.0417 9.04765 12.2917 9.88932C13.4 10.631 13.4 11.8393 12.2917 12.581Z"
+                fill="#A7B9D0"
+              />
+            </svg>
+            <div class="label-container">
+              <label for=""> {{ $t("enterName") }} </label>
+              <input
+                type="text"
+                v-model="organization_seo"
+                v-bind="organization_seoAttrs"
+                :placeholder="$t('ceo')"
+              />
+            </div>
+          </div>
+          <div class="text-danger">{{ errors.organization_seo }}</div>
+          <div class="text-danger" v-if="errorsApi">
+            {{
+              errorsApi.organization_seo ? errorsApi.organization_seo[0] : ""
+            }}
+          </div>
+        </div>
+        <div class="col-12 col-xl-6 col-lg-6 col-md-6">
+          <div class="input-custom">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="21"
+              viewBox="0 0 20 21"
+              fill="none"
+            >
+              <path
+                d="M17.1833 7.38106C16.3083 3.53106 12.95 1.79773 9.99996 1.79773C9.99996 1.79773 9.99996 1.79773 9.99162 1.79773C7.04996 1.79773 3.68329 3.52273 2.80829 7.37273C1.83329 11.6727 4.46662 15.3144 6.84996 17.6061C7.73329 18.4561 8.86662 18.8811 9.99996 18.8811C11.1333 18.8811 12.2666 18.4561 13.1416 17.6061C15.525 15.3144 18.1583 11.6811 17.1833 7.38106ZM9.99996 11.5561C8.54996 11.5561 7.37496 10.3811 7.37496 8.93106C7.37496 7.48106 8.54996 6.30606 9.99996 6.30606C11.45 6.30606 12.625 7.48106 12.625 8.93106C12.625 10.3811 11.45 11.5561 9.99996 11.5561Z"
+                fill="#A7B9D0"
+              />
+            </svg>
+            <div class="label-container">
+              <label for=""> {{ $t("enterTun") }} </label>
+              <input
+                type="text"
+                v-model="organization_location"
+                v-bind="organization_locationAttrs"
+                :placeholder="$t('compBase')"
+              />
+            </div>
+          </div>
+          <div class="text-danger">{{ errors.organization_seo }}</div>
+          <div class="text-danger" v-if="errorsApi">
+            {{
+              errorsApi.organization_location
+                ? errorsApi.organization_seo[0]
+                : ""
+            }}
+          </div>
+        </div>
+        <div class="col-12 col-xl-6 col-lg-6 col-md-6">
+          <div class="input-custom">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="21"
+              viewBox="0 0 20 21"
+              fill="none"
+            >
+              <g clip-path="url(#clip0_179_3938)">
+                <path
+                  d="M12.5001 5.75598C12.0401 5.75598 11.6667 5.38265 11.6667 4.92265V3.67265H8.33341V4.92265C8.33341 5.38265 7.96008 5.75598 7.50008 5.75598C7.04008 5.75598 6.66675 5.38265 6.66675 4.92265V3.67265C6.66675 2.75348 7.41425 2.00598 8.33341 2.00598H11.6667C12.5859 2.00598 13.3334 2.75348 13.3334 3.67265V4.92265C13.3334 5.38265 12.9601 5.75598 12.5001 5.75598Z"
+                  fill="#A7B9D0"
+                />
+                <path
+                  d="M10.5917 13.156C10.4417 13.2144 10.225 13.256 10 13.256C9.775 13.256 9.55833 13.2144 9.35833 13.1394L0 10.0227V16.381C0 17.6477 1.025 18.6727 2.29167 18.6727H17.7083C18.975 18.6727 20 17.6477 20 16.381V10.0227L10.5917 13.156Z"
+                  fill="#A7B9D0"
+                />
+                <path
+                  d="M20 6.79765V8.70598L10.2 11.9726C10.1333 11.9976 10.0667 12.006 10 12.006C9.93333 12.006 9.86667 11.9976 9.8 11.9726L0 8.70598V6.79765C0 5.53098 1.025 4.50598 2.29167 4.50598H17.7083C18.975 4.50598 20 5.53098 20 6.79765Z"
+                  fill="#A7B9D0"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_179_3938">
+                  <rect
+                    width="20"
+                    height="20"
+                    fill="white"
+                    transform="translate(0 0.339355)"
+                  />
+                </clipPath>
+              </defs>
+            </svg>
+            <div class="label-container">
+              <label for=""> {{ $t("enterFirst") }} </label>
+              <input
+                type="text"
+                v-model="organization_activity"
+                v-bind="organization_activityAttrs"
+                :placeholder="$t('compAct')"
+              />
+            </div>
+          </div>
+          <div class="text-danger">{{ errors.organization_activity }}</div>
+          <div class="text-danger" v-if="errorsApi">
+            {{
+              errorsApi.organization_activity
+                ? errorsApi.organization_activity[0]
+                : ""
+            }}
+          </div>
+        </div>
+        <div class="col-12 col-xl-6 col-lg-6 col-md-6">
+          <div class="input-custom">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+            >
+              <path
+                d="M18.825 5.53748L10.3563 1.90623C10.1313 1.81251 9.86874 1.81251 9.64375 1.90623L1.175 5.53748C0.843737 5.68126 0.625 6.00623 0.625 6.36874V7.73124C0.625 8.23123 1.03126 8.63749 1.53126 8.63749H3.96873C4.00001 10.5687 4.01874 12.5 4.00623 13.5312H2.74376C2.24376 13.5312 1.8375 13.9375 1.8375 14.4375C1.8375 14.9375 2.24376 15.3437 2.74376 15.3437H17.2562C17.7562 15.3437 18.1625 14.9375 18.1625 14.4375C18.1625 13.9375 17.7562 13.5312 17.2562 13.5312H16.05C16.075 12.6312 16.0562 11.1375 16.0062 8.63749H18.4687C18.9687 8.63749 19.375 8.23123 19.375 7.73124V6.36874C19.375 6.00623 19.1563 5.68126 18.825 5.53748ZM9.11877 13.5312H5.82501C5.84999 12.6312 5.83126 11.1375 5.78125 8.63749H9.08127C9.11251 10.5687 9.13124 12.5 9.11877 13.5312ZM14.2313 13.5312H10.9375C10.9625 12.6312 10.9438 11.1375 10.8937 8.63749H14.1938C14.225 10.5687 14.2437 12.5 14.2313 13.5312Z"
+                fill="#A7B9D0"
+              />
+              <path
+                d="M17.2581 18.1652C17.7593 18.1652 18.1654 17.7592 18.1654 17.258C18.1654 16.7568 17.7593 16.3507 17.2581 16.3507H2.74197C2.24079 16.3507 1.83472 16.7568 1.83472 17.258C1.83472 17.7592 2.24079 18.1652 2.74197 18.1652H17.2581Z"
+                fill="#A7B9D0"
+              />
+            </svg>
+            <!-- <label for=""> ادخل البريد </label> -->
+            <Dropdown
+              :filter-placeholder="$t('search')"
+              v-model="bank_id"
+              v-bind="bank_idAttrs"
+              :options="years"
+              filter
+              optionLabel=""
+              :placeholder="$t(`bank`)"
+              class=""
+            >
+              <template #option="slotProps">
+                <div class="flex align-items-center">
+                  <div>{{ slotProps.option }}</div>
+                </div>
+              </template>
+            </Dropdown>
+          </div>
+          <div class="text-danger">{{ errors.bank_id }}</div>
+          <div class="text-danger" v-if="errorsApi">
+            {{ errorsApi.bank_id ? errorsApi.bank_id[0] : "" }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="d-flex align-items-center justify-content-between flex-column flex-xl-row flex-lg-row gap-5"
+    >
+      <button @click="onSubmit()" :disabled="pending" class="send-btn gap-4">
+        {{ $t("send") }}
+        <v-progress-circular
+          v-if="pending"
+          indeterminate
+          :size="30"
+          :width="4"
+        ></v-progress-circular>
+      </button>
+      <p class="text">
+        {{ $t("response1") }}
+      </p>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { useCompanyStore } from "@/stores/company";
+
+let store = useCompanyStore();
+import { createToast } from "mosha-vue-toastify";
+import "mosha-vue-toastify/dist/style.css";
+import { useForm } from "vee-validate";
+import * as yup from "yup";
+let years = ref([1, 2, 3, 4, 5, 6]);
+let errorsApi = ref();
+const props = defineProps(["cars"]);
+const { errors, handleSubmit, values, resetForm, defineField } = useForm({
+  validationSchema: yup.object({
+    organization_email: yup.string().email().required(),
+    phone: yup.string().required(),
+    organization_name: yup.string().required(),
+    organization_location: yup.string().required(),
+    organization_activity: yup.string().required(),
+    organization_seo: yup.string().required(),
+    quantity: yup.string().required(),
+    bank_id: yup.string().required(),
+    car_id: yup.string().required(),
+  }),
+});
+let pending = ref(store.isLoading);
+const [organization_email, organization_emailAttrs] =
+  defineField("organization_email");
+const [car_id, car_idAttrs] = defineField("car_id");
+const [phone, phoneAttrs] = defineField("phone");
+const [bank_id, bank_idAttrs] = defineField("bank_id");
+const [organization_name, organization_nameAttrs] =
+  defineField("organization_name");
+const [organization_location, organization_locationAttrs] = defineField(
+  "organization_location"
+);
+const [organization_activity, organization_activityAttrs] = defineField(
+  "organization_activity"
+);
+const [quantity, quantityAttrs] = defineField("quantity");
+const [organization_seo, organization_seoAttrs] =
+  defineField("organization_seo");
+
+const onSubmit = handleSubmit(() => {
+  store.getContact(values, resetForm, createToast);
+});
+
+watch([() => store.isLoading, () => store.errors], ([val1, val2]) => {
+  pending.value = val1;
+  errorsApi.value = val2;
+});
+</script>

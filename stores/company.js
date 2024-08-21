@@ -4,7 +4,7 @@ import { useNuxtApp } from "#app";
 import { createToast } from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";
 
-export const useindividualsStore = defineStore("individuals", () => {
+export const useCompanyStore = defineStore("company", () => {
 const { locale } = useI18n();
   const { $axios } = useNuxtApp();
   const errors = ref({});
@@ -17,20 +17,17 @@ const { locale } = useI18n();
     isLoading.value = true;
     try{
       let form = new FormData();
-      form.append("name" , obj.name);
       form.append("phone" , `+966${obj.phone}`);
-      form.append("salary" , obj.salary);
       form.append("car_id" , obj.car_id);
-      form.append("price" , obj.price);
-      form.append("commitments" , obj.commitments);
-      form.append("first_payment_value" , obj.first_payment_value);
-      form.append("last_payment_value" , obj.last_payment_value);
+      form.append("organization_name" , obj.organization_name);
+      form.append("organization_location" , obj.organization_location);
       form.append("bank_id" , obj.bank_id);
-      form.append("city_id" , obj.city_id);
-      form.append("work" , obj.work);
-      form.append("driving_license" , obj.driving_license);
-      form.append("stumbles" , obj.stumbles);
-      const result = await $axios.post(`individuals-finance`, form);
+      form.append("organization_activity" , obj.organization_activity);
+      form.append("organization_seo" , obj.organization_seo);
+      form.append("quantity" , obj.quantity);
+      form.append("organization_email" , obj.organization_email);
+    
+      const result = await $axios.post(`company-finance`, form);
       if (result.status >= 200) {
         isLoading.value = false;
         errors.value = undefined;
@@ -50,19 +47,14 @@ const { locale } = useI18n();
         resetForm({
           values: {
             city_id: "",
-            name: "",
+            organization_name: "",
             car_id: "",
             phone: "",
-            salary: "",
-            commitments: "",
-            first_payment_value: "",
-            last_payment_value: "",
             bank_id: "",
-            work: "",
-            city_id: "",
-            driving_license: "",
-            stumbles: "",
-            price:""
+            organization_location: "",
+            organization_seo: "",
+            quantity: "",
+            organization_email: "",
           },
           errors: {},
         });
@@ -78,11 +70,13 @@ const { locale } = useI18n();
     isLoading2.value = true;
     try{
       let form = new FormData();
-      form.append("name" , obj.name);
       form.append("phone" , `+966${obj.phone}`);
       form.append("car_id" , obj.car_id);
-      form.append("price" , obj.price);
-      const result = await $axios.post(`individuals-cash`, form);
+      form.append("organization_name" , obj.organization_name);
+      form.append("organization_seo" , obj.organization_seo);
+      form.append("quantity" , obj.quantity);
+      form.append("organization_email" , obj.organization_email);
+      const result = await $axios.post(`company-cash`, form);
       if (result.status >= 200) {
         isLoading2.value = false;
         errors2.value = undefined;
@@ -101,10 +95,12 @@ const { locale } = useI18n();
         );
         resetForm({
           values: {
-            price: "",
-            name: "",
+            organization_name: "",
             car_id: "",
+            organization_seo: "",
+            quantity: "",
             phone: "",
+            organization_email: "",
           },
           errors: {},
         });

@@ -13,6 +13,8 @@
 <script setup>
 const isLoading = ref(true);
 const checkInt = ref(false);
+const { locale, setLocale } = useI18n();
+
 const handleOffline = () => {
   checkInt.value = true;
 };
@@ -25,6 +27,19 @@ onMounted(() => {
     window.addEventListener('offline', handleOffline);
 
 });
+
+watch(
+  [() => locale.value],
+  ([val]) => {
+    console.log('dsdsd');
+    useHead({
+      htmlAttrs: {
+        lang: val == 'en' ? "en" : "ar",
+        dir: val == "en" ? "ltr" : "rtl",
+      },
+    });
+  }
+);
 onUnmounted(() => {
   window.removeEventListener('online', handleOnline);
   window.removeEventListener('offline', handleOffline);

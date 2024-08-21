@@ -18,7 +18,7 @@
         </button>
        </div>
       <div class="name d-flex flex-column">
-        <h4> {{ item.CarName }} </h4>
+        <h4> {{ item.name }} </h4>
       </div>
     
       <div class="types">

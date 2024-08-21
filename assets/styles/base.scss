@@ -363,8 +363,12 @@ html[dir="ltr"] body{
   gap: 12px;
   border-radius: 16px;
   background: #f4f5f6;
-
+   position: relative;
   // transition: 0.3s all;
+  .num{
+    position: absolute;
+    left: 13px;
+  }
   input,
   textarea {
     outline: none;

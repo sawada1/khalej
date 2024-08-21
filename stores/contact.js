@@ -29,7 +29,7 @@ const { locale } = useI18n();
             ? "تم التواصل بنجاح "
             : "Communication was successful",
           {
-            toastBackgroundColor: "#dcba95",
+            toastBackgroundColor: "#2D9596",
             position: "top-right",
             type: "success",
             transition: "bounce",

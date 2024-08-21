@@ -58,7 +58,7 @@
             v-for="(item, index) in newss"
             class="col-12 col-xl-4 col-lg-6 mb-5"
           >
-            <nuxt-link :to="`/news/${item.id}`" class="box">
+            <nuxt-link :to="localePath(`/news/${item.id}`)" class="box">
               <div class="image">
                 <!-- ~/assets/imgs/news1.png -->
                 <img :src="item.main_image" alt="car" />
@@ -109,6 +109,7 @@
 
 <script setup>
 import { useNewStore } from "@/stores/news";
+const localePath = useLocalePath();
 let store = useNewStore();
 let isLoading = ref(store.isLoading);
 store.getNews();

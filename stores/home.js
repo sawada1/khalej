@@ -41,50 +41,65 @@ export const useHomeStore = defineStore("home", () => {
 
   // Fetch brands with caching logic
   async function getBrands() {
-    if (process.client) {
-      const cachedBrands = loadFromStorage('brands');
-      if (cachedBrands) {
-        brands.value = cachedBrands;
-      } else {
-        const result = await $axios.get('brands');
+    // if (process.client) {
+    //   const cachedBrands = loadFromStorage('brands');
+    //   if (cachedBrands) {
+    //     brands.value = cachedBrands;
+    //   } else {
+    //     const result = await $axios.get('brands');
+    //     if (result.status >= 200) {
+    //       brands.value = result.data.data;
+    //       saveToStorage('brands', brands.value);
+    //     }
+    //   }
+    // }
+
+         const result = await $axios.get('brands');
         if (result.status >= 200) {
           brands.value = result.data.data;
-          saveToStorage('brands', brands.value);
         }
-      }
-    }
   }
 
   // Fetch cars with caching logic
   async function getCars() {
-    if (process.client) {
-      const cachedCars = loadFromStorage('cars');
-      if (cachedCars) {
-        cars.value = cachedCars;
-      } else {
-        const result = await $axios.get('cars');
+    // if (process.client) {
+    //   const cachedCars = loadFromStorage('cars');
+    //   if (cachedCars) {
+    //     cars.value = cachedCars;
+    //   } else {
+    //     const result = await $axios.get('cars');
+    //     if (result.status >= 200) {
+    //       cars.value = result.data.data;
+    //       saveToStorage('cars', cars.value);
+    //     }
+    //   }
+    // }
+
+         const result = await $axios.get('cars');
         if (result.status >= 200) {
           cars.value = result.data.data;
-          saveToStorage('cars', cars.value);
         }
-      }
-    }
   }
 
   // Fetch models with caching logic
   async function getModels() {
-    if (process.client) {
-      const cachedModels = loadFromStorage('models');
-      if (cachedModels) {
-        models.value = cachedModels;
-      } else {
+    // if (process.client) {
+    //   const cachedModels = loadFromStorage('models');
+    //   if (cachedModels) {
+    //     models.value = cachedModels;
+    //   } else {
+    //     const result = await $axios.get('models');
+    //     if (result.status >= 200) {
+    //       models.value = result.data.data;
+    //       saveToStorage('models', models.value);
+    //     }
+    //   }
+    // }
+
         const result = await $axios.get('models');
         if (result.status >= 200) {
           models.value = result.data.data;
-          saveToStorage('models', models.value);
         }
-      }
-    }
   }
 
   return {

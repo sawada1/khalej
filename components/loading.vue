@@ -13,7 +13,7 @@
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 ::-webkit-scrollbar {
   display:none;
 }
