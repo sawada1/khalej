@@ -4,6 +4,7 @@
       <div class="breadline">
         <span>{{ $t("home") }}</span>
         <svg
+        class="arrowDir"
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"

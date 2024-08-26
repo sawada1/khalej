@@ -21,10 +21,24 @@
 
             <div class="container">
               <div class="row">
-                <div v-for="i in 8" class="col-12 col-xl-3 col-lg-3 col-md-6 mb-5">
-                    <carCard></carCard>
+                <div v-for="item in store.favsArr" class="col-12 col-xl-3 col-lg-3 col-md-6 mb-5">
+                    <carCard :item="item.car_id" ></carCard>
                 </div>
               </div>
             </div>
     </div>
 </template>
+
+
+<script setup>
+import { useCarStore } from "@/stores/car";
+let store = useCarStore();
+
+let loading = ref(store.isLoading3);
+store.getFav();
+
+
+watch(()=> store.isLoading3 , (val)=>{
+    loading.value = val;
+})
+</script>

@@ -5,6 +5,7 @@
         <div class="breadline">
           <span>{{ $t("home") }}</span>
           <svg
+          class="arrowDir"
             xmlns="http://www.w3.org/2000/svg"
             width="16"
             height="16"
@@ -203,7 +204,7 @@
                   <span class="name"> جدة </span>
                   <button>
                     <svg
-                      class="def"
+                      class="def arrowDir"
                       xmlns="http://www.w3.org/2000/svg"
                       width="20"
                       height="20"
@@ -216,7 +217,7 @@
                       />
                     </svg>
                     <svg
-                      class="act"
+                      class="act arrowDir"
                       xmlns="http://www.w3.org/2000/svg"
                       width="20"
                       height="20"
@@ -277,24 +278,24 @@
       <div class="common">
         <h2>الاسئلة الشائعة</h2>
         <v-expansion-panels class="main-panels">
-          <v-expansion-panel v-for="(i, index) in 6">
+          <v-expansion-panel v-for="(item, index) in store.questions">
             <v-expansion-panel-title
               collapse-icon="mdi-chevron-up"
               expand-icon="mdi-chevron-down"
             >
               <div class="custom-title">
                 <span> {{ `0${index + 1}` }} </span>
-                <p>ماهي العروض اللي تقدمها شركة الخليج للسيارات</p>
+                <p>  {{ item.question }} </p>
               </div>
             </v-expansion-panel-title>
             <v-expansion-panel-text>
-              سيارة مرسيدس GLC 300 2023 واحدة من سيارات الدفع الرباعي الفاخرة
-              بالتصميم الجذاب بقوة 245 حصان ناقل حركة اتوماتيك دفع رباعي و سعة 2
-              لتر ومن الداخل بها أعلى الدرجات من الراحة.
+               {{ item.answer }}
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
       </div>
+    <loading v-if="pending2" />
+
     </div>
   </div>
 </template>
@@ -311,6 +312,9 @@ import * as yup from "yup";
 let actMap = ref(false);
 const { locale } = useI18n();
 let errorsApi = ref();
+let pending2 = ref(store.isLoading2);
+store.getQuestions();
+let questions = ref(store.questions);
 const { errors, handleSubmit, values, resetForm, defineField } = useForm({
   validationSchema: yup.object({
     email: yup.string().email().required(),
@@ -324,31 +328,14 @@ const [email, emailAttrs] = defineField("email");
 const [name, nameAttrs] = defineField("name");
 const [message, messageAttrs] = defineField("message");
 const [phone, phoneAttrs] = defineField("phone");
-const toast = () => {
-  createToast("Some text", {
-    toastBackgroundColor: "#dcba95",
-    position: "top-right",
-    type: "success",
-    transition: "bounce",
-    showIcon: "true",
-    timeout: 30000,
-  });
-};
 
-const showAlert = () => {
-  Swal.fire({
-    title: "Good job!",
-    text: "You clicked the button!",
-    icon: "success",
-    confirmButtonColor: "green",
-  });
-};
 const onSubmit = handleSubmit(() => {
   store.getContact(values, resetForm , createToast);
 });
 
-watch([() => store.isLoading, () => store.errors], ([val1, val2]) => {
+watch([() => store.isLoading, () => store.errors , ()=> store.isLoading2], ([val1, val2 , val3]) => {
   pending.value = val1;
   errorsApi.value = val2;
+  pending2.value = val3
 });
 </script>

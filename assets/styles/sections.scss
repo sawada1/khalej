@@ -103,6 +103,11 @@
       font-style: normal;
       font-weight: 700;
       color: $black;
+      position: relative;
+      img{
+        position: absolute;
+        left: -45px;
+      }
 
       span {
         color: $primary;
@@ -118,6 +123,7 @@
       width: 382px;
       line-height: 24px;
       margin-bottom: $space1;
+      
     }
   }
 
@@ -156,11 +162,21 @@
       margin: 0;
       color: $sec;
       text-align: center;
+      @include text-line(5);
+      .readMore{
+        color: $primary;
+        font-weight: 600;
+      }
+      &.active{
+      }
     }
 
     &:hover {
       background: #fff;
       box-shadow: 0px 64px 64px -48px rgba(15, 15, 15, 0.1);
+      p{
+        @include no-trunc();
+      }
     }
   }
 }
@@ -278,7 +294,6 @@
       button {
         display: inline-flex;
         height: 48px;
-        width: 40%;
         // padding: 12px 24px;
         justify-content: center;
         align-items: center;
@@ -299,6 +314,17 @@
       left: 0;
       bottom: 0;
     }
+  }
+}
+
+html[dir="rtl"] .payment-order-section{
+  button{
+    width: 40%;
+  }
+}
+html[dir="ltr"] .payment-order-section{
+  button{
+    width: 50%;
   }
 }
 
@@ -448,7 +474,7 @@
 
 // end how-work-section
 
-// start product page
+// start product pagea
 
 .product-page {
   margin-top: 64px;
@@ -582,7 +608,8 @@
         .detail {
           display: flex;
           align-items: center;
-          gap: 50px;
+          width: 180px;
+          justify-content: space-between;
 
           span {
             font-size: 14px;
@@ -1617,6 +1644,15 @@
         border: 2px solid #dfe3ea;
         color: $black;
         font-weight: 700;
+        &.active{
+          width: fit-content;
+          height: 40px;
+          padding: 10px;
+           border-radius: 50%;
+          span{
+            display: none;
+          }
+        }
       }
       .v-input__details {
         display: none;
@@ -1655,14 +1691,14 @@
     }
   }
   .searchBtn2{
-    //  display: flex;
-    //   justify-content: center;
-    //   align-items: center;
-    //   gap: 8px;
-      // border-radius: 100px;
-      // padding: 10px 30px;
-      // background-color: $primary;
-      // color: #fff !important;
+     display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      border-radius: 100px;
+      padding: 10px 35px;
+      background-color: $primary;
+      color: #fff !important;
   }
   .allcars {
     background: #f4f5f6;

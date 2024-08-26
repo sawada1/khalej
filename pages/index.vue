@@ -127,7 +127,10 @@
     </div>
     <div class="container why-choose-section">
       <div class="text d-flex flex-column align-items-center text-center">
-        <h2>{{ $t('why') }} <span> {{ $t('choose') }} </span></h2>
+        <h2>
+        {{ $t('why') }} <span> {{ $t('choose') }} </span>
+        <img src="~/assets/imgs/whyIcon.svg" alt="">
+        </h2>
         <p>
           {{ $t('choosetitle') }}
         </p>
@@ -138,7 +141,10 @@
             <img src="~/assets/imgs/icon1.svg" alt="prucher icon" />
             <h5> {{ $t('choose1') }} </h5>
             <p>
-              {{ $t('chooseP1') }}
+              {{ $t('chooseP1') }} 
+              <!-- <span class="readMore" v-if="$t('chooseP1').length >= 140">
+               read more...
+              </span> -->
             </p>
           </div>
         </div>
@@ -148,6 +154,7 @@
             <h5> {{ $t('choose2') }} </h5>
             <p>
               {{ $t('chooseP2') }}
+              
             </p>
           </div>
         </div>
@@ -181,8 +188,7 @@
         <div v-if="store.cars" class="row">
           <div
             v-for="(item, index) in cars"
-            class="col-12 col-xl-3 col-lg-4 col-md-6"
-            :class="{ 'mb-5 mb-xl-0': index != 3 }" 
+            class="col-12 col-xl-3 col-lg-4 col-md-6 mb-5"
           >
             <car-card :item="item"></car-card>
           </div>
@@ -215,6 +221,7 @@
                   <button class="paymentBTN">
                     {{ $t('orderHome') }}
                     <svg
+                    class="arrowDir"
                       xmlns="http://www.w3.org/2000/svg"
                       width="18"
                       height="18"
@@ -245,6 +252,7 @@
                 <button>
                   {{ $t('orderHome') }}
                   <svg
+                  class="arrowDir"
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
                     height="18"

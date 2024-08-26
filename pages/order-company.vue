@@ -5,6 +5,7 @@
         <h1> {{ $t('reqOrd') }} </h1>
         <nuxt-link to="/">
           <svg
+          class="arrowDir"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"

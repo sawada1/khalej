@@ -4,27 +4,31 @@ import { useNuxtApp } from "#app";
 import { createToast } from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";
 
-export const useContactStore = defineStore("contact", () => {
+export const useCareerStore = defineStore("career", () => {
 const { locale } = useI18n();
   const { $axios } = useNuxtApp();
   const errors = ref({});
   const isLoading = ref(false);
   const isLoading2 = ref(true);
+  let active = ref();
   const pendingState = ref(false);
-  const questions = ref([]);
+  const careers = ref([]);
 
-  async function getContact(obj , resetForm , createToast) {
+  async function getContact(obj , resetForm , createToast , id , file) {
     isLoading.value = true;
     try{
       let form = new FormData();
       form.append("name" , obj.name);
       form.append("phone" , `+966${obj.phone}`);
       form.append("email" , obj.email);
-      form.append("message" , obj.message);
-      const result = await $axios.post(`contact`, form);
+      form.append("cv" , obj.cv);
+      const result = await $axios.post(`career/store/${id}`, form);
       if (result.status >= 200) {
         isLoading.value = false;
         errors.value = undefined;
+        file = null;
+        console.log(file);
+        active.value = false;
         createToast(
           locale.value == "ar"
             ? "تم التواصل بنجاح "
@@ -42,7 +46,8 @@ const { locale } = useI18n();
           values: {
             email: "",
             name: "",
-            message: "",
+            cv: "",
+            phone: "",
           },
           errors: {},
         });
@@ -54,12 +59,12 @@ const { locale } = useI18n();
       }
     }
   }
-  async function getQuestions() {
+  async function getCareer() {
     try{
-      const result = await $axios.get(`questions`);
+      const result = await $axios.get(`career`);
       if (result.status >= 200) {
         isLoading2.value = false;
-        questions.value = result.data.data;
+        careers.value = result.data.data;
       //   setTimeout(() => {
       //     isLoading2.value = true;
       // }, 500);
@@ -78,7 +83,8 @@ const { locale } = useI18n();
     pendingState,
     isLoading2,
     getContact,
-    questions,
-    getQuestions
+    careers,
+    active,
+    getCareer
   };
 });

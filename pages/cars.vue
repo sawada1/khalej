@@ -52,7 +52,7 @@
           </div>
         </div>
         <div class="container filter-container flex-column flex-xl-row">
-          <button @click="showFilter = !showFilter" class="filter-btn">
+          <button @click="showFilter = !showFilter" class="filter-btn" :class="{'active': showFilter}">
             <svg
               v-if="!showFilter"
               xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +83,9 @@
                 fill="#363F4D"
               />
             </svg>
-            {{ $t("filter") }}
+            <span>
+            {{ $t("filter") }} 
+            </span>
           </button>
           <div
             v-if="showFilter"

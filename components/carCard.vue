@@ -1,7 +1,7 @@
 <template>
     <div v-if="item">
-        <div @click="goToCar(item.id)" class="car-card">           
-      <div class="image">
+        <div  class="car-card">           
+      <div @click="goToCar(item.id)" class="image">
                 <!-- <img src="~/assets/imgs/car.png" alt="car" /> -->
                 <img :src="item.main_image" alt="car" />
             </div>
@@ -10,13 +10,17 @@
         <div class="compPrice">
           <span> {{ $t('comPrice') }} </span>
         </div>
-        <button>
+        <button @click="addFavFunc(item.id) , item.is_fav = !item.is_fav">
 
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+<svg v-if="item.is_fav" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M12 4.80957C10.8321 3.6888 9.24649 3 7.5 3C3.91015 3 1 5.91015 1 9.5C1 15.8683 7.97034 19.385 10.8138 20.5547C11.5796 20.8697 12.4204 20.8697 13.1862 20.5547C16.0297 19.385 23 15.8682 23 9.5C23 5.91015 20.0899 3 16.5 3C14.7535 3 13.1679 3.6888 12 4.80957Z" fill="#ED3F3F"/>
+</svg>
+          <svg v-else xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path d="M12.62 20.81C12.28 20.93 11.72 20.93 11.38 20.81C8.48 19.82 2 15.69 2 8.68998C2 5.59998 4.49 3.09998 7.56 3.09998C9.38 3.09998 10.99 3.97998 12 5.33998C13.01 3.97998 14.63 3.09998 16.44 3.09998C19.51 3.09998 22 5.59998 22 8.68998C22 15.69 15.52 19.82 12.62 20.81Z" stroke="#A7B9D0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
         </button>
        </div>
+       <div @click="goToCar(item.id)">
       <div class="name d-flex flex-column">
         <h4> {{ item.name }} </h4>
       </div>
@@ -70,11 +74,13 @@
         <span> {{ $t('startWith') }} </span>
         <div class="d-flex align-items-center justify-content-between w-100">
           <h4> {{ item.price }} {{ $t('curr') }} </h4>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <svg class="arrowDir"  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M16.7003 6.29999H6.30029L6.30029 16.7H7.70028L7.70029 8.68994L17.0003 17.9899L17.9902 17L8.69024 7.69999H16.7003V6.29999Z" fill="#363F4D"/>
 </svg>
         </div>
       </div>
+       
+       </div>
     </div>
     </div>
 </template>
@@ -82,9 +88,18 @@
 <script setup>
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
+import { useCarStore } from "@/stores/car";
+
+let store = useCarStore();
 const props = defineProps(["item"]);
 let router = useRouter();
+let favBtn = ref(props.item.is_fav);
 
+
+const addFavFunc = (id) =>{
+  favBtn.value = !favBtn.value;
+  store.AddFav(id , favBtn.value)
+}
 const goToCar = (id) => {
   const queryParams = {
     id: id,
