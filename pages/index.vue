@@ -136,19 +136,19 @@
         </p>
       </div>
       <div class="row">
-        <div class="col-12 col-xl-3 col-lg-4 col-md-6">
+        <div v-for="item in store.chooseArr" :key="item.id" class="col-12 col-xl-3 col-lg-4 col-md-6">
           <div class="box mb-5 mb-xl-0">
-            <img src="~/assets/imgs/icon1.svg" alt="prucher icon" />
-            <h5> {{ $t('choose1') }} </h5>
+            <img :src="item.icon" alt="prucher icon" />
+            <h5> {{ item.title }} </h5>
             <p>
-              {{ $t('chooseP1') }} 
+              {{ item.description }} 
               <!-- <span class="readMore" v-if="$t('chooseP1').length >= 140">
                read more...
               </span> -->
             </p>
           </div>
         </div>
-        <div class="col-12 col-xl-3 col-lg-4 col-md-6">
+        <!-- <div class="col-12 col-xl-3 col-lg-4 col-md-6">
           <div class="box mb-5 mb-xl-0">
             <img src="~/assets/imgs/icon2.svg" alt="best price icon" />
             <h5> {{ $t('choose2') }} </h5>
@@ -175,7 +175,7 @@
               {{ $t('chooseP4') }}
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -286,7 +286,9 @@
                 هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
                 هذا النص من
               </p>
-              <button> {{ $t('contactUs') }} </button>
+              <nuxt-link :to="localePath('/contact')">
+            <button > {{ $t('contactUs') }} </button>
+          </nuxt-link>
             </div>
           </div>
           <div class="col-12 col-xl-8 col-lg-12">
@@ -346,6 +348,7 @@ import { useHomeStore } from "@/stores/home";
  store.getBrands();
  store.getCars();
  store.getModels();
+ store.getChoose();
  let cars = ref(store.cars);
  let brandsArr = ref(store.brands);
  let modelsArr = ref(store.models);

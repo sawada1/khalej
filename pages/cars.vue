@@ -327,17 +327,17 @@
             </div>
             <div class="d-flex flex-column w-100">
               <v-range-slider
-                v-model="value"
-                max="800000"
-                min="100000"
+                v-model="valuePrices"
+                :max="store.prices?.maxPrice"
+                :min="store.prices?.minPrice"
                 color="#363F4D"
                 strict
               ></v-range-slider>
               <div
                 class="currency d-flex align-items-center justify-content-between"
               >
-                <span> {{ Math.round(value[0]) }} {{ $t("curr") }} </span>
-                <span> {{ Math.round(value[1]) }} {{ $t("curr") }}</span>
+                <span> {{ Math.round(valuePrices[0]) }} {{ $t("curr") }} </span>
+                <span> {{ Math.round(valuePrices[1]) }} {{ $t("curr") }}</span>
               </div>
             </div>
             <button @click="filter()" class="searchBtn2">{{ $t("search") }}</button>
@@ -396,6 +396,7 @@ store2.getBrands();
 store2.getCars();
 store2.getModels();
 let store = useCarStore();
+store.gePrices();
 let route = useRoute();
 let brandId = ref(route.query.id);
 let modelId = ref(route.query.model);
@@ -410,7 +411,7 @@ let isLoading3 = ref(store.isLoading3);
 let arr = ref(route.query.id ? [route.query.id] : []);
 let arr2 = ref(route.query.model ? [route.query.model] : []);
 let arr3 = ref(route.query.car_id ? [route.query.car_id] : []);
-let value = ref([200000, 400000]);
+let valuePrices = ref([10000, 90000]);
 let showFilter = ref(false);
 let { locale } = useI18n();
 const localePath = useLocalePath();
@@ -441,6 +442,8 @@ const filter = () => {
     brand_id: arr.value,
     model_id: arr2.value,
     car_id: arr3.value,
+    min_price: Math.round(valuePrices.value[0]),
+    max_price: Math.round(valuePrices.value[1]),
   });
 };
 // const filterCars = async () => {
@@ -553,8 +556,9 @@ watch(
     () => store2.brands,
     () => store2.models,
     () => store.isLoading3,
+    () => store.prices,
   ],
-  ([val1, val2, val3, val4, val5, val6 , val7]) => {
+  ([val1, val2, val3, val4, val5, val6 , val7  ,val8]) => {
     filteredCar.value = val1;
     isLoading.value = val2;
     isLoading3.value = val7;
@@ -562,6 +566,7 @@ watch(
     dropdown1.value.items = val5;
     dropdown2.value.items = val6;
     dropdown3.value.items = val4;
+    // valuePrices.value = [Number(val8?.minPrice) , Number(val8?.maxPrice)]
   }
 );
 watch(

@@ -9,6 +9,7 @@ export const useCarStore = defineStore("car", () => {
   const errors = ref({});
 const { locale } = useI18n();
   const car = ref();
+  const prices = ref();
   const filteredCar = ref([]);
   const favsArr = ref([]);
   const isLoading = ref(true);
@@ -33,12 +34,11 @@ const { locale } = useI18n();
     filteredCar.value = [];
     const result = await $axios.get(`car/search`, {
       params: {
-        model_id:
-          typeof obj.model_id == "object" ? [...obj.model_id] : [obj.model_id],
-        brand_id:
-          typeof obj.model_id == "object" ? [...obj.brand_id] : [obj.brand_id],
-        car_id:
-          typeof obj.model_id == "object" ? [...obj.car_id] : [obj.car_id],
+        model_id:typeof obj.model_id == "object" ? [...obj.model_id] : [obj.model_id],
+        brand_id:typeof obj.model_id == "object" ? [...obj.brand_id] : [obj.brand_id],
+        car_id:typeof obj.model_id == "object" ? [...obj.car_id] : [obj.car_id],
+        min_price: obj.min_price ,
+        max_price: obj.max_price,
       },
     });
     if (result.status >= 200) {
@@ -76,6 +76,13 @@ const { locale } = useI18n();
       favsArr.value = result.data.data;
     }
   }
+  async function gePrices() {
+    const result = await $axios.get(`prices`);
+    if (result.status >= 200) {
+      isLoading4.value = false;
+      prices.value = result.data;
+    }
+  }
 
   return {
     errors,
@@ -86,6 +93,8 @@ const { locale } = useI18n();
     pendingState,
     isLoading2,
     isLoading3,
+    gePrices,
+    prices,
     isLoading4,
     AddFav,
     car,

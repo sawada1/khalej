@@ -54,6 +54,8 @@ let activeBtn = ref(1);
 import { useHomeStore } from "@/stores/home";
 let store2 = useHomeStore();
 store2.getCars();
+store2.getBanks();
+store2.getCities();
 let cars = ref(store2.cars);
 
 watch(

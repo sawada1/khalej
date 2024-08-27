@@ -352,15 +352,16 @@
               :filter-placeholder="$t('search')"
               v-model="bank_id"
               v-bind="bank_idAttrs"
-              :options="years"
+              :options="store2.banks"
               filter
-              optionLabel=""
-              :placeholder="$t(`bank`)"
+              optionValue="id"
+              optionLabel="name"
+              :placeholder="$t('bank')"
               class=""
             >
               <template #option="slotProps">
                 <div class="flex align-items-center">
-                  <div>{{ slotProps.option }}</div>
+                  <div>{{ slotProps.option.name }}</div>
                 </div>
               </template>
             </Dropdown>
@@ -393,7 +394,8 @@
 
 <script setup>
 import { useCompanyStore } from "@/stores/company";
-
+import { useHomeStore } from "@/stores/home";
+let store2 = useHomeStore();
 let store = useCompanyStore();
 import { createToast } from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";

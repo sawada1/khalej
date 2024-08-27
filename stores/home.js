@@ -10,7 +10,12 @@ export const useHomeStore = defineStore("home", () => {
   const brands = ref([]);
   const cars = ref([]);
   const models = ref([]);
+  const banks = ref([]);
+  const city = ref([]);
+  const branches = ref([]);
+  const chooseArr = ref([]);
   const brand = ref();
+  const social = ref();
   const total = ref();
   const pendingShow = ref(false);
   const showBrand = ref();
@@ -80,6 +85,36 @@ export const useHomeStore = defineStore("home", () => {
           cars.value = result.data.data;
         }
   }
+  async function getBranches() {
+         const result = await $axios.get('branchs');
+        if (result.status >= 200) {
+          branches.value = result.data.data;
+        }
+  }
+  async function getSocial() {
+         const result = await $axios.get('social');
+        if (result.status >= 200) {
+          social.value = result.data.data;
+        }
+  }
+  async function getBanks() {
+         const result = await $axios.get('banks');
+        if (result.status >= 200) {
+          banks.value = result.data.data;
+        }
+  }
+  async function getCities() {
+         const result = await $axios.get('city');
+        if (result.status >= 200) {
+          city.value = result.data.data;
+        }
+  }
+  async function getChoose() {
+         const result = await $axios.get('chosseUs');
+        if (result.status >= 200) {
+          chooseArr.value = result.data.data;
+        }
+  }
 
   // Fetch models with caching logic
   async function getModels() {
@@ -114,6 +149,16 @@ export const useHomeStore = defineStore("home", () => {
     showBrand,
     checkBrand,
     errorsEdit,
+    branches,
+    city,
+    getSocial,
+    getBanks,
+    getCities,
+    getChoose,
+    chooseArr,
+    banks,
+    social,
+    getBranches,
     getBrands,
     getCars,
     getModels,
