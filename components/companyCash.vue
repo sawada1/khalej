@@ -268,8 +268,7 @@
 import { useCompanyStore } from "@/stores/company";
 
 let store = useCompanyStore();
-import { createToast } from "mosha-vue-toastify";
-import "mosha-vue-toastify/dist/style.css";
+// import "mosha-vue-toastify/dist/style.css";
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 let years = ref([1, 2, 3, 4, 5, 6]);
@@ -297,7 +296,7 @@ const [organization_seo, organization_seoAttrs] =
   defineField("organization_seo");
 
 const onSubmit = handleSubmit(() => {
-  store.getContact2(values, resetForm, createToast);
+  store.getContact2(values, resetForm);
 });
 
 watch([() => store.isLoading2, () => store.errors2], ([val1, val2]) => {

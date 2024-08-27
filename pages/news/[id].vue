@@ -88,12 +88,13 @@
               <div class="news-box">
                 <h5>{{ $t("newss1") }}</h5>
                 <div class="boxes">
-                  <div v-for="i in 4" class="box my-2">
+                  <div v-for="item in mainItem.latestNews" class="box my-2">
                     <div class="image">
-                      <img src="~/assets/imgs/news1.png" alt="car" />
+                      <!-- <img src="~/assets/imgs/news1.png" alt="car" /> -->
+                      <img :src="item.highlighted_image" alt="car" />
                     </div>
                     <div class="text w-100">
-                      <h6>dsd</h6>
+                      <h6> {{ item.title }} </h6>
                       <div
                         class="d-flex w-100 align-items-center justify-content-between"
                       >
@@ -125,12 +126,12 @@
                               </clipPath>
                             </defs>
                           </svg>
-                          <span> 2024-06-22 </span>
+                          <span> {{ item.created_at }} </span>
                         </div>
                         <!-- <div @click="id = item.id , getNewsData()" class="icon">
                                                     <i class="fa-solid fa-arrow-left arrow-icon"></i>
                                                 </div> -->
-                        <div class="icon">
+                        <div class="icon" @click="itemId = item.id , store.getNew(itemId)">
                           <i class="fa-solid fa-arrow-left arrowDir"></i>
                         </div>
                       </div>
@@ -217,22 +218,6 @@ let isLoading = ref(store.isLoading2);
 store.getNew(itemId.value);
 let pending = ref(false);
 
-// let newsArr = ref([]);
-// const getNewsData = async ()=>{
-//     pending.value = true;
-//   let result = await axios.get(`${getUrl()}/news/show/${id.value}`, {
-//     headers: {
-//       "Content-Language": `${locale.value}`,
-//     },
-//   });
-
-// if(result.status == 200){
-//     pending.value = false;
-//     newsArr.value = result.data.data;
-// }
-
-// }
-
 let routee = ref(route.fullPath);
 if (process.client) {
   routee.value = window.location.href;
@@ -256,18 +241,6 @@ function copyToClipboard() {
     }, 1000);
   }
 }
-
-// const contactArr = ref([]);
-// const getContactData =  async()=>{
-//     let result = await axios.get(`${getUrl()}/contact-us`,{
-//         headers:{
-//             "Content-Language": `${locale.value}`,
-//         }
-//     });
-//     if(result.status == 200){
-//      contactArr.value = result.data.data;
-//     }
-// }
 
 watch([()=> store.newItem , store.isLoading2] , ([val1 , val2])=>{
   mainItem.value = val1;

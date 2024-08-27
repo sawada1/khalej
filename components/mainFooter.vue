@@ -85,10 +85,10 @@
       </div>
       <div class="foot-line">
         <span> © {{ $t('foot') }}</span>
-        <div class="d-flex align-items-center gap-4">
+        <a href="https://webstdy.com/ar?utm_source=khalej-footer&utm_medium=referral" target="_blank" class="d-flex align-items-center gap-3">
           <span> {{ $t('devBy') }} </span>
           <img :src="imgURL" alt="">
-        </div>
+        </a>
       </div>
       <div v-if="openPopup2" class="popup-container">
       <div  class="overlay"></div>

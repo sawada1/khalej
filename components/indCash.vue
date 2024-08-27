@@ -179,8 +179,7 @@
 <script setup>
 import { useindividualsStore } from "@/stores/individuals";
 let store = useindividualsStore();
-import { createToast } from "mosha-vue-toastify";
-import "mosha-vue-toastify/dist/style.css";
+// import "mosha-vue-toastify/dist/style.css";
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 let years = ref([1, 2, 3, 4, 5, 6]);
@@ -201,7 +200,7 @@ const [price, priceAttrs] = defineField("price");
 const [phone, phoneAttrs] = defineField("phone");
 
 const onSubmit = handleSubmit(() => {
-  store.getContact2(values, resetForm, createToast);
+  store.getContact2(values, resetForm);
 });
 
 watch(

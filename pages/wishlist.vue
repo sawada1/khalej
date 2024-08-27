@@ -20,11 +20,12 @@
             </div>
 
             <div class="container">
-              <div class="row">
+              <div v-if="store.favsArr.length >= 1" class="row">
                 <div v-for="item in store.favsArr" class="col-12 col-xl-3 col-lg-3 col-md-6 mb-5">
                     <carCard :item="item.car_id" ></carCard>
                 </div>
               </div>
+            <emptyWishList v-else />
             </div>
     </div>
 </template>

@@ -19,6 +19,7 @@ export const useHomeStore = defineStore("home", () => {
   const total = ref();
   const pendingShow = ref(false);
   const showBrand = ref();
+  const websiteData = ref();
   const checkBrand = ref();
   const loading = ref(false);
   const loadingEdit = ref(false);
@@ -115,6 +116,12 @@ export const useHomeStore = defineStore("home", () => {
           chooseArr.value = result.data.data;
         }
   }
+  async function getWebsiteData() {
+         const result = await $axios.get('websiteData');
+        if (result.status >= 200) {
+          websiteData.value = result.data.data;
+        }
+  }
 
   // Fetch models with caching logic
   async function getModels() {
@@ -148,9 +155,11 @@ export const useHomeStore = defineStore("home", () => {
     loading,
     showBrand,
     checkBrand,
+    websiteData,
     errorsEdit,
     branches,
     city,
+    getWebsiteData,
     getSocial,
     getBanks,
     getCities,

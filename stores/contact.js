@@ -1,7 +1,6 @@
 import { ref, onMounted, watch } from "vue";
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#app";
-import { createToast } from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";
 
 export const useContactStore = defineStore("contact", () => {
@@ -11,9 +10,12 @@ const { locale } = useI18n();
   const isLoading = ref(false);
   const isLoading2 = ref(true);
   const pendingState = ref(false);
+  let total = ref();
+  let page = ref(1);
+let per_page = ref();
   const questions = ref([]);
 
-  async function getContact(obj , resetForm , createToast) {
+  async function getContact(obj , resetForm ) {
     isLoading.value = true;
     try{
       let form = new FormData();
@@ -25,6 +27,8 @@ const { locale } = useI18n();
       if (result.status >= 200) {
         isLoading.value = false;
         errors.value = undefined;
+        const moshaToastify = await import("mosha-vue-toastify");
+        const { createToast } = moshaToastify;
         createToast(
           locale.value == "ar"
             ? "تم التواصل بنجاح "
@@ -56,10 +60,16 @@ const { locale } = useI18n();
   }
   async function getQuestions() {
     try{
-      const result = await $axios.get(`questions`);
+      const result = await $axios.get(`questions`,{
+        params:{
+          page: page.value
+        }
+      });
       if (result.status >= 200) {
         isLoading2.value = false;
-        questions.value = result.data.data;
+        questions.value = [...questions.value , ...result.data.data];
+        total.value = result.data.meta.total;
+        per_page.value = result.data.meta.per_page;
       //   setTimeout(() => {
       //     isLoading2.value = true;
       // }, 500);
@@ -79,6 +89,9 @@ const { locale } = useI18n();
     isLoading2,
     getContact,
     questions,
+    page,
+    total,
+    per_page,
     getQuestions
   };
 });

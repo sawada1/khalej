@@ -346,9 +346,7 @@
       </div>
       
       <div class="allcars">
-      <div v-if="isLoading3" class="d-flex align-items-center justify-content-center" style="min-height: 50vh;">
-        <img class="animated-image" src="../assets/imgs/loader.svg" alt="">
-      </div>
+     
 
         <div v-if="pendingState" class="empty-state">
           <client-only>
@@ -361,7 +359,7 @@
         <div class="container">
           <div class="row">
             <div
-              v-for="item in filteredCar"
+              v-for="item in store.filteredCar"
               class="col-12 col-xl-3 col-lg-3 col-md-6 mb-5"
             >
               <car-card :item="item"></car-card>
@@ -373,13 +371,16 @@
               :reverse="reverse"
               rounded
               color="#2D9596"
-              model-value="50"
+              :model-value="progressValue"
               :height="6"
             >
             </v-progress-linear>
-            <button>{{ $t("showmore") }}</button>
+            <button class="addMoreBtn" @click="loadMore()">{{ $t("showmore") }}</button>
           </div>
         </div>
+        <div v-if="isLoading3" class="d-flex align-items-center justify-content-center" style="min-height: 50vh;">
+        <img class="animated-image" src="../assets/imgs/loader.svg" alt="">
+      </div>
       </div>
     </div>
     <loading v-if="isLoading" />
@@ -398,9 +399,6 @@ store2.getModels();
 let store = useCarStore();
 store.gePrices();
 let route = useRoute();
-let brandId = ref(route.query.id);
-let modelId = ref(route.query.model);
-let carId = ref(route.query.car_id);
 let cars = ref(store2.cars);
 let brandsArr = ref(store2.brands);
 let modelsArr = ref(store2.models);
@@ -437,6 +435,25 @@ const handleClickOutside = (event) => {
   }
 };
 
+const pageCount = computed(() => {
+  return Math.ceil(store.total / store.per_page);
+});
+
+const progressValue = computed(() => {
+  return ((store.per_page * 1) / store.total) * 100;
+});
+const loadMore = async () => {
+  if (store.page < pageCount.value) {
+    store.page++;
+    await   store.getSearchCars({
+    brand_id: arr.value,
+    model_id: arr2.value,
+    car_id: arr3.value,
+    min_price: Math.round(valuePrices.value[0]),
+    max_price: Math.round(valuePrices.value[1]),
+  });
+  }
+};
 const filter = () => {
   store.getSearchCars({
     brand_id: arr.value,
@@ -446,107 +463,6 @@ const filter = () => {
     max_price: Math.round(valuePrices.value[1]),
   });
 };
-// const filterCars = async () => {
-//   spinnerProducts.value = true;
-//   pendingState.value = false;
-//   filterCarsArr.value = [];
-//   let result = await axios.get(`${getUrl()}/filter`, {
-//     params: {
-//       type: selected1.value,
-//       gear_shifters: selected2.value,
-//       fuel_types: selected3.value,
-//       car_body: selected4.value,
-//       brand_id: selected5.value,
-//       model_id: selected6.value,
-//       year: selected7.value,
-//       color_id: selected8.value,
-//       fuel_tank_capacity: selected9.value,
-//        sort:order.value,
-//       min_price: valuePrice.value[0],
-//       max_price: valuePrice.value[1],
-//       search: searchh.value ? searchh.value : null,
-//       page: page.value
-//     },
-//     headers: {
-//       "Content-Language": `${locale.value}`,
-//     },
-//   });
-
-//   if (result.status == 200) {
-//     spinnerProducts.value = false;
-//     // checkSort.value = !checkSort.value;
-//     filterCarsArr.value = result.data.data;
-//     itemsPerPage.value = result.data.meta.current_data_on_this_page;
-//     per_page.value = result.data.meta.per_page;
-//     total.value = result.data.meta.total;
-//     if (result.data.data.length < 1) {
-//       filterCarsArr.value = [];
-//     }
-//     if (filterCarsArr.value.length < 1) {
-//       pendingState.value = true;
-//     } else {
-//       pendingState.value = false;
-//     }
-//   }
-// };
-// const filterCar2 = async () => {
-//   spinnerProducts.value = true;
-//   pendingState.value = false;
-//   // filterCarsArr.value = [];
-//   let result = await axios.get(`${getUrl()}/filter`, {
-//     params: {
-//       type: selected1.value,
-//       gear_shifters: selected2.value,
-//       fuel_types: selected3.value,
-//       car_body: selected4.value,
-//       brand_id: selected5.value,
-//       model_id: selected6.value,
-//       year: selected7.value,
-//       sort:order.value,
-//       color_id: selected8.value,
-//       fuel_tank_capacity: selected9.value,
-//       min_price: valuePrice.value[0],
-//       max_price: valuePrice.value[1],
-//       search: searchh.value ? searchh.value : null,
-//       page: page.value
-//     },
-//     headers: {
-//       "Content-Language": `${locale.value}`,
-//     },
-//   });
-
-//   if (result.status == 200) {
-//     spinnerProducts.value = false;
-//     filterCarsArr.value = [...filterCarsArr.value, ...result.data.data];
-//     itemsPerPage.value = result.data.meta.current_data_on_this_page;
-//     total.value = result.data.meta.total;
-//     per_page.value = result.data.meta.per_page;
-//     // checkSort.value = !checkSort.value;
-//     if (result.data.data.length < 1) {
-//       filterCarsArr.value = [];
-//     }
-//     if (filterCarsArr.value.length < 1) {
-//       pendingState.value = true;
-//     } else {
-//       pendingState.value = false;
-//     }
-//   }
-// };
-
-// const pageCount = computed(() => {
-//   return Math.ceil(total.value / per_page.value);
-// });
-// const progressValue = computed(() => {
-//   return ((itemsPerPage.value * 1) / total.value) * 100;
-// });
-
-// const loadMore = async () => {
-//   if (page.value < pageCount.value) {
-//     page.value++;
-//     await filterCar2();
-//   }
-// };
-
 watch(
   [
     () => store.filteredCar,

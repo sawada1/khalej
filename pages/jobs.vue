@@ -100,6 +100,10 @@
           </div>
         </div>
       </div>
+    <div class="d-flex align-items-center justify-content-center mt-10">
+    <button class="addMoreBtn" @click="loadMore"> {{ $t('showmore') }} </button>
+    
+    </div>
     </div>
 
     <div v-if="actJob" class="popup-container">
@@ -296,8 +300,7 @@
 let actJob = ref(false);
 import { useCareerStore } from "@/stores/career";
 let store = useCareerStore();
-import { createToast } from "mosha-vue-toastify";
-import "mosha-vue-toastify/dist/style.css";
+// import "mosha-vue-toastify/dist/style.css";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { useForm } from "vee-validate";
@@ -322,15 +325,23 @@ const handleDrop = (event) => {
   console.log(file.value);
 };
 
+const validateFileType = (file) => {
+      const allowedExtensions = ['application/pdf', 'image/png', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      return allowedExtensions.includes(file.type);
+    };
+
 const handleFileChange = (event) => {
   cvAttrs.value.onChange();
-  const selectedFile = event.target.files[0];
-  file.value = selectedFile;
-  console.log(file.value);
-  cv.value = file.value;
+      const selectedFile = event.target.files[0];
+      if (validateFileType(selectedFile)) {
+        file.value = selectedFile;
+        console.log(file.value);
+        cv.value = file.value;
+      } else {
+        alert('Invalid file type. Only PDF, PNG, and DOC/DOCX are allowed.');
+      }
 };
 
-const { locale } = useI18n();
 let errorsApi = ref();
 let pending2 = ref(store.isLoading2);
 store.getCareer();
@@ -340,6 +351,17 @@ let job = ref({
   id: "",
   city:""
 });
+const pageCount = computed(() => {
+  return Math.ceil(store.total / store.per_page);
+});
+
+const loadMore = async () => {
+  if (store.page < pageCount.value) {
+    store.page++;
+    await store.getCareer();
+  }
+};
+
 const { errors, handleSubmit, values, resetForm, defineField } = useForm({
   validationSchema: yup.object({
     email: yup.string().email().required(),
@@ -367,7 +389,7 @@ const applyJob = () => {
   });
 };
 const onSubmit = handleSubmit(() => {
-  store.getContact(values, resetForm, createToast , job.value.id , cv.value);
+  store.getContact(values, resetForm , job.value.id , cv.value);
 });
 
 watch(

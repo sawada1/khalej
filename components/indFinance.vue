@@ -587,8 +587,7 @@ import { useindividualsStore } from "@/stores/individuals";
 import { useHomeStore } from "@/stores/home";
 let store2 = useHomeStore();
 let store = useindividualsStore();
-import { createToast } from "mosha-vue-toastify";
-import "mosha-vue-toastify/dist/style.css";
+// import "mosha-vue-toastify/dist/style.css";
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 let formFinance = ref({
@@ -636,7 +635,7 @@ const [driving_license, driving_licenseAttrs] = defineField("driving_license");
 const [stumbles, stumblesAttrs] = defineField("stumbles");
 
 const onSubmit = handleSubmit(() => {
-  store.getContact(values, resetForm, createToast);
+  store.getContact(values, resetForm);
 });
 
 watch(

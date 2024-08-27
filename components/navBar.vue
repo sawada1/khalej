@@ -292,7 +292,7 @@
               class="nav-link icon d-flex align-items-center gap-3"
               style="white-space: nowrap"
             >
-              <span>(001) 88451234</span>
+              <span> {{ store.websiteData?.phone }}  </span>
               <svg
                 class="white-img"
                 xmlns="http://www.w3.org/2000/svg"
@@ -338,12 +338,12 @@
 </template>
 
 <script setup>
-import { useToast } from "vue-toastification";
 import { useHomeStore } from "@/stores/home";
 let store = useHomeStore();
 store.getBrands();
 store.getCars();
 store.getModels();
+store.getWebsiteData();
 let cars = ref(store.cars);
 let brandsArr = ref(store.brands);
 let modelsArr = ref(store.models);

@@ -256,22 +256,22 @@
         <div class="item">
           <img src="~/assets/imgs/contact-icon1.svg" alt="pin icon" />
           <span> {{ $t("mainAddress") }} </span>
-          <p>جدة - حي الربوة - شارع المكرونه</p>
+          <p class="text"> {{ store2.websiteData?.address  }}  </p>
         </div>
         <div class="item">
           <img src="~/assets/imgs/contact-icon2.svg" alt="phone icon" />
           <span> {{ $t("phone") }} </span>
-          <p>00966555098590</p>
+          <p> {{ store2.websiteData?.phone  }} </p>
         </div>
         <div class="item">
           <img src="~/assets/imgs/contact-icon3.svg" alt="email icon" />
           <span> {{ $t("email") }} </span>
-          <p>Autolease@Khalejauto.Sa</p>
+          <p>  {{ store2.websiteData?.email }} </p>
         </div>
         <div class="item">
           <img src="~/assets/imgs/contact-icon4.svg" alt="time icon" />
           <span> {{ $t("appoint") }} </span>
-          <p>من السبت الي الخميس من الساعه ال7 صباحا - حتي ال5 مساء</p>
+          <p>  {{ store2.websiteData?.working_time }}   </p>
         </div>
       </div>
 
@@ -293,6 +293,8 @@
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
+        <button class="addMoreBtn" @click="loadMore"> {{ $t('showmore') }} </button>
+
       </div>
 
       <div v-if="openPopup2" class="popup-container">
@@ -327,10 +329,7 @@
 import { useContactStore } from "@/stores/contact";
 import { useHomeStore } from "@/stores/home";
 let store = useContactStore();
-import { createToast } from "mosha-vue-toastify";
-import "mosha-vue-toastify/dist/style.css";
-import Swal from "sweetalert2/dist/sweetalert2.js";
-import "sweetalert2/src/sweetalert2.scss";
+// import "mosha-vue-toastify/dist/style.css";
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 let actMap = ref(false);
@@ -342,7 +341,16 @@ const { locale } = useI18n();
 let errorsApi = ref();
 let pending2 = ref(store.isLoading2);
 store.getQuestions();
-let questions = ref(store.questions);
+const pageCount = computed(() => {
+  return Math.ceil(store.total / store.per_page);
+});
+
+const loadMore = async () => {
+  if (store.page < pageCount.value) {
+    store.page++;
+    await store.getQuestions();
+  }
+};
 const { errors, handleSubmit, values, resetForm, defineField } = useForm({
   validationSchema: yup.object({
     email: yup.string().email().required(),
@@ -358,7 +366,7 @@ const [message, messageAttrs] = defineField("message");
 const [phone, phoneAttrs] = defineField("phone");
 
 const onSubmit = handleSubmit(() => {
-  store.getContact(values, resetForm , createToast);
+  store.getContact(values, resetForm);
 });
 
 watch([() => store.isLoading, () => store.errors , ()=> store.isLoading2], ([val1, val2 , val3]) => {

@@ -1,7 +1,6 @@
 import { ref, onMounted, watch } from "vue";
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#app";
-import { createToast } from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";
 
 export const useindividualsStore = defineStore("individuals", () => {
@@ -13,7 +12,7 @@ const { locale } = useI18n();
   const isLoading2 = ref(false);
   const pendingState = ref(false);
 
-  async function getContact(obj , resetForm , createToast) {
+  async function getContact(obj , resetForm) {
     isLoading.value = true;
     try{
       let form = new FormData();
@@ -34,6 +33,8 @@ const { locale } = useI18n();
       if (result.status >= 200) {
         isLoading.value = false;
         errors.value = undefined;
+        const moshaToastify = await import("mosha-vue-toastify");
+        const { createToast } = moshaToastify;
         createToast(
           locale.value == "ar"
             ? "تم التواصل بنجاح "

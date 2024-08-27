@@ -1,7 +1,6 @@
 import { ref, onMounted, watch } from "vue";
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#app";
-import { createToast } from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";
 
 export const useCareerStore = defineStore("career", () => {
@@ -13,8 +12,11 @@ const { locale } = useI18n();
   let active = ref();
   const pendingState = ref(false);
   const careers = ref([]);
+  let total = ref();
+  let page = ref(1);
+let per_page = ref();
 
-  async function getContact(obj , resetForm , createToast , id , file) {
+  async function getContact(obj , resetForm , id , file) {
     isLoading.value = true;
     try{
       let form = new FormData();
@@ -29,6 +31,8 @@ const { locale } = useI18n();
         file = null;
         console.log(file);
         active.value = false;
+        const moshaToastify = await import("mosha-vue-toastify");
+        const { createToast } = moshaToastify;
         createToast(
           locale.value == "ar"
             ? "تم التواصل بنجاح "
@@ -61,10 +65,16 @@ const { locale } = useI18n();
   }
   async function getCareer() {
     try{
-      const result = await $axios.get(`career`);
+      const result = await $axios.get(`career`,{
+        params:{
+         page: page.value 
+        }
+      });
       if (result.status >= 200) {
         isLoading2.value = false;
-        careers.value = result.data.data;
+        careers.value = [...careers.value , ...result.data.data];
+        total.value = result.data.meta.total;
+        per_page.value = result.data.meta.per_page;
       //   setTimeout(() => {
       //     isLoading2.value = true;
       // }, 500);
@@ -84,6 +94,9 @@ const { locale } = useI18n();
     isLoading2,
     getContact,
     careers,
+    total,
+    per_page, 
+    page,
     active,
     getCareer
   };

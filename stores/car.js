@@ -1,7 +1,6 @@
 import { ref, onMounted, watch } from "vue";
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#app";
-import { createToast } from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";
 
 export const useCarStore = defineStore("car", () => {
@@ -17,6 +16,9 @@ const { locale } = useI18n();
   const isLoading3 = ref(false);
   const isLoading4 = ref(true);
   const pendingState = ref(false);
+  let total = ref();
+  let page = ref(1);
+let per_page = ref();
   let value1 = ref(locale.value == 'ar' ? " تم الاضافة الي قائمة المفضلات " : " Added to Favorites list ");
   let value2 = ref(locale.value == 'ar' ? " تم الحذف من قائمة المفضلات " : " Removed from Favorites list ");
   async function getCar(id) {
@@ -31,9 +33,10 @@ const { locale } = useI18n();
   }
   async function getSearchCars(obj) {
     isLoading3.value = true;
-    filteredCar.value = [];
+    // filteredCar.value = [];
     const result = await $axios.get(`car/search`, {
       params: {
+        page: page.value,
         model_id:typeof obj.model_id == "object" ? [...obj.model_id] : [obj.model_id],
         brand_id:typeof obj.model_id == "object" ? [...obj.brand_id] : [obj.brand_id],
         car_id:typeof obj.model_id == "object" ? [...obj.car_id] : [obj.car_id],
@@ -42,9 +45,11 @@ const { locale } = useI18n();
       },
     });
     if (result.status >= 200) {
-      filteredCar.value = result.data.data;
+      filteredCar.value = [...filteredCar.value , ...result.data.data];
       isLoading2.value = false;
       isLoading3.value = false;
+      total.value = result.data.meta.total;
+      per_page.value = result.data.meta.per_page;
     }
     // if(filteredCar.value.length < 1){
     //   pendingState.value = true;
@@ -57,6 +62,8 @@ const { locale } = useI18n();
   async function AddFav(id , favBtn) {
     const result = await $axios.post(`add-favorite-withoutauth`, { car_id: id });
     if (result.status >= 200) {
+      const moshaToastify = await import("mosha-vue-toastify");
+      const { createToast } = moshaToastify;
       createToast(favBtn ? value1.value : value2.value,
         {
           toastBackgroundColor: "#2D9596",
@@ -97,6 +104,9 @@ const { locale } = useI18n();
     prices,
     isLoading4,
     AddFav,
+    page,
+    per_page,
+    total,
     car,
     getFav,
     favsArr
