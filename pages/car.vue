@@ -280,6 +280,7 @@
           </div>
           <div class="col-12 col-xl-7 col-lg-7 bg-dange">
             <swiper
+            :spaceBetween="30"
               :pagination="{ clickable: true }"
               :modules="[SwiperPagination, SwiperAutoplay]"
               class="mySwiper"
@@ -322,7 +323,7 @@ let id = ref(route.query.id);
 store.getCar(id.value);
 let mainCar = ref();
 let favBtn = ref();
-
+let { locale } = useI18n();
 
 const addFavFunc = (id) =>{
   favBtn.value = !favBtn.value;
@@ -357,6 +358,13 @@ watch([() => store.car, store.isLoading], ([val1, val2]) => {
   isLoading.value = val2;
 });
 
+
+useSeoMeta({
+  title: locale.value == 'ar' ? ' السيارة ' : " car ",
+  ogTitle: 'My Amazing Site',
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+});
 onMounted(() => {
   Fancybox.bind("[data-fancybox]", {
     // Custom options for all galleries

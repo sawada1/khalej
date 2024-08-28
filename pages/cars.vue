@@ -354,7 +354,6 @@
           </client-only>
           <h4>{{ $t("not1") }}</h4>
           <p>{{ $t("not2") }}</p>
-          <!-- <button></button> -->
         </div>
         <div class="container">
           <div class="row">
@@ -365,7 +364,9 @@
               <car-card :item="item"></car-card>
             </div>
           </div>
-          <!-- :model-value="progressValue" -->
+          <div v-if="isLoading3" class="d-flex align-items-center justify-content-center" style="min-height: 50vh;">
+        <img class="animated-image" src="../assets/imgs/loader.svg" alt="">
+      </div>
           <div class="d-flex progress-container flex-column gap-3">
             <v-progress-linear
               :reverse="reverse"
@@ -378,9 +379,7 @@
             <button class="addMoreBtn" @click="loadMore()">{{ $t("showmore") }}</button>
           </div>
         </div>
-        <div v-if="isLoading3" class="d-flex align-items-center justify-content-center" style="min-height: 50vh;">
-        <img class="animated-image" src="../assets/imgs/loader.svg" alt="">
-      </div>
+       
       </div>
     </div>
     <loading v-if="isLoading" />
@@ -440,7 +439,7 @@ const pageCount = computed(() => {
 });
 
 const progressValue = computed(() => {
-  return ((store.per_page * 1) / store.total) * 100;
+  return ((store.itemsPerPage * 1) / store.total) * 100;
 });
 const loadMore = async () => {
   if (store.page < pageCount.value) {
@@ -463,6 +462,15 @@ const filter = () => {
     max_price: Math.round(valuePrices.value[1]),
   });
 };
+
+useSeoMeta({
+  title: locale.value == 'ar' ? ' السيارات ' : " cars ",
+  ogTitle: 'My Amazing Site',
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+});
+
+
 watch(
   [
     () => store.filteredCar,

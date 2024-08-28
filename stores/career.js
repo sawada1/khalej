@@ -9,6 +9,7 @@ const { locale } = useI18n();
   const errors = ref({});
   const isLoading = ref(false);
   const isLoading2 = ref(true);
+  const isLoading3 = ref(false);
   let active = ref();
   const pendingState = ref(false);
   const careers = ref([]);
@@ -64,10 +65,11 @@ let per_page = ref();
     }
   }
   async function getCareer() {
+    isLoading3.value = true;
     try{
       const result = await $axios.get(`career`,{
         params:{
-         page: page.value 
+          page: page.value 
         }
       });
       if (result.status >= 200) {
@@ -75,6 +77,7 @@ let per_page = ref();
         careers.value = [...careers.value , ...result.data.data];
         total.value = result.data.meta.total;
         per_page.value = result.data.meta.per_page;
+        isLoading3.value = false;
       //   setTimeout(() => {
       //     isLoading2.value = true;
       // }, 500);
@@ -95,6 +98,7 @@ let per_page = ref();
     getContact,
     careers,
     total,
+    isLoading3,
     per_page, 
     page,
     active,

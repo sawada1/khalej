@@ -242,6 +242,14 @@ function copyToClipboard() {
   }
 }
 
+
+useSeoMeta({
+  title: locale.value == 'ar' ? ' الاخبار ' : " news ",
+  ogTitle: 'My Amazing Site',
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+});
+
 watch([()=> store.newItem , store.isLoading2] , ([val1 , val2])=>{
   mainItem.value = val1;
   isLoading.value = val2;

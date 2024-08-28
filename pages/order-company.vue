@@ -50,13 +50,19 @@
 </template>
 
 <script setup>
+const { locale } = useI18n();
 let activeBtn = ref(1);
 import { useHomeStore } from "@/stores/home";
 let store2 = useHomeStore();
 store2.getCars();
 store2.getBanks();
 let cars = ref(store2.cars);
-
+useSeoMeta({
+  title: locale.value == 'ar' ? ' طلب شراء ' : " Purchase order ",
+  ogTitle: 'My Amazing Site',
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+});
 watch(
   [() => store2.cars],
   ([val1]) => {

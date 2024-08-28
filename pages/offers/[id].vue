@@ -102,29 +102,12 @@ let store = useOfferStore();
 let isLoading = ref(store.isLoading2);
 store.getOffer(itemId.value);
 let offer = ref(store.offer);
-
-// let cars = ref([]);
-
-// let image = ref('');
-
-// let pending = ref(false);
-// let offerArr = ref([]);
-// const getOfferData = async ()=>{
-//     pending.value = true;
-//   let result = await axios.get(`${getUrl()}/offer/show/${id}`, {
-//     headers: {
-//       "Content-Language": `${locale.value}`,
-//     },
-//   });
-
-// if(result.status == 200){
-//     pending.value = false;
-//     offerArr.value = result.data.data.Offers;
-//     cars.value = result.data.data.RelatedCars;
-//     image.value = result.data.data.fullPathImage
-// }
-
-// }
+useSeoMeta({
+  title: locale.value == 'ar' ? ' العروض ' : " offers ",
+  ogTitle: 'My Amazing Site',
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+});
 
 
 watch([()=> store.offer , store.isLoading2] , ([val1 , val2])=>{

@@ -21,8 +21,8 @@
 
             <div class="container">
               <div v-if="store.favsArr.length >= 1" class="row">
-                <div v-for="item in store.favsArr" class="col-12 col-xl-3 col-lg-3 col-md-6 mb-5">
-                    <carCard :item="item.car_id" ></carCard>
+                <div v-for="item in store.favsArr" :key="item" class="col-12 col-xl-3 col-lg-3 col-md-6 mb-5">
+                    <carCard :item="item.car_id" :is_fav="true" :check="true" ></carCard>
                 </div>
               </div>
             <emptyWishList v-else />
@@ -33,12 +33,20 @@
 
 <script setup>
 import { useCarStore } from "@/stores/car";
+import { useHomeStore } from "@/stores/home";
+let { locale } = useI18n();
 let store = useCarStore();
+let store2 = useHomeStore();
 
 let loading = ref(store.isLoading3);
-store.getFav();
+store.getFav(store2.ipAddress);
 
-
+useSeoMeta({
+  title: locale.value == 'ar' ? ' المفضلة ' : " wishlist ",
+  ogTitle: 'My Amazing Site',
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+});
 watch(()=> store.isLoading3 , (val)=>{
     loading.value = val;
 })

@@ -24,6 +24,7 @@ export const useHomeStore = defineStore("home", () => {
   const loading = ref(false);
   const loadingEdit = ref(false);
   const errorSubmit = ref();
+  const ipAddress = ref();
 
   const CACHE_EXPIRATION = 300000; // 5 minutes in milliseconds
 
@@ -122,6 +123,14 @@ export const useHomeStore = defineStore("home", () => {
           websiteData.value = result.data.data;
         }
   }
+   function getIpAddress() {
+    fetch('https://api.ipify.org?format=json')
+    .then(response => response.json())
+    .then(data => {
+      ipAddress.value = data.ip;
+    })
+    .catch(error => console.error('Error fetching IP address:', error));
+  }
 
   // Fetch models with caching logic
   async function getModels() {
@@ -144,6 +153,7 @@ export const useHomeStore = defineStore("home", () => {
         }
   }
 
+
   return {
     errors,
     brands,
@@ -155,6 +165,8 @@ export const useHomeStore = defineStore("home", () => {
     loading,
     showBrand,
     checkBrand,
+    getIpAddress,
+    ipAddress,
     websiteData,
     errorsEdit,
     branches,

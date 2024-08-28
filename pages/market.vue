@@ -55,11 +55,17 @@
 </template>
 
 <script setup>
+const { locale } = useI18n();
  import { useHomeStore } from "@/stores/home";
  let store = useHomeStore();
  let brandsArr = ref(store.brands);
  store.getBrands();
-
+ useSeoMeta({
+  title: locale.value == 'ar' ? ' السيارات ' : " cars ",
+  ogTitle: 'My Amazing Site',
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+})
  watch([()=> store.brands],([val2]) => {
     brandsArr.value = val2;
   }

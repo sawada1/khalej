@@ -408,6 +408,13 @@ const handleClickOutside = (event) => {
   }
 };
 
+useSeoMeta({
+  title: locale.value == 'ar' ? 'الرئيسية' : " home ",
+  ogTitle: 'My Amazing Site',
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+})
+
 onMounted(() => {
   document.addEventListener("click", handleClickOutside);
   dropdown1.value.items = brandsArr.value;

@@ -19,6 +19,7 @@ const { locale } = useI18n();
   let total = ref();
   let page = ref(1);
 let per_page = ref();
+let itemsPerPage = ref();
   let value1 = ref(locale.value == 'ar' ? " تم الاضافة الي قائمة المفضلات " : " Added to Favorites list ");
   let value2 = ref(locale.value == 'ar' ? " تم الحذف من قائمة المفضلات " : " Removed from Favorites list ");
   async function getCar(id) {
@@ -50,6 +51,7 @@ let per_page = ref();
       isLoading3.value = false;
       total.value = result.data.meta.total;
       per_page.value = result.data.meta.per_page;
+      itemsPerPage.value = result.data.meta.to;
     }
     // if(filteredCar.value.length < 1){
     //   pendingState.value = true;
@@ -59,7 +61,7 @@ let per_page = ref();
     //   // pendingState.value = false;
     // }, 500);
   }
-  async function AddFav(id , favBtn) {
+  async function AddFav(id , favBtn , check=false , ip='') {
     const result = await $axios.post(`add-favorite-withoutauth`, { car_id: id });
     if (result.status >= 200) {
       const moshaToastify = await import("mosha-vue-toastify");
@@ -74,10 +76,17 @@ let per_page = ref();
           timeout: 3000,
         }
       );
+      if(check){
+        getFav(ip);
+      }
     }
   }
-  async function getFav() {
-    const result = await $axios.get(`favorite/all`);
+  async function getFav(ip) {
+    const result = await $axios.get(`user/car`, {
+      params:{
+        device_ip: ip
+      }
+    });
     if (result.status >= 200) {
       isLoading4.value = false;
       favsArr.value = result.data.data;
@@ -102,6 +111,7 @@ let per_page = ref();
     isLoading3,
     gePrices,
     prices,
+    itemsPerPage,
     isLoading4,
     AddFav,
     page,

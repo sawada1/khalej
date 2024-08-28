@@ -10,9 +10,9 @@
         <div class="compPrice">
           <span> {{ $t('comPrice') }} </span>
         </div>
-        <button @click="addFavFunc(item.id) , item.is_fav = !item.is_fav">
+        <button @click="addFavFunc(item.id)">
 
-<svg v-if="item.is_fav" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+<svg v-if="favBtn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path d="M12 4.80957C10.8321 3.6888 9.24649 3 7.5 3C3.91015 3 1 5.91015 1 9.5C1 15.8683 7.97034 19.385 10.8138 20.5547C11.5796 20.8697 12.4204 20.8697 13.1862 20.5547C16.0297 19.385 23 15.8682 23 9.5C23 5.91015 20.0899 3 16.5 3C14.7535 3 13.1679 3.6888 12 4.80957Z" fill="#ED3F3F"/>
 </svg>
           <svg v-else xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -89,16 +89,17 @@
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
 import { useCarStore } from "@/stores/car";
-
 let store = useCarStore();
-const props = defineProps(["item"]);
+import { useHomeStore } from "@/stores/home";
+let store2 = useHomeStore();
+const props = defineProps(["item" , "is_fav" , "check"]);
 let router = useRouter();
-let favBtn = ref(props.item.is_fav);
+let favBtn = ref( props.is_fav ? props.is_fav : props.item.is_fav);
 
 
 const addFavFunc = (id) =>{
   favBtn.value = !favBtn.value;
-  store.AddFav(id , favBtn.value)
+  store.AddFav(id , favBtn.value , props.check , store2.ipAddress);
 }
 const goToCar = (id) => {
   const queryParams = {

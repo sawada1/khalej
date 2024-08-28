@@ -115,7 +115,14 @@ let store = useNewStore();
 let isLoading = ref(store.isLoading);
 store.getNews();
 let newss = ref([]);
+let { locale } = useI18n();
 
+useSeoMeta({
+  title: locale.value == 'ar' ? ' الاخبار ' : " news ",
+  ogTitle: 'My Amazing Site',
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+});
 watch([()=> store.news , store.isLoading] , ([val1 , val2])=>{
   newss.value = val1;
   isLoading.value = val2;

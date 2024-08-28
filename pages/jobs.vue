@@ -60,10 +60,10 @@
             </p>
             <button
               @click="
-                (actJob = !actJob), 
-                (job.title = item.title),
-                 (job.id = item.id)
-                 (job.city = item.city?.title)
+                actJob = !actJob, 
+                job.title = item.title,
+                 job.id = item.id,
+                 job.city = item.city?.title
               "
             >
               {{ $t("apply") }}
@@ -99,6 +99,9 @@
             <span> {{ item.city?.title }} </span>
           </div>
         </div>
+      </div>
+      <div v-if="store.isLoading3" class="d-flex align-items-center justify-content-center" style="min-height: 30vh;">
+        <img class="animated-image" src="../assets/imgs/loader.svg" alt="">
       </div>
     <div class="d-flex align-items-center justify-content-center mt-10">
     <button class="addMoreBtn" @click="loadMore"> {{ $t('showmore') }} </button>
@@ -300,7 +303,7 @@
 let actJob = ref(false);
 import { useCareerStore } from "@/stores/career";
 let store = useCareerStore();
-// import "mosha-vue-toastify/dist/style.css";
+const { locale } = useI18n();
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { useForm } from "vee-validate";
@@ -391,6 +394,13 @@ const applyJob = () => {
 const onSubmit = handleSubmit(() => {
   store.getContact(values, resetForm , job.value.id , cv.value);
 });
+
+useSeoMeta({
+  title: locale.value == 'ar' ? 'الوظائف' : " jobs ",
+  ogTitle: 'My Amazing Site',
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+})
 
 watch(
   [() => store.isLoading, () => store.errors, () => store.isLoading2 , ()=> store.active],

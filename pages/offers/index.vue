@@ -52,7 +52,14 @@ let store = useOfferStore();
 let isLoading = ref(store.isLoading);
 store.getOffers();
 let offers = ref([]);
+let { locale } = useI18n();
 
+useSeoMeta({
+  title: locale.value == 'ar' ? ' العروض ' : " offers ",
+  ogTitle: 'My Amazing Site',
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+});
 watch([()=> store.offers , store.isLoading] , ([val1 , val2])=>{
     offers.value = val1;
   isLoading.value = val2;

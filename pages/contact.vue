@@ -329,7 +329,6 @@
 import { useContactStore } from "@/stores/contact";
 import { useHomeStore } from "@/stores/home";
 let store = useContactStore();
-// import "mosha-vue-toastify/dist/style.css";
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 let actMap = ref(false);
@@ -344,6 +343,14 @@ store.getQuestions();
 const pageCount = computed(() => {
   return Math.ceil(store.total / store.per_page);
 });
+
+
+useSeoMeta({
+  title: locale.value == 'ar' ? ' تواصل معنا ' : " contact us ",
+  ogTitle: 'My Amazing Site',
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+})
 
 const loadMore = async () => {
   if (store.page < pageCount.value) {
