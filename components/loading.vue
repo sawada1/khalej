@@ -14,9 +14,9 @@
 </script>
 
 <style lang="scss">
-::-webkit-scrollbar {
-  display:none;
-}
+// ::-webkit-scrollbar {
+//   display:none;
+// }
 
 @keyframes pulse {
     0% {

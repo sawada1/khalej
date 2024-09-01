@@ -46,7 +46,11 @@ let itemsPerPage = ref();
       },
     });
     if (result.status >= 200) {
-      filteredCar.value = [...filteredCar.value , ...result.data.data];
+      if(result.data.data.length == 0){
+        filteredCar.value = [];
+      } else{
+        filteredCar.value = [...filteredCar.value , ...result.data.data];
+      }
       isLoading2.value = false;
       isLoading3.value = false;
       total.value = result.data.meta.total;

@@ -181,18 +181,74 @@
 
     <div class="cars-section-home">
       <div class="container">
+      
         <div class="text">
           <h2> {{ $t('cars') }} </h2>
           <p> {{ $t('car1') }} </p>
         </div>
-        <div v-if="store.cars" class="row">
+        <!-- <div v-if="store.cars" class="row">
           <div
             v-for="(item, index) in cars"
             class="col-12 col-xl-3 col-lg-4 col-md-6 mb-5"
           >
             <car-card :item="item"></car-card>
           </div>
-        </div>
+        </div> -->
+        <!-- <Swiper
+        
+    :modules="[SwiperAutoplay]"
+    :autoplay="{
+      delay: 8000,
+      disableOnInteraction: true,
+    }"
+    :breakpoints="{
+      '640': {
+        slidesPerView: 1.5,
+        spaceBetween: 20,
+      },
+      '768': {
+        slidesPerView: 3,
+        spaceBetween: 40,
+      },
+      '1024': {
+        slidesPerView: 4,
+        spaceBetween: 50,
+      },
+    }"
+  >
+    <SwiperSlide v-for="(item, index) in cars" :key="item">
+      <car-card :item="item"></car-card>
+    </SwiperSlide>
+  </Swiper> -->
+
+  <!-- :breakpoints="{
+          '300': {
+            slidesPerView: 1.3,
+            spaceBetween: 30,
+          },
+          '900': {
+            slidesPerView: 2,
+            spaceBetween: 30,
+          },
+          '1024': {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          '1200': {
+            slidesPerView: 4,
+            spaceBetween: 30,
+          },
+        }"  -->
+<div v-if="store.cars.length >= 1" >
+  <Swiper 
+  :slidesPerView="4"
+    :spaceBetween="10" 
+        :modules="[SwiperAutoplay]">
+        <Swiper-slide v-for="item, index in cars" :key="item">
+          <car-card :item="item"></car-card>
+        </Swiper-slide>
+      </Swiper>
+</div>
           <div class="d-flex align-items-center justify-content-center">
           <nuxt-link :to="localePath('/cars')">
             <button class="more-btn"> {{ $t('more') }} </button>

@@ -223,7 +223,7 @@
 
               <nuxt-link
                 class="searchBtn mt-2"
-                @click="overlay = false"
+                @click="overlay = false , store2.page = 1"
                 :to="
                   localePath({
                     path: '/cars',
@@ -339,7 +339,9 @@
 
 <script setup>
 import { useHomeStore } from "@/stores/home";
+import { useCarStore } from "@/stores/car";
 let store = useHomeStore();
+let store2 = useCarStore();
 store.getBrands();
 store.getIpAddress();
 store.getCars();
@@ -352,6 +354,11 @@ let selectedBrand = ref();
 let selectedmodel = ref();
 let selectedCar = ref();
 let openPopup = ref(false);
+
+const removeStore = () => {
+  store2.page = 1;
+  store2.filteredCar = [];
+}
 
 const handleUpdatePopup = (newState) => {
   openPopup.value = newState;
@@ -440,12 +447,23 @@ onMounted(() => {
     //   arrowActive.value = false;
     // }
   });
+  const navItems = document.querySelectorAll(".nav-link");
+  navItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    const navbarCollapse = document.querySelector(".navbar-collapse");
+    navbarCollapse.classList.remove("show");
+    removeStore();
+    document.querySelector(".navbar-toggler").classList.add("collapsed");
+  });
+});
   document.addEventListener("click", handleClickOutside);
   dropdown1.value.items = brandsArr.value;
   dropdown2.value.items = modelsArr.value;
   dropdown3.value.items = cars.value;
 });
 onUnmounted(() => {
+
+
   document.removeEventListener("click", handleClickOutside);
 });
 
