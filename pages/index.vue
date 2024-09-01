@@ -181,19 +181,20 @@
 
     <div class="cars-section-home">
       <div class="container">
-      
         <div class="text">
           <h2> {{ $t('cars') }} </h2>
           <p> {{ $t('car1') }} </p>
         </div>
-        <!-- <div v-if="store.cars" class="row">
+        <div v-if="store.cars" class="row">
           <div
-            v-for="(item, index) in cars"
+            v-for="(item, index) in store.cars.slice(0 , 4)"
+            :key="item"
             class="col-12 col-xl-3 col-lg-4 col-md-6 mb-5"
           >
             <car-card :item="item"></car-card>
           </div>
-        </div> -->
+        </div>
+        
         <!-- <Swiper
         
     :modules="[SwiperAutoplay]"
@@ -216,39 +217,12 @@
       },
     }"
   >
-    <SwiperSlide v-for="(item, index) in cars" :key="item">
-      <car-card :item="item"></car-card>
+    <SwiperSlide v-for="(item, index) in store.cars" :key="item">
+      ss<car-card :item="item"></car-card>
     </SwiperSlide>
   </Swiper> -->
 
-  <!-- :breakpoints="{
-          '300': {
-            slidesPerView: 1.3,
-            spaceBetween: 30,
-          },
-          '900': {
-            slidesPerView: 2,
-            spaceBetween: 30,
-          },
-          '1024': {
-            slidesPerView: 3,
-            spaceBetween: 30,
-          },
-          '1200': {
-            slidesPerView: 4,
-            spaceBetween: 30,
-          },
-        }"  -->
-<div v-if="store.cars.length >= 1" >
-  <Swiper 
-  :slidesPerView="4"
-    :spaceBetween="10" 
-        :modules="[SwiperAutoplay]">
-        <Swiper-slide v-for="item, index in cars" :key="item">
-          <car-card :item="item"></car-card>
-        </Swiper-slide>
-      </Swiper>
-</div>
+
           <div class="d-flex align-items-center justify-content-center">
           <nuxt-link :to="localePath('/cars')">
             <button class="more-btn"> {{ $t('more') }} </button>
@@ -397,6 +371,7 @@
 </template>
 
 <script setup>
+
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
 import { useHomeStore } from "@/stores/home";
@@ -482,4 +457,28 @@ onUnmounted(() => {
 });
 </script>
 
-<style></style>
+<style>
+
+.carousel__item {
+  min-height: 200px;
+  width: 100%;
+  background-color: var(--vc-clr-primary);
+  color: var(--vc-clr-white);
+  font-size: 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel__slide {
+  padding: 10px;
+}
+
+.carousel__prev,
+.carousel__next {
+  box-sizing: content-box;
+  border: 5px solid white;
+}
+
+</style>

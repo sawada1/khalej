@@ -13,9 +13,9 @@
       <div
         class="container items w-100 d-flex align-items-center justify-content-between"
       >
-        <div class="logo navbar-brand">
+        <div class="logo navbar-brand ">
           <nuxt-link :to="localePath('/')">
-            <div class="logo-container">
+            <div class="logo-container nav-link">
               <img class="dark-img" src="~/assets/imgs/whiteLogo.svg" alt="khalej" />
               <img
                 class="white-img"
