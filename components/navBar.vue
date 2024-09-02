@@ -16,12 +16,22 @@
         <div class="logo navbar-brand ">
           <nuxt-link :to="localePath('/')">
             <div class="logo-container nav-link">
-              <img class="dark-img" src="~/assets/imgs/whiteLogo.svg" alt="khalej" />
+            <div v-if="locale == 'ar'">
+              <img class="dark-img" src="~/assets/imgs/whiteLogo-rtl.svg" alt="khalej" />
               <img
                 class="white-img"
-                src="~/assets/imgs/mainLogo.svg"
+                src="~/assets/imgs/mainLogo-rtl.svg"
                 alt="khalej"
               />
+            </div>
+            <div v-if="locale == 'en'">
+              <img class="dark-img" src="~/assets/imgs/whiteLogo-ltr.svg" alt="khalej" />
+              <img
+                class="white-img"
+                src="~/assets/imgs/mainLogo-ltr.svg"
+                alt="khalej"
+              />
+            </div>
             </div>
           </nuxt-link>
         </div>
@@ -284,7 +294,7 @@
               >
                 <path
                   d="M12 4.80957C10.8321 3.6888 9.24649 3 7.5 3C3.91015 3 1 5.91015 1 9.5C1 15.8683 7.97034 19.385 10.8138 20.5547C11.5796 20.8697 12.4204 20.8697 13.1862 20.5547C16.0297 19.385 23 15.8682 23 9.5C23 5.91015 20.0899 3 16.5 3C14.7535 3 13.1679 3.6888 12 4.80957Z"
-                  fill="#ED3F3F"
+                  fill="#5a718480"
                 />
               </svg>
             </nuxt-link>
@@ -344,8 +354,8 @@ let store = useHomeStore();
 let store2 = useCarStore();
 store.getBrands();
 store.getIpAddress();
-store.getCars();
-store.getModels();
+// store.getCars();
+// store.getModels();
 store.getWebsiteData();
 let cars = ref(store.cars);
 let brandsArr = ref(store.brands);
@@ -397,6 +407,11 @@ watch(
     dropdown3.value.items = val1;
   }
 );
+watch(()=> locale.value , (val)=>{
+  dropdown1.value.selected = val == 'en' ? 'choose car brand' : 'اختر ماركة السيارة ';
+  dropdown2.value.selected = val == 'en' ? 'choose car model' : 'اختر موديل السيارة ';
+  dropdown3.value.selected = val == 'en' ? 'choose car name' : 'اختر اسم السيارة ';
+})
 
 const handleClickOutside = (event) => {
   if (dropdown1.value) {
@@ -408,24 +423,14 @@ const handleClickOutside = (event) => {
 
 const changeLang = async () => {
   locale.value = locale.value === "en" ? "ar" : "en";
-  if (locale.value == "ar") {
-    setLocale("ar");
-    useHead({
+  useHead({
       htmlAttrs: {
-        lang: "ar",
-        dir: "rtl",
+        lang: locale.value == 'en' ? "en" : 'ar',
+        dir: locale.value == 'en' ? "ltr" : 'rtl',
       },
     });
-  } else {
-    useHead({
-      htmlAttrs: {
-        lang: "en",
-        dir: "ltr",
-      },
-    });
-    setLocale("en");
-  }
-  // console.log(route);
+    setLocale(locale.value == 'en' ? 'en' : 'ar');
+ store.getBranches();
   const query = useRoute().query;
   await navigateTo(
     localePath({ path: useRoute().path, query: query }, undefined, {

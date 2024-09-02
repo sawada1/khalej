@@ -25,7 +25,22 @@ onMounted(() => {
     isLoading.value = false;
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
+    useHead({
+      htmlAttrs: {
+        lang: locale.value == 'en' ? "en" : "ar",
+        dir: locale.value == "en" ? "ltr" : "rtl",
+      },
+    });
 
+});
+
+onBeforeMount(() => {
+  useHead({
+      htmlAttrs: {
+        lang: locale.value == 'en' ? "en" : "ar",
+        dir: locale.value == "en" ? "ltr" : "rtl",
+      },
+    });
 });
 
 watch(
@@ -43,6 +58,7 @@ watch(
 onUnmounted(() => {
   window.removeEventListener('online', handleOnline);
   window.removeEventListener('offline', handleOffline);
+  
 });
 </script>
 

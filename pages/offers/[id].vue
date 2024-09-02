@@ -42,7 +42,7 @@
           <span class="fw-bold"> {{ $t("offer") }} </span>
         </div>
         <div>
-          <h1 class="title">  {{ offer.Offers.title }}  </h1>
+          <h1 class="title mobileHead">  {{ offer.Offers.title }}  </h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="150"
@@ -76,7 +76,7 @@
 
       <div class="cars">
         <div class="head">
-          <h5>{{ $t("carOffer") }}</h5>
+          <h5 class="">{{ $t("carOffer") }}</h5>
         </div>
         <div class="row">
           <div v-for="item in offer.Offers.car" class="col-12 col-xl-3 col-lg-3 col-md-6 my-3">

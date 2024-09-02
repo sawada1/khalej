@@ -403,17 +403,19 @@ import * as yup from "yup";
 let years = ref([1, 2, 3, 4, 5, 6]);
 let errorsApi = ref();
 const props = defineProps(["cars"]);
+const { locale } = useI18n();
+
 const { errors, handleSubmit, values, resetForm, defineField } = useForm({
   validationSchema: yup.object({
-    organization_email: yup.string().email().required(),
-    phone: yup.string().required(),
-    organization_name: yup.string().required(),
-    organization_location: yup.string().required(),
-    organization_activity: yup.string().required(),
-    organization_seo: yup.string().required(),
-    quantity: yup.string().required(),
-    bank_id: yup.string().required(),
-    car_id: yup.string().required(),
+    organization_email: yup.string().email(locale.value == 'ar' ? 'يجب أن يكون البريد الإلكتروني بريدًا إلكترونيًا صالحًا' : 'email must be a valid email').email(locale.value == 'ar' ? 'يجب أن يكون البريد الإلكتروني بريدًا إلكترونيًا صالحًا' : 'email must be a valid email'),
+    phone: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    organization_name: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    organization_location: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    organization_activity: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    organization_seo: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    quantity: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    bank_id: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    car_id: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
   }),
 });
 let pending = ref(store.isLoading);

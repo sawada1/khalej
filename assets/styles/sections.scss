@@ -349,7 +349,6 @@ html[dir="ltr"] .payment-order-section{
       font-style: normal;
       font-weight: 700;
       line-height: 65px;
-      letter-spacing: -2px;
       color: $black;
       margin-top: 32px;
       margin-bottom: 24px;
@@ -809,10 +808,7 @@ html[dir="ltr"] .payment-order-section{
         color: $black;
         margin-top: 24px;
         margin-bottom: 20px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        position: relative;
+        @include text-line(2);
       }
 
       p {
@@ -1141,7 +1137,7 @@ html[dir="ltr"] .payment-order-section{
 // start wishlist-page
 
 .wishlist-page {
-  margin-bottom: $footerSpace;
+  padding-bottom: $footerSpace;
   background: #f4f5f6;
 
   .text-page {
@@ -1226,16 +1222,22 @@ html[dir="ltr"] .payment-order-section{
       .cities-drop {
         display: flex;
         width: 256px;
+        height: 115px;
+        overflow-y: auto;
+        overflow-x: hidden;
         padding: 8px;
         flex-direction: column;
         align-items: flex-start;
-        gap: 27px;
+        gap: 20px;
         flex-shrink: 0;
         align-self: stretch;
         border-radius: 12px;
         border: 2px solid #e6e8ec;
         background: #fcfcfd;
         box-shadow: 0px 64px 64px -48px rgba(15, 15, 15, 0.1);
+        &.custom{
+          height: fit-content;
+        }
 
         .city {
           display: flex;
@@ -1263,6 +1265,7 @@ html[dir="ltr"] .payment-order-section{
               display: none;
               width: 119px;
               height: 24px;
+              z-index: 11;
               // padding: 10px 16px;
               justify-content: center;
               align-items: center;
@@ -1279,9 +1282,9 @@ html[dir="ltr"] .payment-order-section{
             }
 
             &:hover {
-              .tool {
-                display: flex;
-              }
+              // .tool {
+              //   display: flex;
+              // }
 
               .act {
                 display: block;
@@ -1317,19 +1320,6 @@ html[dir="ltr"] .payment-order-section{
 
     .item {
       position: relative;
-
-      &:not(:last-child) {
-        // padding-left: 35px;
-        // border-left: 1px solid #dfe3ea;
-        &::before {
-          content: "";
-          position: absolute;
-          width: 1px;
-          height: 118px;
-          left: -50%;
-          background-color: #dfe3ea;
-        }
-      }
 
       img {
         margin-bottom: 20px;
@@ -1435,6 +1425,40 @@ html[dir="ltr"] .payment-order-section{
         box-shadow: none !important;
         border-radius: inherit;
         z-index: -1;
+      }
+    }
+  }
+}
+
+html[dir="rtl"] .contact-page{
+  .details{
+    .item{
+      &:not(:last-child) {
+        &::before {
+          content: "";
+          position: absolute;
+          width: 1px;
+          height: 118px;
+          left: -50%;
+          background-color: #dfe3ea;
+        }
+      }
+    }
+  }
+}
+
+html[dir="ltr"] .contact-page{
+  .details{
+    .item{
+      &:not(:last-child) {
+        &::before {
+          content: "";
+          position: absolute;
+          width: 1px;
+          height: 118px;
+          right: -50%;
+          background-color: #dfe3ea;
+        }
       }
     }
   }

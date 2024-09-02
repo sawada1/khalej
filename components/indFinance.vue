@@ -326,12 +326,12 @@
               </defs>
             </svg>
             <div class="label-container">
-              <label for=""> ادخل الدفعة الاولي </label>
+              <label for=""> {{ $t('firstpatch1') }} </label>
               <input
                 type="number"
                 v-model="first_payment_value"
                 v-bind="first_payment_valueAttrs"
-                placeholder="الدفعة الاولي"
+                :placeholder="$t('firstPatch2')"
               />
             </div>
           </div>
@@ -379,12 +379,12 @@
               />
             </svg>
             <div class="label-container">
-              <label for=""> ادخل رقم الدفعة الاخيرة </label>
+              <label for=""> {{ $t('lastPatch1') }} </label>
               <input
                 type="number"
                 v-model="last_payment_value"
                 v-bind="last_payment_valueAttrs"
-                placeholder="الدفعة الاخيرة"
+                :placeholder="$t('lastPatch2')"
               />
             </div>
           </div>
@@ -509,12 +509,12 @@
               </defs>
             </svg>
             <div class="label-container">
-              <label for=""> ادخل قطاع العمل </label>
+              <label for=""> {{ $t('work1') }} </label>
               <input
                 type="text"
                 v-model="work"
                 v-bind="workAttrs"
-                placeholder=" قطاع العمل "
+                :placeholder="$t('work2')"
               />
             </div>
           </div>
@@ -527,29 +527,29 @@
           <div>
             <div class="radio-container flex-column flex-xl-row flex-lg-row">
               <div class="d-flex radio-btn flex-column gap-2">
-                <h6>هل يوجد تعثرات</h6>
+                <h6> {{ $t('stumbles') }} </h6>
                 <v-radio-group v-model="stumbles" v-bind="stumblesAttrs">
-                  <v-radio label="لا" color="#2D9596" value="0"></v-radio>
-                  <v-radio label="نعم" color="#2D9596" value="1"></v-radio>
+                  <v-radio :label="$t('no')" color="#2D9596" value="0"></v-radio>
+                  <v-radio :label="$t('yes')" color="#2D9596" value="1"></v-radio>
                 </v-radio-group>
               </div>
 
               <div class="d-flex radio-btn flex-column gap-2">
-                <h6>حالة رخصة القيادة</h6>
+                <h6> {{ $t('drivingLicense') }} </h6>
                 <v-radio-group
                   v-model="driving_license"
                   v-bind="driving_licenseAttrs"
                 >
                   <v-radio
-                    label="سارية"
+                    :label="$t('available')"
                     color="#2D9596"
                     value="available"
                   ></v-radio>
-                  <v-radio label="منتهية" color="#2D9596" value="two"></v-radio>
+                  <v-radio :label="$t('exp')" color="#2D9596" value="expired"></v-radio>
                   <v-radio
-                    label="غير متاح"
+                    :label="$t('exist')"
                     color="#2D9596"
-                    value="unavailable"
+                    value="doesnt_exist"
                   ></v-radio>
                 </v-radio-group>
               </div>
@@ -600,19 +600,19 @@ const props = defineProps(["cars"]);
 const { errors, handleSubmit, values, resetForm, defineField } = useForm({
   validationSchema: yup.object({
     // email: yup.string().email().required(),
-    phone: yup.string().required(),
-    name: yup.string().required(),
-    salary: yup.string().required(),
-    commitments: yup.string().required(),
-    first_payment_value: yup.string().required(),
-    last_payment_value: yup.string().required(),
-    price: yup.string().required(),
-    bank_id: yup.string().required(),
-    work: yup.string().required(),
-    city_id: yup.string().required(),
-    driving_license: yup.string().required(),
-    stumbles: yup.string().required(),
-    car_id: yup.string().required(),
+    phone: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    name: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    salary: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    commitments: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    first_payment_value: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    last_payment_value: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    price: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    bank_id: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    work: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    city_id: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    driving_license: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    stumbles: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    car_id: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
   }),
 });
 let pending = ref(store.isLoading);

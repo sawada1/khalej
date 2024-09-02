@@ -163,6 +163,7 @@
                         type="checkbox"
                         v-model="arr"
                         :value="item.id"
+                        @change="store2.getCarsByBrand(arr)"
                       />
                     </div>
                   </label>
@@ -346,9 +347,7 @@
       </div>
       
       <div class="allcars">
-     
-
-        <div v-if="pendingState" class="empty-state">
+       <div v-if="pendingState" class="empty-state">
           <client-only>
             <Vue3Lottie :animation-data="search" :height="200" :width="200" />
           </client-only>
@@ -368,6 +367,7 @@
         <img class="animated-image" src="../assets/imgs/loader.svg" alt="">
       </div>
           <div class="d-flex progress-container flex-column gap-3">
+            <span> {{ $t('watch') }} {{ store.filteredCar.length }} {{ $t('car') }} {{ $t('from0') }} {{ store.total }} </span>
             <v-progress-linear
               :reverse="reverse"
               rounded
@@ -376,10 +376,7 @@
               :height="6"
             >
             </v-progress-linear>
-            {{ pageCount }}
-            {{ store.page }}
             <button class="addMoreBtn"  @click="loadMore()">{{ $t("showmore") }}</button>
-            {{ progressValue }}
           </div>
         </div>
        
@@ -396,8 +393,8 @@ import search from "~/assets/animations/search.json";
 import { useHomeStore } from "@/stores/home";
 let store2 = useHomeStore();
 store2.getBrands();
-store2.getCars();
-store2.getModels();
+// store2.getCars();
+// store2.getModels();
 let store = useCarStore();
 store.gePrices();
 let route = useRoute();

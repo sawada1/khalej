@@ -57,7 +57,7 @@ let store2 = useHomeStore();
 store2.getCars();
 store2.getBanks();
 store2.getCities();
-let cars = ref(store2.cars);
+let cars = ref(store2.carsHome);
 useSeoMeta({
   title: locale.value == 'ar' ? ' طلب شراء ' : " Purchase order ",
   ogTitle: 'My Amazing Site',
@@ -65,7 +65,7 @@ useSeoMeta({
   ogDescription: 'This is my amazing site, let me tell you all about it.',
 });
 watch(
-  [() => store2.cars],
+  [() => store2.carsHome],
   ([val1]) => {
     cars.value = val1;
   }

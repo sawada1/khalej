@@ -185,12 +185,13 @@ import * as yup from "yup";
 let years = ref([1, 2, 3, 4, 5, 6]);
 let errorsApi = ref();
 const props = defineProps(["cars"]);
+const { locale } = useI18n();
 const { errors, handleSubmit, values, resetForm, defineField } = useForm({
   validationSchema: yup.object({
-    phone: yup.string().required(),
-    name: yup.string().required(),
-    price: yup.string().required(),
-    car_id: yup.string().required(),
+    phone: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    name: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    price: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    car_id: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
   }),
 });
 let pending = ref(store.isLoading2);

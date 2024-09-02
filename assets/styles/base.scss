@@ -38,10 +38,28 @@ body {
   width: 100%;
   overflow-x: clip;
 }
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #a3a3a3;
+}
 
 body {
   background: $body;
   font-family: "Lama Sans", sans-serif;
+  
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    // background-color: #a3a3a3;
+    background-color: $primary;
+  }
+  
 }
 
 html[dir="rtl"] body{
@@ -287,6 +305,12 @@ html[dir="ltr"] body{
 }
 
 // end dropdown
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
 .fancybox__container , .swal2-container {
   z-index: 555555555555 !important;

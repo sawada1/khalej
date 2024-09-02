@@ -24,7 +24,7 @@
           <span> {{ $t("contactt") }} </span>
         </div>
         <div>
-          <h1 class="title">{{ $t("contactt") }}</h1>
+          <h1 class="title mobileHead">{{ $t("contactt") }}</h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="50"
@@ -198,9 +198,9 @@
         </div>
         <div class="col-12 col-xl-6 col-lg-6">
           <div class="map-container">
-            <div class="d-flex align-items-center main">
-              <div v-if="actMap" class="cities-drop">
-                <div v-for="item in store2.branches" :key="item"  class="city">
+            <div class="d-flex align-items-center flex-column flex-xl-row flex-lg-row main">
+              <div v-if="actMap" class="cities-drop" :class="{'custom': store2.branches.length <= 2}">
+                <div v-for="item in store2.branches" :key="item"   class="city">
                   <span class="name"> {{ item.name }} </span>
                   <button @click="openPopup2 = true , frameDiv = item.frame">
                     <svg
@@ -360,10 +360,10 @@ const loadMore = async () => {
 };
 const { errors, handleSubmit, values, resetForm, defineField } = useForm({
   validationSchema: yup.object({
-    email: yup.string().email().required(),
-    phone: yup.string().required(),
-    message: yup.string().required(),
-    name: yup.string().required(),
+    email: yup.string().email(locale.value == 'ar' ? 'يجب أن يكون البريد الإلكتروني بريدًا إلكترونيًا صالحًا' : 'email must be a valid email').required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    phone: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    message: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    name: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
   }),
 });
 let pending = ref(store.isLoading);

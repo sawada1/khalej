@@ -1,5 +1,5 @@
 <template>
-    <div style="min-height: 100vh;" class="wishlist-page">
+    <div class="wishlist-page">
         <div class="text-page">
                 <div class="breadline">
                     <span>{{ $t('home') }}</span>

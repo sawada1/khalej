@@ -42,7 +42,7 @@
           <span class="fw-bold"> {{ $t("new") }} </span>
         </div>
         <div>
-          <h1 class="title"> {{ mainItem.news.title }} </h1>
+          <h1 class="title mobileHead"> {{ mainItem.news.title }} </h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="150"
