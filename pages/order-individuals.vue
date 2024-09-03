@@ -3,7 +3,7 @@
     <div class="container order-finance-container">
       <div class="header">
         <h1> {{ $t('reqOrd') }} </h1>
-        <nuxt-link to="/">
+        <nuxt-link :to="localePath('/')">
         <svg
         class="arrowDir"
           xmlns="http://www.w3.org/2000/svg"
@@ -53,6 +53,7 @@
 import { useHomeStore } from "@/stores/home";
 let activeBtn = ref(1);
 const { locale } = useI18n();
+const localePath = useLocalePath();
 let store2 = useHomeStore();
 store2.getCars();
 store2.getBanks();

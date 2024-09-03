@@ -348,7 +348,8 @@
           <div class="col-12 col-xl-8 col-lg-12">
             <div class="row cards">
               <div
-                v-for="(item, index) in howArr"
+                v-for="(item, index) in howArr" 
+                :key="item"
                 class="col-12 col-xl-6 col-lg-6"
               >
                 <div
@@ -385,7 +386,7 @@
                   </div>
                   <div class="text-card d-flex flex-column">
                     <h5>{{ item.title }}</h5>
-                    <p>هذا النص هو مثال حي يستبدل في نفس المساحة</p>
+                    <p> {{ item.desc }} </p>
                   </div>
                 </div>
               </div>
@@ -399,7 +400,7 @@
 
 <script setup>
 const localePath = useLocalePath();
-const { locale, setLocale } = useI18n();
+const { t ,  locale, setLocale } = useI18n();
 import { useHomeStore } from "@/stores/home";
 let store = useHomeStore();
 store.getBrands();
@@ -412,20 +413,24 @@ let modelsArr = ref(store.models);
 let selectedBrand = ref();
 let selectedmodel = ref();
 let selectedCar = ref();
-let howArr = ref([
-  {
-    title: locale.value == "ar" ? "ابحث" : "search",
-  },
-  {
-    title: locale.value == "ar" ? "اختر" : "choose",
-  },
-  {
-    title: locale.value == "ar" ? "اطلب" : "order",
-  },
-  {
-    title: locale.value == "ar" ? "نتواصل" : "contact",
-  },
-]);
+const howArr = ref([
+      {
+        title: t('steps.search.title'),
+        desc: t('steps.search.desc'),
+      },
+      {
+        title: t('steps.choose.title'),
+        desc: t('steps.choose.desc'),
+      },
+      {
+        title: t('steps.order.title'),
+        desc: t('steps.order.desc'),
+      },
+      {
+        title: t('steps.contact.title'),
+        desc: t('steps.contact.desc'),
+      },
+    ]);
 let dropdownVal1 = ref(
   locale.value == "ar" ? "اختر ماركة السيارة " : "choose car brand"
 );

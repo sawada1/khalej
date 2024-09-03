@@ -69,8 +69,8 @@ export const useHomeStore = defineStore("home", () => {
           }
          });
         if (result.status >= 200) {
-          cars.value = result.data.data[0].cars;
-          models.value = result.data.data[0].models;
+          cars.value = result.data.cars;
+          models.value = result.data.models;
         }
   }
   async function getBranches() {

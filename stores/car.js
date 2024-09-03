@@ -57,13 +57,6 @@ let itemsPerPage = ref();
       per_page.value = result.data.meta.per_page;
       itemsPerPage.value = result.data.meta.to;
     }
-    // if(filteredCar.value.length < 1){
-    //   pendingState.value = true;
-    // }
-    // setTimeout(() => {
-    //   isLoading2.value = true;
-    //   // pendingState.value = false;
-    // }, 500);
   }
   async function AddFav(id , favBtn , check=false , ip='') {
     const result = await $axios.post(`add-favorite-withoutauth`, { car_id: id });

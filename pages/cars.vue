@@ -347,7 +347,7 @@
       </div>
       
       <div class="allcars">
-       <div v-if="pendingState" class="empty-state">
+       <div v-if="pendingState && !isLoading3" class="empty-state">
           <client-only>
             <Vue3Lottie :animation-data="search" :height="200" :width="200" />
           </client-only>

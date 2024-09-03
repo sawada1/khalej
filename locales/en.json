@@ -120,5 +120,40 @@
     "Jeddah":"Jeddah",
     "Riyadh":"Riyadh",
     "abha":"abha",
-    "Tabuk":"Tabuk"
+    "Tabuk":"Tabuk",
+    "work1": "Enter work sector",
+    "work2": "Work sector",
+    "firstpatch1": "Enter the first batch",
+    "firstPatch2": "The first batch",
+    "lastPatch1": "Enter the last batch number",
+    "lastPatch2": "The last batch",
+    "stumbles": "Are there any stumbles?",
+    "drivingLicense": "Driving license status",
+    "available": "Valid",
+    "exp": "Expired",
+    "exist": "Not available",
+    "yes": "Yes",
+    "no": "No",
+    "stepOneContent": " Find your perfect car using our search tool. ",
+    "stepTwoContent": " Choose the car that meets your needs. ",
+    "stepThreeContent": " Place your order quickly and easily. ",
+    "stepFourContent": " Get in touch with us for any assistance.  ",
+    "steps": {
+      "search": {
+        "title": "search",
+        "desc": "Find your perfect car using our search tool."
+      },
+      "choose": {
+        "title": "choose",
+        "desc": "Choose the car that meets your needs."
+      },
+      "order": {
+        "title": "order",
+        "desc": "Place your order quickly and easily."
+      },
+      "contact": {
+        "title": "contact",
+        "desc": "Get in touch with us for any assistance."
+      }
+    }
 }
