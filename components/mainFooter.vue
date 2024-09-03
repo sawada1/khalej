@@ -4,7 +4,8 @@
       <img class="separator-img w-100" src="~/assets/imgs/Separator.png" alt="Separator">
       <div class="main-links-container">
         <div class="image-container">
-          <img src="~/assets/imgs/mainLogo-rtl.svg" alt="khalej">
+          <img v-if="locale == 'ar'" src="~/assets/imgs/mainLogo-rtl.svg" alt="khalej">
+          <img v-if="locale == 'en'" src="~/assets/imgs/mainLogo-ltr.svg" alt="khalej">
           <p> {{ $t('foot1') }} </p>
           <div v-if="store.social"class="icons">
             <a :href="store.social?.instagram" target="_blank" class="icon">

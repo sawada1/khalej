@@ -367,10 +367,10 @@ const loadMore = async () => {
 
 const { errors, handleSubmit, values, resetForm, defineField } = useForm({
   validationSchema: yup.object({
-    email: yup.string().email().required(),
-    phone: yup.string().required(),
-    cv: yup.mixed().required(),
-    name: yup.string().required(),
+    email: yup.string().email(locale.value == 'ar' ? 'يجب أن يكون البريد الإلكتروني بريدًا إلكترونيًا صالحًا' : 'email must be a valid email').required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    phone: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    cv: yup.mixed().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    name: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
   }),
 });
 let pending = ref(store.isLoading);

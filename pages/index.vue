@@ -337,8 +337,7 @@
               <span> {{ $t("how1") }} </span>
               <h2 class="mobileHead">{{ $t("how2") }}</h2>
               <p>
-                هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
-                هذا النص من
+                {{ $t('headStep') }}
               </p>
               <nuxt-link :to="localePath('/contact')">
                 <button>{{ $t("contactUs") }}</button>

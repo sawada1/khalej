@@ -284,19 +284,9 @@
                   fill="white"
                 />
               </svg>
-              <svg
-                class="white-img"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
-                <path
-                  d="M12 4.80957C10.8321 3.6888 9.24649 3 7.5 3C3.91015 3 1 5.91015 1 9.5C1 15.8683 7.97034 19.385 10.8138 20.5547C11.5796 20.8697 12.4204 20.8697 13.1862 20.5547C16.0297 19.385 23 15.8682 23 9.5C23 5.91015 20.0899 3 16.5 3C14.7535 3 13.1679 3.6888 12 4.80957Z"
-                  fill="#A7B9D0"
-                />
-              </svg>
+              <svg class="white-img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M12.62 20.81C12.28 20.93 11.72 20.93 11.38 20.81C8.48 19.82 2 15.69 2 8.68998C2 5.59998 4.49 3.09998 7.56 3.09998C9.38 3.09998 10.99 3.97998 12 5.33998C13.01 3.97998 14.63 3.09998 16.44 3.09998C19.51 3.09998 22 5.59998 22 8.68998C22 15.69 15.52 19.82 12.62 20.81Z" stroke="#A7B9D0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
             </nuxt-link>
             <div
               class="nav-link icon d-flex align-items-center gap-3"
@@ -338,6 +328,7 @@
                   fill="white"
                 />
               </svg>
+              
             </div>
           </div>
         </div>
