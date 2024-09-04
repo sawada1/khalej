@@ -142,7 +142,7 @@
                       class="dropdown-item"
                       v-for="item in dropdown1.items"
                       @click.prevent="
-                        dropdown1.select2(item), (selectedBrand = item.id)
+                        dropdown1.select2(item), store.getCarsByBrand2(item.id) , (selectedBrand = item.id)
                       "
                       :key="item.id"
                       :for="`checkBox-${item.id}`"
@@ -233,7 +233,7 @@
 
               <nuxt-link
                 class="searchBtn mt-2"
-                @click="overlay = false , store2.page = 1"
+                @click="overlay = false , store2.filteredCar = [] , store2.page = 1"
                 :to="
                   localePath({
                     path: '/cars',
@@ -348,9 +348,9 @@ store.getIpAddress();
 // store.getCars();
 // store.getModels();
 store.getWebsiteData();
-let cars = ref(store.cars);
+let cars = ref(store.SearchCars);
 let brandsArr = ref(store.brands);
-let modelsArr = ref(store.models);
+let modelsArr = ref(store.SearchModels);
 let selectedBrand = ref();
 let selectedmodel = ref();
 let selectedCar = ref();
@@ -388,7 +388,7 @@ const dropdown2 = ref(process.client ? new Dropdown(dropdownVal2.value) : null);
 const dropdown3 = ref(process.client ? new Dropdown(dropdownVal3.value) : null);
 
 watch(
-  [() => store.cars, () => store.brands, () => store.models],
+  [() => store.SearchCars, () => store.brands, () => store.SearchModels],
   ([val1, val2, val3]) => {
     cars.value = val1;
     brandsArr.value = val2;
@@ -458,8 +458,6 @@ onMounted(() => {
   dropdown3.value.items = cars.value;
 });
 onUnmounted(() => {
-
-
   document.removeEventListener("click", handleClickOutside);
 });
 

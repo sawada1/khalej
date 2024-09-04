@@ -341,7 +341,7 @@
                 <span> {{ Math.round(valuePrices[1]) }} {{ $t("curr") }}</span>
               </div>
             </div>
-            <button @click="filter()" class="searchBtn2">{{ $t("search") }}</button>
+            <button @click=" store.page = 1 ,  filter()" class="searchBtn2">{{ $t("search") }}</button>
           </div>
         </div>
       </div>
@@ -366,7 +366,7 @@
           <div v-if="isLoading3" class="d-flex align-items-center justify-content-center" style="min-height: 50vh;">
         <img class="animated-image" src="../assets/imgs/loader.svg" alt="">
       </div>
-          <div class="d-flex progress-container flex-column gap-3">
+          <div v-if="!pendingState" class="d-flex progress-container flex-column gap-3">
             <span> {{ $t('watch') }} {{ store.filteredCar.length }} {{ $t('car') }} {{ $t('from0') }} {{ store.total }} </span>
             <v-progress-linear
               :reverse="reverse"
@@ -376,6 +376,12 @@
               :height="6"
             >
             </v-progress-linear>
+            <!-- {{ pageCount }} -->
+            
+            {{ store.per_page }}
+
+            {{ store.total }}
+
             <button class="addMoreBtn"  @click="loadMore()">{{ $t("showmore") }}</button>
           </div>
         </div>
@@ -454,6 +460,7 @@ const loadMore = async () => {
   }
 };
 const filter = () => {
+   store.filteredCar = [];
   store.getSearchCars({
     brand_id: arr.value,
     model_id: arr2.value,
@@ -509,6 +516,10 @@ watch(
   }
 );
 onMounted(() => {
+  if(route.query.id){
+    store2.getCarsByBrand(route.query.id);
+
+  }
   store.getSearchCars({
     brand_id: route.query.id,
     model_id: route.query.model,
