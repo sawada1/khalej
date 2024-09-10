@@ -5,6 +5,8 @@ export default defineNuxtConfig({
   plugins: ['~/plugins/pinia.js' , '~/plugins/axios.js' , '~/plugins/sweetalert2.js'],
   image: {
     format: ['webp'],
+    provider: 'ipx', // Default image provider
+    domains: ['https://admin.alkhalej.webstdy.com'], // Add your API domain here
     quality: 80,
      presets: {
        default: {

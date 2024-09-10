@@ -159,7 +159,7 @@
           class="col-12 col-xl-3 col-lg-4 col-md-6"
         >
           <div class="box mb-5 mb-xl-0">
-           <NuxtImg :src="item.icon" format="webp" quality="80" :alt="item.title" />
+           <NuxtImg :src="item.icon" format="webp" quality="80" style="object-fit: contain;" :alt="item.title" />
 
             <h5>{{ item.title }}</h5>
             <p>

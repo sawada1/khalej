@@ -5,7 +5,7 @@
             <div v-for="item in brandsArr" :key="item" class="col-6 col-xl-2 col-lg-3 col-md-4">      
             <nuxt-link :to="localePath({ path: '/cars', query: { id: item.id } })"  >
                 <div class="box  ">
-           <NuxtImg :src="item.image" format="webp" quality="80" :alt="item.name" />
+           <NuxtImg :src="item.image" format="webp" quality="80" :alt="item.name" style="object-fit: contain;" />
                  <h4> {{ item.name }} </h4>
                  <div class="d-flex align-items-center justify-content-between w-100">
                  <span> {{item.cars_count}} {{ $t('car') }} </span>
