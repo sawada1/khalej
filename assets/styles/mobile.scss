@@ -161,7 +161,7 @@
 @media (max-width: 775px) {
     iframe{
         width: 100% !important;
-        height: 350px !important;
+        height: 300px !important;
     }
     .wishlist-page{
         padding-bottom: 40px;
@@ -340,8 +340,12 @@
   // start popup-container
   .popup-container {
     .modal-custom-container {
-      padding: 40px 40px;
-
+      padding: 40px 20px;
+      .close{
+        left: 14px;
+        top: 10px;
+       }
+          
       .item {
         width: 140px;
         height: fit-content;

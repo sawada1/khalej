@@ -171,7 +171,12 @@
                   {{ $t("orderHome") }}
                 </button>
                 <div class="icons">
-                  <div @click="addFavFunc(mainCar.id) , mainCar.is_fav = !mainCar.is_fav" class="icon">
+                  <div
+                    @click="
+                      addFavFunc(mainCar.id), (mainCar.is_fav = !mainCar.is_fav)
+                    "
+                    class="icon"
+                  >
                     <svg
                       v-if="mainCar.is_fav"
                       xmlns="http://www.w3.org/2000/svg"
@@ -202,8 +207,9 @@
                       />
                     </svg>
                   </div>
-                  <div class="icon">
+                  <div class="icon" @click="shareIcons = !shareIcons">
                     <svg
+                      v-if="!shareIcons"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
@@ -224,6 +230,68 @@
                         </clipPath>
                       </defs>
                     </svg>
+                    <svg
+                      v-else
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 17 16"
+                      fill="none"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M2.23137 1.29289C2.62189 0.902369 3.25506 0.902369 3.64558 1.29289L8.93848 6.58579L14.2314 1.29289C14.6219 0.902369 15.2551 0.902369 15.6456 1.29289C16.0361 1.68342 16.0361 2.31658 15.6456 2.70711L10.3527 8L15.6456 13.2929C16.0361 13.6834 16.0361 14.3166 15.6456 14.7071C15.2551 15.0976 14.6219 15.0976 14.2314 14.7071L8.93848 9.41421L3.64558 14.7071C3.25506 15.0976 2.62189 15.0976 2.23137 14.7071C1.84085 14.3166 1.84085 13.6834 2.23137 13.2929L7.52426 8L2.23137 2.70711C1.84085 2.31658 1.84085 1.68342 2.23137 1.29289Z"
+                        fill="#A7B9D0"
+                      />
+                    </svg>
+                    <div v-if="shareIcons" class="share-box">
+                      <a
+                        target="_blank"
+                        :href="`https://t.me/share/url?url=${theRoute}`"
+                      >
+                        <img src="~/assets/imgs/social1.svg" alt="" />
+                      </a>
+                      <a
+                        target="_blank"
+                        :href="`https://www.facebook.com/sharer/sharer.php?${theRoute}`"
+                      >
+                        <img src="~/assets/imgs/social2.svg" alt="" />
+                      </a>
+                      <a
+                        target="_blank"
+                        :href="`https://twitter.com/intent/tweet?url=${theRoute}`"
+                      >
+                        <img src="~/assets/imgs/social3.svg" alt="" />
+                      </a>
+
+                      <a
+                        target="_blank"
+                        :href="`https://wa.me/?text=${theRoute}/`"
+                      >
+                        <img src="~/assets/imgs/social4.svg" alt="" />
+                      </a>
+                      <button @click="copyToClipboard2()">
+                        <img
+                          v-if="checkCopy"
+                          src="~/assets/imgs/social5.svg"
+                          alt=""
+                        />
+                        <svg
+                          v-else
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="#fff"
+                          height="20"
+                          width="20"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                          />
+                        </svg>
+                      </button>
+                      <!-- <i @click="closeShare()" class="fa-solid fa-xmark"></i> -->
+                    </div>
                   </div>
                 </div>
               </div>
@@ -280,7 +348,7 @@
           </div>
           <div class="col-12 col-xl-7 col-lg-7 bg-dange">
             <swiper
-            :spaceBetween="30"
+              :spaceBetween="30"
               :pagination="{ clickable: true }"
               :modules="[SwiperPagination, SwiperAutoplay]"
               class="mySwiper"
@@ -324,11 +392,27 @@ store.getCar(id.value);
 let mainCar = ref();
 let favBtn = ref();
 let { locale } = useI18n();
+let shareIcons = ref(false);
+let theRoute = ref("");
 
-const addFavFunc = (id) =>{
-  favBtn.value = !favBtn.value;
-  store.AddFav(id , favBtn.value)
+let checkCopy = ref(true);
+
+function copyToClipboard2() {
+  if (process.client) {
+    checkCopy.value = false;
+    const clipBoard = navigator.clipboard;
+    clipBoard.writeText(theRoute.value).then(() => {});
+
+    setTimeout(() => {
+      checkCopy.value = true;
+    }, 1000);
+  }
 }
+
+const addFavFunc = (id) => {
+  favBtn.value = !favBtn.value;
+  store.AddFav(id, favBtn.value);
+};
 const hexToRgb = (hex) => {
   // Remove '#' from hex string
   hex = hex.replace(/^#/, "");
@@ -358,14 +442,14 @@ watch([() => store.car, store.isLoading], ([val1, val2]) => {
   isLoading.value = val2;
 });
 
-
 useSeoMeta({
-  title: locale.value == 'ar' ? ' السيارة ' : " car ",
-  ogTitle: 'My Amazing Site',
-  description: 'This is my amazing site, let me tell you all about it.',
-  ogDescription: 'This is my amazing site, let me tell you all about it.',
+  title: locale.value == "ar" ? " السيارة " : " car ",
+  ogTitle: "My Amazing Site",
+  description: "This is my amazing site, let me tell you all about it.",
+  ogDescription: "This is my amazing site, let me tell you all about it.",
 });
 onMounted(() => {
+  theRoute.value = window.location.href;
   Fancybox.bind("[data-fancybox]", {
     // Custom options for all galleries
   });

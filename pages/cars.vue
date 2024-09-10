@@ -376,11 +376,6 @@
               :height="6"
             >
             </v-progress-linear>
-            <!-- {{ pageCount }} -->
-            
-            {{ store.per_page }}
-
-            {{ store.total }}
 
             <button class="addMoreBtn"  @click="loadMore()">{{ $t("showmore") }}</button>
           </div>

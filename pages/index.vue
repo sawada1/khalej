@@ -2,12 +2,8 @@
   <div style="min-height: 100vh">
     <div class="hero-section" style="width: 100%; height: 100vh">
       <div class="overlay"></div>
-      <img
-        class="w-100 h-100"
-        style="object-fit: cover"
-        src="~/assets/imgs/hero.png"
-        alt="hero"
-      />
+      <!-- <NuxtImg src="/images/hero.png" width="10" height="10" /> -->
+      <NuxtImg src="/images/hero.png" format="webp" quality="80" alt="hero" style="object-fit: cover" class="w-100 h-100" />
     </div>
     <div class="container search-home-p">
       <div class="search-home row">
@@ -163,44 +159,15 @@
           class="col-12 col-xl-3 col-lg-4 col-md-6"
         >
           <div class="box mb-5 mb-xl-0">
-            <img :src="item.icon" alt="prucher icon" />
+           <NuxtImg :src="item.icon" format="webp" quality="80" :alt="item.title" />
+
             <h5>{{ item.title }}</h5>
             <p>
               {{ item.description }}
-              <!-- <span class="readMore" v-if="$t('chooseP1').length >= 140">
-               read more...
-              </span> -->
+         
             </p>
           </div>
         </div>
-        <!-- <div class="col-12 col-xl-3 col-lg-4 col-md-6">
-          <div class="box mb-5 mb-xl-0">
-            <img src="~/assets/imgs/icon2.svg" alt="best price icon" />
-            <h5> {{ $t('choose2') }} </h5>
-            <p>
-              {{ $t('chooseP2') }}
-              
-            </p>
-          </div>
-        </div>
-        <div class="col-12 col-xl-3 col-lg-4 col-md-6">
-          <div class="box mb-5 mb-xl-0">
-            <img src="~/assets/imgs/icon3.svg" alt="customer service icon" />
-            <h5> {{ $t('choose3') }}</h5>
-            <p>
-              {{ $t('chooseP3') }}
-            </p>
-          </div>
-        </div>
-        <div class="col-12 col-xl-3 col-lg-4 col-md-6">
-          <div class="box">
-            <img src="~/assets/imgs/icon4.svg" alt="credit icon" />
-            <h5> {{ $t('choose4') }} </h5>
-            <p>
-              {{ $t('chooseP4') }}
-            </p>
-          </div>
-        </div> -->
       </div>
     </div>
 
@@ -291,7 +258,7 @@
                       </svg>
                     </button>
                   </nuxt-link>
-                  <img src="~/assets/imgs/order2.png" alt="car" />
+           <NuxtImg src="/images/order2.png" format="webp" quality="80" alt="order car" />
                 </div>
               </div>
             </div>
@@ -303,7 +270,7 @@
               <div class="text">
                 <h3>{{ $t("comp") }}</h3>
                 <nuxt-link :to="localePath('/order-company')">
-                  <button>
+                  <button class="orderBtn2">
                     {{ $t("orderHome") }}
                     <svg
                       class="arrowDir"
@@ -322,7 +289,7 @@
                     </svg>
                   </button>
                 </nuxt-link>
-                <img src="~/assets/imgs/order1.png" alt="order" />
+           <NuxtImg src="/images/order1.png" format="webp" quality="80" alt="order" />
               </div>
             </div>
           </div>
@@ -340,7 +307,7 @@
                 {{ $t('headStep') }}
               </p>
               <nuxt-link :to="localePath('/contact')">
-                <button>{{ $t("contactUs") }}</button>
+                <button class="contactBtn">{{ $t("contactUs") }}</button>
               </nuxt-link>
             </div>
           </div>

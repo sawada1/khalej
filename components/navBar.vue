@@ -17,17 +17,23 @@
           <nuxt-link :to="localePath('/')">
             <div class="logo-container nav-link">
             <div v-if="locale == 'ar'">
-              <img class="dark-img" src="~/assets/imgs/whiteLogo-rtl.svg" alt="khalej" />
+              <img class="dark-img" width="202"
+              height="46" src="~/assets/imgs/whiteLogo-rtl.svg" alt="khalej" />
               <img
                 class="white-img"
+                width="202"
+                height="46"
                 src="~/assets/imgs/mainLogo-rtl.svg"
                 alt="khalej"
               />
             </div>
             <div v-if="locale == 'en'">
-              <img class="dark-img" src="~/assets/imgs/whiteLogo-ltr.svg" alt="khalej" />
+              <img class="dark-img" width="202"
+              height="46" src="~/assets/imgs/whiteLogo-ltr.svg" alt="khalej" />
               <img
                 class="white-img"
+                width="202"
+                height="46"
                 src="~/assets/imgs/mainLogo-ltr.svg"
                 alt="khalej"
               />
@@ -70,6 +76,9 @@
             }}</nuxt-link>
             <nuxt-link class="nav-link" :to="localePath('/contact')">
               {{ $t("contact") }}
+            </nuxt-link>
+            <nuxt-link class="nav-link" :to="localePath('/about')">
+              {{ $t("about") }}
             </nuxt-link>
           </div>
 
@@ -288,7 +297,9 @@
   <path d="M12.62 20.81C12.28 20.93 11.72 20.93 11.38 20.81C8.48 19.82 2 15.69 2 8.68998C2 5.59998 4.49 3.09998 7.56 3.09998C9.38 3.09998 10.99 3.97998 12 5.33998C13.01 3.97998 14.63 3.09998 16.44 3.09998C19.51 3.09998 22 5.59998 22 8.68998C22 15.69 15.52 19.82 12.62 20.81Z" stroke="#A7B9D0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
             </nuxt-link>
-            <div
+            <a
+            aria-label="phone"
+            :href="'tel:' + store.websiteData?.phone"
               class="nav-link icon d-flex align-items-center gap-3"
               style="white-space: nowrap"
             >
@@ -329,7 +340,7 @@
                 />
               </svg>
               
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -345,8 +356,6 @@ let store = useHomeStore();
 let store2 = useCarStore();
 store.getBrands();
 store.getIpAddress();
-// store.getCars();
-// store.getModels();
 store.getWebsiteData();
 let cars = ref(store.SearchCars);
 let brandsArr = ref(store.brands);

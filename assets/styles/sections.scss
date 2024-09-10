@@ -655,6 +655,7 @@ html[dir="ltr"] .payment-order-section{
 
         .icon {
           display: inline-flex;
+          position: relative;
           padding: 12px;
           justify-content: center;
           align-items: center;
@@ -662,6 +663,33 @@ html[dir="ltr"] .payment-order-section{
           border-radius: 48px;
           border: 2px solid #dfe3ea;
           box-shadow: 0px 64px 64px -48px rgba(31, 47, 70, 0.12);
+          cursor: pointer;
+          .share-box {
+            width: 207px;
+            // height: 48px;
+            padding: 13px;
+            border-radius: 8px;
+            background-color: #212832;
+            margin-top: 20px;
+            align-items: center;
+            justify-content: space-around;
+            display: flex;
+            position: absolute;
+            z-index: 11;
+            top: 100%;
+            i {
+              position: absolute;
+              top: 0px;
+              color: #fff;
+              right: 0;
+            }
+            img {
+              cursor: pointer;
+            }
+            &.check {
+              // display: flex;
+            }
+          }
         }
       }
     }
@@ -1366,6 +1394,10 @@ html[dir="ltr"] .payment-order-section{
     .main-panels {
       margin-top: 50px;
       width: 560px;
+      &.customHeaight{
+        height: 280px;
+      }
+      overflow-y: auto;
 
       .v-expansion-panel {
         background-color: transparent !important;
@@ -1871,3 +1903,138 @@ html[dir="ltr"] .contact-page{
 }
 
 //end finance page
+
+
+// start about us page 
+
+
+.about-us {
+  margin-top: 72px;
+  margin-bottom: 140px;
+  min-height: 100vh;
+  .about-container {
+    border-radius: 24px;
+    background: #fff;
+    margin-bottom: 64px;
+    .text-container {
+      padding: 32px;
+    }
+    .text {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+      h6 {
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        color: #2d3a4a;
+      }
+      span {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 32px;
+        color: #5a7184;
+      }
+    }
+    .icons {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      .icon {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        border-radius: 16px;
+        border: 1px solid #ebeaed;
+        padding: 16px;
+        min-height: 233px;
+
+        img {
+          width: 56px;
+          height: 56px;
+        }
+        h6 {
+          color: #2d3a4a;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 700;
+        }
+        span {
+          color: #5a7184;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 32px;
+        }
+      }
+    }
+    .image {
+      // background-image: url("~/assets/images/about.png");
+      border-radius: 24px 0px 0px 24px;
+      height: 100%;
+      background-position: center;
+      background-size: cover;
+      position: relative;
+      img {
+        width: 100%;
+        border-radius: 24px 0px 0px 24px;
+        height: 100%;
+        object-fit: cover;
+      }
+      .overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-radius: 24px 0px 0px 24px;
+        opacity: 0.5;
+        background: linear-gradient(180deg, #000 0%, rgba(38, 139, 202, 0) 100%);
+      }
+    }
+  }
+}
+
+.video-container {
+  width: 800px;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 60px;
+  border-radius: 24px;
+  iframe {
+    border-radius: 24px;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .video-container {
+    width: 100%;
+    height: 250px;
+  }
+}
+
+html[dir="ltr"] .about-us {
+  .about-container {
+    .image {
+      border-radius: 0px 24px 24px 24px;
+
+      img {
+        border-radius: 0px 24px 24px 24px;
+      }
+      .overlay {
+        border-radius: 0px 24px 24px 24px;
+      }
+    }
+  }
+}
+
+
+// end about us page 

@@ -276,8 +276,8 @@
       </div>
 
       <div class="common">
-        <h2>الاسئلة الشائعة</h2>
-        <v-expansion-panels class="main-panels">
+        <h2> {{ $t('faqs') }} </h2>
+        <v-expansion-panels class="main-panels" :class="{'customHeaight': store.questions.length >= 4 }">
           <v-expansion-panel v-for="(item, index) in store.questions">
             <v-expansion-panel-title
               collapse-icon="mdi-chevron-up"

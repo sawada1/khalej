@@ -5,7 +5,7 @@
             <div v-for="item in brandsArr" :key="item" class="col-6 col-xl-2 col-lg-3 col-md-4">      
             <nuxt-link :to="localePath({ path: '/cars', query: { id: item.id } })"  >
                 <div class="box  ">
-                 <img :src="item.image" alt="brand">
+           <NuxtImg :src="item.image" format="webp" quality="80" :alt="item.name" />
                  <h4> {{ item.name }} </h4>
                  <div class="d-flex align-items-center justify-content-between w-100">
                  <span> {{item.cars_count}} {{ $t('car') }} </span>
@@ -18,7 +18,7 @@
          </div>
         </div>
         <div v-if="hidde" class="showmoreBTN d-flex justify-content-center mt-4 "  >
-            <button @click="showmore()"> {{ $t('showmore') }} </button>
+            <button class="showMoreBtn"  @click="showmore()"> {{ $t('showmore') }} </button>
         </div>
     </div>
     </div>

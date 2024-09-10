@@ -1,8 +1,32 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["nuxt-swiper", "@nuxtjs/i18n", 'nuxt-primevue' , "nuxt-aos"],
+  modules: ["nuxt-swiper", "@nuxtjs/i18n", 'nuxt-primevue' , "nuxt-aos" , "@nuxt/image"],
   plugins: ['~/plugins/pinia.js' , '~/plugins/axios.js' , '~/plugins/sweetalert2.js'],
+  image: {
+    format: ['webp'],
+    quality: 80,
+     presets: {
+       default: {
+         modifiers: {
+           quality: 80, 
+         },
+       },
+     },
+     screens: {
+      sm: 320,  // Define responsive sizes
+      md: 640,
+      lg: 1024,
+      xl: 1280,
+    },
+    webp: {
+      quality: 80 // Adjust the quality for webp images
+    },
+  },
+  aos: {
+    // Initialize AOS
+      once: true, // Animation happens only once
+  },
   i18n: {
     // lazy: true,
     langDir: "locales",
