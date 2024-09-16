@@ -1,6 +1,6 @@
 <template>
     <div style="min-height: 100vh;">
-        <div v-if="aboutArr" class="container about-us">
+        <div  class="container about-us">
             <div class="text-page">
         <div class="breadline">
           <span>{{ $t("home") }}</span>
@@ -49,21 +49,21 @@
           </svg>
         </div>
       </div>
-            <div class="about-container">
+            <div v-if="store.aboutUs" class="about-container">
                 <div class="row">
                     <div class="col-12 col-xl-7 col-lg-7 order-2 order-xl-1 order-lg-1">
                         <div class="text-container">
                             <div class="text">
-                                <h6>{{ $t('about') }}</h6>
+                                <h6> {{ store.aboutUs?.title }} </h6>
                                 <div></div>
-                                <span> {{ aboutArr.description_card }} </span>
+                                <span> {{ store.aboutUs?.description }} </span>
                             </div>
                           
                         </div>
                     </div>
                     <div class="col-12 col-xl-5 col-lg-5 order-1 order-xl-2 order-lg-2">
                         <div class="image">
-                        <img :src="aboutArr.image" alt="">
+                        <img :src="store.aboutUs?.photo" alt="">
                             <div class="overlay"></div>
                         </div>
 
@@ -73,59 +73,30 @@
             </div>
              <div class="d-flex align-items-center justify-content-center">
             <div class="video-container">
-             
-             <iframe 
-             v-if="videoKey"
-     :src="`https://www.youtube.com/embed/${videoKey}`"
-      title="YouTube video player" frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
-      gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <div class="iframe-container" v-html="store.aboutUs?.video"></div>
             </div>
              
              </div>
         
         </div>
+    <loading v-if="store.pendingAbout"/>
+
     </div>
 </template>
 
 
 <script setup>
-import axios from 'axios';
+import { useHomeStore } from "@/stores/home";
+let store = useHomeStore();
 const localePath = useLocalePath();
 const { locale } = useI18n();
-
-const router = useRouter();
-
-
 let pending = ref(false);
-let aboutArr = ref();
-const getAboutData = async ()=>{
-    pending.value = true;
-  let result = await axios.get(`https://control.codecar.com.sa/api/about`, {
-    headers: {
-      "Content-Language": `${locale.value}`,
-    },
-  });
-
-if(result.status == 200){
-    pending.value = false;
-    aboutArr.value = result.data.data;
-}
-
-}
-
-let videoKey = ref(null);
-const getDesc = async () => {
-  let result = await axios.get(`https://control.codecar.com.sa/api/allsettings`, {
-    headers: {
-      "Content-Language": `${locale.value}`,
-    },
-  });
-  videoKey.value = result.data.data.video_url;
-}
+let isLoading = ref(store.pendingAbout);
+store.getAbout(); 
+// watch([()=> store.pendingAbout] , ([val1])=>{
+//   isLoading.value = val1;
+// })
 onMounted(() => {
-    getDesc();
-    getAboutData();
 });
 
 </script>

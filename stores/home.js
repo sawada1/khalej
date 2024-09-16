@@ -1,6 +1,6 @@
 import { ref, onMounted, watch } from "vue";
 import { defineStore } from "pinia";
-import { useNuxtApp } from '#app';
+import { useNuxtApp } from "#app";
 
 export const useHomeStore = defineStore("home", () => {
   const { $axios } = useNuxtApp();
@@ -27,7 +27,9 @@ export const useHomeStore = defineStore("home", () => {
   const loading = ref(false);
   const loadingEdit = ref(false);
   const errorSubmit = ref();
+  const aboutUs = ref();
   const ipAddress = ref();
+  const pendingAbout = ref(false);
 
   const CACHE_EXPIRATION = 300000; // 5 minutes in milliseconds
 
@@ -51,84 +53,95 @@ export const useHomeStore = defineStore("home", () => {
 
   // Fetch brands with caching logic
   async function getBrands() {
-         const result = await $axios.get('brands');
-        if (result.status >= 200) {
-          brands.value = result.data.data;
-        }
+    const result = await $axios.get("brands");
+    if (result.status >= 200) {
+      brands.value = result.data.data;
+    }
   }
 
   // Fetch cars with caching logic
   async function getCars() {
-         const result = await $axios.get('cars');
-        if (result.status >= 200) {
-          carsHome.value = result.data.data;
-        }
+    const result = await $axios.get("cars");
+    if (result.status >= 200) {
+      carsHome.value = result.data.data;
+    }
   }
   async function getCarsByBrand(obj) {
-         const result = await $axios.get('BrandModel',{
-          params:{
-            brand_id: typeof obj == "object" ? [...obj] : [obj]
-          }
-         });
-        if (result.status >= 200) {
-          cars.value = result.data.cars;
-          models.value = result.data.models;
-        }
+    const result = await $axios.get("BrandModel", {
+      params: {
+        brand_id: typeof obj == "object" ? [...obj] : [obj],
+      },
+    });
+    if (result.status >= 200) {
+      cars.value = result.data.cars;
+      models.value = result.data.models;
+    }
   }
   async function getCarsByBrand2(obj) {
-         const result = await $axios.get('BrandModel',{
-          params:{
-            brand_id: typeof obj == "object" ? [...obj] : [obj]
-          }
-         });
-        if (result.status >= 200) {
-          SearchCars.value = result.data.cars;
-          SearchModels.value = result.data.models;
-        }
+    const result = await $axios.get("BrandModel", {
+      params: {
+        brand_id: typeof obj == "object" ? [...obj] : [obj],
+      },
+    });
+    if (result.status >= 200) {
+      SearchCars.value = result.data.cars;
+      SearchModels.value = result.data.models;
+    }
   }
   async function getBranches() {
-         const result = await $axios.get('branchs');
-        if (result.status >= 200) {
-          branches.value = result.data.data;
-        }
+    const result = await $axios.get("branchs");
+    if (result.status >= 200) {
+      branches.value = result.data.data;
+    }
+  }
+  async function getAbout() {
+    pendingAbout.value = true;
+    const result = await $axios.get("aboutUs");
+    if (result.status >= 200) {
+      pendingAbout.value = false;
+      aboutUs.value = result.data.data[0];
+      //   setTimeout(() => {
+      //     pendingAbout.value = true;
+      // }, 500);
+    }
   }
   async function getSocial() {
-         const result = await $axios.get('social');
-        if (result.status >= 200) {
-          social.value = result.data.data;
-        }
+    const result = await $axios.get("social");
+    if (result.status >= 200) {
+      social.value = result.data.data;
+    }
   }
   async function getBanks() {
-         const result = await $axios.get('banks');
-        if (result.status >= 200) {
-          banks.value = result.data.data;
-        }
+    const result = await $axios.get("banks");
+    if (result.status >= 200) {
+      banks.value = result.data.data;
+    }
   }
   async function getCities() {
-         const result = await $axios.get('city');
-        if (result.status >= 200) {
-          city.value = result.data.data;
-        }
+    const result = await $axios.get("city");
+    if (result.status >= 200) {
+      city.value = result.data.data;
+    }
   }
   async function getChoose() {
-         const result = await $axios.get('chosseUs');
-        if (result.status >= 200) {
-          chooseArr.value = result.data.data;
-        }
+    const result = await $axios.get("chosseUs");
+    if (result.status >= 200) {
+      chooseArr.value = result.data.data;
+    }
   }
   async function getWebsiteData() {
-         const result = await $axios.get('websiteData');
-        if (result.status >= 200) {
-          websiteData.value = result.data.data;
-        }
+    const result = await $axios.get("websiteData");
+    if (result.status >= 200) {
+      websiteData.value = result.data.data;
+    }
   }
-   function getIpAddress() {
-    fetch('https://api.ipify.org?format=json')
-    .then(response => response.json())
-    .then(data => {
-      ipAddress.value = data.ip;
-    })
-    .catch(error => console.error('Error fetching IP address:', error));
+  function getIpAddress() {
+    fetch("https://api.ipify.org?format=json")
+      .then((response) => response.json())
+      .then((data) => {
+        ipAddress.value = data.ip;
+      })
+      .catch((error) => console.error("Error fetching IP address:", error));
   }
 
   // Fetch models with caching logic
@@ -152,7 +165,6 @@ export const useHomeStore = defineStore("home", () => {
   //       }
   // }
 
-
   return {
     errors,
     brands,
@@ -172,6 +184,9 @@ export const useHomeStore = defineStore("home", () => {
     branches,
     SearchModels,
     SearchCars,
+    getAbout,
+    aboutUs,
+    pendingAbout,
     city,
     getWebsiteData,
     getSocial,
