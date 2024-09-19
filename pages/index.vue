@@ -154,12 +154,13 @@
       </div>
       <div class="row">
         <div
-          v-for="item in store.chooseArr"
+          v-for="item in store.chooseArr.slice(0 , 4)"
           :key="item.id"
           class="col-12 col-xl-3 col-lg-4 col-md-6"
         >
           <div class="box mb-5 mb-xl-0">
-           <NuxtImg :src="item.icon" format="webp" quality="80" style="object-fit: contain;" :alt="item.title" />
+            <!-- style="object-fit: contain;" -->
+           <NuxtImg :src="item.icon" format="webp" quality="80"  :alt="item.title" />
 
             <h5>{{ item.title }}</h5>
             <p>

@@ -8,10 +8,10 @@
               <div class="comp-price">
                 <span> {{ $t("comPrice") }} </span>
               </div>
-              <h2 class="nameCar">{{ mainCar.CarName }}</h2>
+              <h2 class="nameCar">{{ mainCar.name }}</h2>
               <div class="colors-container">
                 <div class="d-flex flex-column gap-4 stallment-price">
-                  <span> {{ $t("installCar") }} </span>
+                  <span> {{ $t("price") }} </span>
                   <h5>{{ mainCar.price }} {{ $t("curr") }}</h5>
                 </div>
                 <div class="seprator"></div>

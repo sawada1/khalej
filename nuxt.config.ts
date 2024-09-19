@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   image: {
     format: ['webp'],
     provider: 'ipx', // Default image provider
-    domains: ['https://admin.alkhalej.webstdy.com'], // Add your API domain here
+    // domains: ['https://admin.alkhalej.webstdy.com'], // Add your API domain here
     quality: 80,
      presets: {
        default: {
@@ -52,7 +52,8 @@ export default defineNuxtConfig({
     ],
     defaultLocale: "ar",
   },
-  ssr: true,
+  ssr: true, // Enable Server-Side Rendering
+  target: 'server', // Use 'server' for SSR deployment
   nitro: {
     prerender: {
       crawlLinks: true,

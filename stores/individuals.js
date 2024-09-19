@@ -75,7 +75,7 @@ const { locale } = useI18n();
       }
     }
   }
-  async function getContact2(obj , resetForm , createToast) {
+  async function getContact2(obj , resetForm) {
     isLoading2.value = true;
     try{
       let form = new FormData();
@@ -87,6 +87,8 @@ const { locale } = useI18n();
       if (result.status >= 200) {
         isLoading2.value = false;
         errors2.value = undefined;
+        const moshaToastify = await import("mosha-vue-toastify");
+        const { createToast } = moshaToastify;
         createToast(
           locale.value == "ar"
             ? "تم التواصل بنجاح "

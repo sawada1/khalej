@@ -310,15 +310,23 @@
                 </clipPath>
               </defs>
             </svg>
-            <div class="label-container">
-              <label for=""> {{ $t("enterFirst") }} </label>
-              <input
-                type="text"
-                v-model="organization_activity"
-                v-bind="organization_activityAttrs"
-                :placeholder="$t('compAct')"
-              />
-            </div>
+              <Dropdown
+              :filter-placeholder="$t('search')"
+              v-model="organization_activity"
+              v-bind="organization_activityAttrs"
+              :options="activities"
+              filter
+              optionValue="value"
+              optionLabel="name"
+              :placeholder="$t('compAct')"
+              class=""
+            >
+              <template #option="slotProps">
+                <div class="flex align-items-center">
+                  <div>{{ slotProps.option.name }}</div>
+                </div>
+              </template>
+            </Dropdown>
           </div>
           <div class="text-danger">{{ errors.organization_activity }}</div>
           <div class="text-danger" v-if="errorsApi">
@@ -365,6 +373,7 @@
                 </div>
               </template>
             </Dropdown>
+           
           </div>
           <div class="text-danger">{{ errors.bank_id }}</div>
           <div class="text-danger" v-if="errorsApi">
@@ -404,7 +413,28 @@ let years = ref([1, 2, 3, 4, 5, 6]);
 let errorsApi = ref();
 const props = defineProps(["cars"]);
 const { locale } = useI18n();
-
+ let activities = ref([
+  {
+    name: locale.value == 'ar' ? 'تجارية' : 'Commercial',
+    value: 'Commercial',
+  },
+  {
+    name: locale.value == 'ar' ? 'أغذية' : 'Food',
+    value: 'Food',
+  },
+  {
+    name: locale.value == 'ar' ? 'تأجير سيارات' : 'Car Rent',
+    value: 'Car Rent',
+  },
+  {
+    name: locale.value == 'ar' ? 'مقاولات' : 'Construction',
+    value: 'Construction',
+  },
+  {
+    name: locale.value == 'ar' ? 'أخري' : 'etc',
+    value: 'etc',
+  },
+ ]);
 const { errors, handleSubmit, values, resetForm, defineField } = useForm({
   validationSchema: yup.object({
     organization_email: yup.string().email(locale.value == 'ar' ? 'يجب أن يكون البريد الإلكتروني بريدًا إلكترونيًا صالحًا' : 'email must be a valid email').email(locale.value == 'ar' ? 'يجب أن يكون البريد الإلكتروني بريدًا إلكترونيًا صالحًا' : 'email must be a valid email'),

@@ -100,12 +100,15 @@
                 @click="dropdown1.toggle()"
               >
                 <button class="dropdown-toggle-container">
-                  <span class="text-drop">
+                  <span v-if="arr.length >= 1" class="text-drop">
                     {{
                       dropdown1.selected.name
                         ? dropdown1.selected.name
                         : dropdown1.selected
                     }}
+                  </span>
+                  <span v-else class="text-drop">
+                    {{ dropdownVal1 }}
                   </span>
                   <img
                     class="icon"
@@ -118,7 +121,7 @@
                   <label
                     class="dropdown-item"
                     @click="dropdown1.select(item)"
-                    v-for="(item, index) in dropdown1.items"
+                    v-for="(item, index) in store2.brands"
                     :key="item.id"
                     :for="`checkBox-${item.id}`"
                   >
@@ -170,6 +173,7 @@
                 </div>
               </div>
             </div>
+            
             <div class="inp">
               <label for=""> {{ $t("models") }} </label>
               <div
@@ -179,12 +183,15 @@
                 @click="dropdown2.toggle()"
               >
                 <button class="dropdown-toggle-container">
-                  <span class="text-drop">
+                  <span v-if="arr2.length >= 1" class="text-drop">
                     {{
                       dropdown2.selected.name
                         ? dropdown2.selected.name
                         : dropdown2.selected
                     }}
+                  </span>
+                  <span v-else class="text-drop">
+                    {{ dropdownVal2 }}
                   </span>
                   <img
                     class="icon"
@@ -197,7 +204,7 @@
                   <label
                     class="dropdown-item"
                     @click="dropdown2.select(item)"
-                    v-for="(item, index) in dropdown2.items"
+                    v-for="(item, index) in store2.models"
                     :key="item.id"
                     :for="`checkBox-${item.id}`"
                   >
@@ -257,12 +264,15 @@
                 @click="dropdown3.toggle()"
               >
                 <button class="dropdown-toggle-container">
-                  <span class="text-drop">
+                  <span v-if="arr3.length >= 1" class="text-drop">
                     {{
                       dropdown3.selected.name
                         ? dropdown3.selected.name
                         : dropdown3.selected
                     }}
+                  </span>
+                  <span v-else class="text-drop">
+                    {{ dropdownVal3 }}
                   </span>
                   <img
                     class="icon"
@@ -271,11 +281,12 @@
                     alt="arrow"
                   />
                 </button>
+                
                 <div v-if="dropdown3.isOpen" class="dropdown-menu" @click.stop>
                   <label
                     class="dropdown-item"
                     @click="dropdown3.select(item)"
-                    v-for="(item, index) in dropdown3.items"
+                    v-for="(item, index) in store2.cars"
                     :key="item.id"
                     :for="`checkBox-${item.id}`"
                   >
@@ -377,7 +388,7 @@
             >
             </v-progress-linear>
 
-            <button class="addMoreBtn"  @click="loadMore()">{{ $t("showmore") }}</button>
+            <button v-if="store.page < pageCount" class="addMoreBtn"  @click="loadMore()">{{ $t("showmore") }}</button>
           </div>
         </div>
        
@@ -489,24 +500,35 @@ watch(
     isLoading.value = val2;
     isLoading3.value = val7;
     pendingState.value = filteredCar.value.length < 1 ? true : false;
-    dropdown1.value.items = val5;
-    dropdown2.value.items = val6;
-    dropdown3.value.items = val4;
+    arr.value = val5.length >= 1 ? arr.value : [];
+    arr2.value = val6.length >=1 ? arr2.value : [];
+    arr3.value = val4.length >= 1 ? arr3.value : [];
     // valuePrices.value = [Number(val8?.minPrice) , Number(val8?.maxPrice)]
   }
 );
 watch(
   [() => route.query.id, () => route.query.model, () => route.query.car_id],
-  ([val7, val8, val9]) => {
-    if (val7 || val8 || val9) {
-      arr.value = val7 ? [val7] : [];
-      arr2.value = val8 ? [val8] : [];
-      arr3.value = val9 ? [val9] : [];
+  ([val1, val2, val3 , val4 , val5 , val6]) => {
+    if (val1 || val2 || val3) {
+      arr.value = val1 ? [val1] : [];
+      arr2.value = val2 ? [val2``] : [];
+      arr3.value = val3 ? [val3] : [];
       store.getSearchCars({
-        brand_id: val7,
-        model_id: val8,
-        car_id: val9,
+        brand_id: val1,
+        model_id: val2,
+        car_id: val3,
       });
+    }
+  
+  }
+);
+watch(
+  [ () => arr.value , ()=> arr2.value , ()=> arr3.value],
+  ([val1, val2, val3]) => {
+    if(arr.value.length < 0){
+      arr2.value = [];
+      arr3.value = [];
+      dropdown1.value.select = '';
     }
   }
 );

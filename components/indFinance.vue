@@ -83,6 +83,7 @@
             <input
               type="number"
               v-model="price"
+              readonly
               v-bind="priceAttrs"
               :placeholder="$t('price')"
             />
@@ -508,15 +509,23 @@
                 </clipPath>
               </defs>
             </svg>
-            <div class="label-container">
-              <label for=""> {{ $t('work1') }} </label>
-              <input
-                type="text"
-                v-model="work"
-                v-bind="workAttrs"
-                :placeholder="$t('work2')"
-              />
-            </div>
+            <Dropdown
+              :filter-placeholder="$t('search')"
+              v-model="work"
+              v-bind="workAttrs"
+              :options="sectors"
+              filter
+              optionValue="value"
+              optionLabel="name"
+              :placeholder="$t('work2')"
+              class=""
+            >
+              <template #option="slotProps">
+                <div class="flex align-items-center">
+                  <div>{{ slotProps.option.name }}</div>
+                </div>
+              </template>
+            </Dropdown>
           </div>
           <div class="text-danger">{{ errors.work }}</div>
           <div class="text-danger" v-if="errorsApi">
@@ -597,6 +606,26 @@ let years = ref([1, 2, 3, 4, 5, 6]);
 const { locale } = useI18n();
 let errorsApi = ref();
 const props = defineProps(["cars"]);
+
+let sectors = ref([
+  {
+    name: locale.value == 'ar' ? 'خاص' : 'Private',
+    value: 'Private',
+  },
+  {
+    name: locale.value == 'ar' ? 'حكومي مدني' : 'Civil Government',
+    value: 'Civil Government',
+  },
+  {
+    name: locale.value == 'ar' ? 'حكومي عسكري' : 'Military Government',
+    value: 'Military Government',
+  },
+  {
+    name: locale.value == 'ar' ? 'متقاعد' : 'Retired',
+    value: 'Retired',
+  },
+ ]);
+
 const { errors, handleSubmit, values, resetForm, defineField } = useForm({
   validationSchema: yup.object({
     // email: yup.string().email().required(),

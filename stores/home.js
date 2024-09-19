@@ -67,14 +67,20 @@ export const useHomeStore = defineStore("home", () => {
     }
   }
   async function getCarsByBrand(obj) {
-    const result = await $axios.get("BrandModel", {
-      params: {
-        brand_id: typeof obj == "object" ? [...obj] : [obj],
-      },
-    });
-    if (result.status >= 200) {
-      cars.value = result.data.cars;
-      models.value = result.data.models;
+    console.log(obj)
+    if(obj?.length >= 1){
+      const result = await $axios.get("BrandModel", {
+        params: {
+          brand_id: typeof obj == "object" ? [...obj] : [obj],
+        },
+      });
+      if (result.status >= 200) {
+        cars.value = result.data.cars;
+        models.value = result.data.models;
+      }
+    } else{
+      cars.value = [];
+      models.value = [];
     }
   }
   async function getCarsByBrand2(obj) {

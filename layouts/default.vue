@@ -11,6 +11,12 @@
 
 
 <script setup>
+import { useContactStore } from "@/stores/contact";
+import { useHomeStore } from "@/stores/home";
+import { useCareerStore } from "@/stores/career";
+let store3 = useCareerStore();
+let store = useContactStore();
+ let store2 = useHomeStore();
 const isLoading = ref(true);
 const checkInt = ref(false);
 const { locale, setLocale } = useI18n();
@@ -46,7 +52,8 @@ onBeforeMount(() => {
 watch(
   [() => locale.value],
   ([val]) => {
-    console.log('dsdsd');
+    store.questions = [];
+    store3.careers = [];
     useHead({
       htmlAttrs: {
         lang: val == 'en' ? "en" : "ar",

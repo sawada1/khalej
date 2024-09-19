@@ -198,6 +198,7 @@
         </div>
         <div class="col-12 col-xl-6 col-lg-6">
           <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7444211.933521267!2d42.17309085817884!3d24.351051758359546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15e7b33fe7952a41%3A0x5960504bc21ab69b!2sSaudi%20Arabia!5e0!3m2!1sen!2seg!4v1726744505555!5m2!1sen!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             <div class="d-flex align-items-center flex-column flex-xl-row flex-lg-row main">
               <div v-if="actMap" class="cities-drop" :class="{'custom': store2.branches.length <= 2}">
                 <div v-for="item in store2.branches" :key="item"   class="city">
@@ -293,7 +294,7 @@
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
-        <button class="addMoreBtn" @click="loadMore"> {{ $t('showmore') }} </button>
+        <button v-if="store.page < pageCount" class="addMoreBtn" @click="loadMore"> {{ $t('showmore') }} </button>
 
       </div>
 

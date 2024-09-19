@@ -88,10 +88,11 @@
               <div class="news-box">
                 <h5>{{ $t("newss1") }}</h5>
                 <div class="boxes">
-                  <div v-for="item in mainItem.latestNews" class="box my-2">
+                  <div v-for="item , index in mainItem.latestNews"  class=" my-2">
+                  <div v-if="item.highlighted_news == 1" class="box">
                     <div class="image">
                       <!-- <img src="~/assets/imgs/news1.png" alt="car" /> -->
-                      <img :src="item.highlighted_image" alt="car" />
+                      <img :src="item.main_image" alt="car" />
                     </div>
                     <div class="text w-100">
                       <h6> {{ item.title }} </h6>
@@ -136,6 +137,7 @@
                         </div>
                       </div>
                     </div>
+                  </div>
                   </div>
                 </div>
               </div>
