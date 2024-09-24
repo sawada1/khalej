@@ -6,15 +6,16 @@
           <div class="col-12 col-xl-5 col-lg-5">
             <div class="details-container">
               <div class="comp-price">
-                <span> {{ $t("comPrice") }} </span>
+                <span v-if="mainCar?.other_text_ar"> {{ locale == 'ar' ? mainCar?.other_text_ar : mainCar?.other_text_en }} </span>
+                <span v-else> {{ $t(mainCar?.price_field_status) }} </span>
               </div>
               <h2 class="nameCar">{{ mainCar.name }}</h2>
               <div class="colors-container">
-                <div class="d-flex flex-column gap-4 stallment-price">
+                <div v-if="mainCar?.price_field_status == 'show'" class="d-flex flex-column gap-4 stallment-price">
                   <span> {{ $t("price") }} </span>
                   <h5>{{ mainCar.price }} {{ $t("curr") }}</h5>
                 </div>
-                <div class="seprator"></div>
+                <div v-if="mainCar?.price_field_status == 'show'" class="seprator"></div>
                 <div class="d-flex flex-column gap-4 main-colors">
                   <span> {{ $t("availColors") }} </span>
                   <div class="colors">

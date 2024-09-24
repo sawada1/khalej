@@ -81,6 +81,16 @@ export default defineNuxtConfig({
         {
           src: "/js/bootstrap.bundle.min.js",
         },
+        {
+          src: "/jquery.js",
+        },
+        {
+          type: 'text/javascript',
+          children: `
+            var $ = jQuery.noConflict();
+          `
+        },
+      
       ],
     },
   },

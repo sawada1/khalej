@@ -787,6 +787,11 @@ html[dir="ltr"] .payment-order-section{
       align-items: center;
       gap: 10px;
 
+      img{
+        width: 24px;
+        height: 24px;
+      }
+
       span {
         font-size: 14px;
         font-style: normal;

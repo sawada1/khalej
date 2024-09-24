@@ -370,6 +370,12 @@ const removeStore = () => {
   store2.filteredCar = [];
 }
 
+function handleBackButton() {
+  console.log('Back button pressed!');
+  // Add your custom logic here, like making a function call
+  removeStore();
+}
+
 const handleUpdatePopup = (newState) => {
   openPopup.value = newState;
 };
@@ -440,6 +446,7 @@ const changeLang = async () => {
 };
 
 onMounted(() => {
+  window.addEventListener('popstate', handleBackButton);
   window.addEventListener("scroll", function () {
     if (this.window.scrollY >= 100) {
       activeNav.value = true;
@@ -467,6 +474,7 @@ onMounted(() => {
   dropdown3.value.items = cars.value;
 });
 onUnmounted(() => {
+  window.removeEventListener('popstate', handleBackButton);
   document.removeEventListener("click", handleClickOutside);
 });
 

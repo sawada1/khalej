@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="min-height: 100vh">
+  <div v-if="changeStat == 1" class="container" style="min-height: 100vh">
     <div class="container order-finance-container">
       <div class="header">
         <h1> {{ $t('reqOrd') }} </h1>
@@ -46,6 +46,7 @@
         <indCash :cars="cars" />
        </div>
     </div>
+    <otpContainer v-if="changeStat == 2" :changeStat2="changeStat2"/>
   </div>
 </template>
 
@@ -55,6 +56,8 @@ let activeBtn = ref(1);
 const { locale } = useI18n();
 const localePath = useLocalePath();
 let store2 = useHomeStore();
+let changeStat = ref(1);
+let changeStat2 = ref(1);
 store2.getCars();
 store2.getBanks();
 store2.getCities();

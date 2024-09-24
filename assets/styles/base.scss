@@ -98,10 +98,10 @@ html[dir="ltr"] body{
     border: 1px solid $yellow;
 
     span {
-      font-size: 14px;
+      font-size: 14px !important;
       font-style: normal;
-      font-weight: 600;
-      color: $yellow;
+      font-weight: 600 !important;
+      color: $yellow !important;
     }
   }
 

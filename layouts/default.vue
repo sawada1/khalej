@@ -27,6 +27,8 @@ const handleOffline = () => {
 const handleOnline = () => {
   checkInt.value = false;
 };
+
+
 onMounted(() => {
     isLoading.value = false;
     window.addEventListener('online', handleOnline);
