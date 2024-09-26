@@ -11,6 +11,11 @@ const { locale } = useI18n();
   const isLoading = ref(false);
   const isLoading2 = ref(false);
   const pendingState = ref(false);
+  const paymentOtp = ref(1);
+  const pendingOtp1 = ref(false);
+  const phone1 = ref("");
+  const otp1 = ref('');
+  const orderInd1 = ref('');
 
   async function getContact(obj , resetForm) {
     isLoading.value = true;
@@ -89,6 +94,11 @@ const { locale } = useI18n();
         errors2.value = undefined;
         const moshaToastify = await import("mosha-vue-toastify");
         const { createToast } = moshaToastify;
+        //  const result2 = await $axios.post(`api/otp`, {
+        //  params:{
+        //   recipients: `+966${obj.phone}`
+        //  }
+        //  });
         createToast(
           locale.value == "ar"
             ? "تم التواصل بنجاح "
@@ -116,6 +126,29 @@ const { locale } = useI18n();
       if(error.response){
         isLoading2.value = false;
         errors2.value = error.response.data.errors;
+      }
+    }
+  }
+
+  const sendOtp = async () => {
+    let formBody = new FormData();
+    formBody.append("otp", otp1.value);
+    formBody.append("recipients", `+966${phone1.value}`);
+    // formBody.append("order_id", orderInd1.value);
+    try {
+      let result = await $axios.post(`valid/otp`, formBody,);
+      if (result.status >= 200) {
+        
+        paymentOtp.value = 2;
+        pendingOtp1.value = false;
+        // error1.value = '';
+    
+      }
+    } catch (errorss) {
+      console.log(errorss);
+      if (errorss.response) {
+        pendingOtp1.value = false;
+        // error1.value = errorss.response.data.errors;
       }
     }
   }

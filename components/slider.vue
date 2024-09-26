@@ -17,36 +17,36 @@ import axios from "axios";
     let url = getUrl();
     let mainSlider = ref("");
 
-    const getHead = async ()=>{
-        const { data } = await axios.get('https://slider.webstdy.com/RevSliderEmbedderheadIncludes.php');
+    // const getHead = async ()=>{
+    //     const { data } = await axios.get('https://slider.webstdy.com/RevSliderEmbedderheadIncludes.php');
         
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(data, 'text/html');
+    //     const parser = new DOMParser();
+    //     const doc = parser.parseFromString(data, 'text/html');
 
-        const links = [...doc.querySelectorAll('link')];
-        const scripts = [...doc.querySelectorAll('script')];
+    //     const links = [...doc.querySelectorAll('link')];
+    //     const scripts = [...doc.querySelectorAll('script')];
  
-        const headLinks = links.map(link => ({
-          rel: link.getAttribute('rel'),
-          href: link.getAttribute('href'),
-          type: link.getAttribute('type'),
-          media: link.getAttribute('media'),
-        }));
+    //     const headLinks = links.map(link => ({
+    //       rel: link.getAttribute('rel'),
+    //       href: link.getAttribute('href'),
+    //       type: link.getAttribute('type'),
+    //       media: link.getAttribute('media'),
+    //     }));
 
-        const headScripts = scripts.map(script => ({
-          type: script.getAttribute('type'),
-          src: script.getAttribute('src'),
-          async: script.hasAttribute('async') ? true : false,
-        }));
-        var $ = jQuery.noConflict();
-        useHead({
-          link: headLinks,
-          script: headScripts,
-        });
-    }
+    //     const headScripts = scripts.map(script => ({
+    //       type: script.getAttribute('type'),
+    //       src: script.getAttribute('src'),
+    //       async: script.hasAttribute('async') ? true : false,
+    //     }));
+    //     var $ = jQuery.noConflict();
+    //     useHead({
+    //       link: headLinks,
+    //       script: headScripts,
+    //     });
+    // }
     const getSlider = async () => {
       // eval("var $ = jQuery.noConflict();");
-      getHead();
+      // getHead();
       try {
         const additionalContent = await axios.get('https://slider.webstdy.com/RevSliderEmbedderputRevSlider.php?slide=alkathiri_ar');
         // Extract script tags

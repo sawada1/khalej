@@ -76,6 +76,12 @@ export default defineNuxtConfig({
           crossorigin: "anonymous",
           referrerpolicy: "no-referrer",
         },
+        {
+          rel: "stylesheet",
+          href: "https://slider.webstdy.com/revslider/public/assets/css/settings.css",
+          type: "text/css",
+          media: "all",
+        },
       ],
       script: [
         {
@@ -89,6 +95,12 @@ export default defineNuxtConfig({
           children: `
             var $ = jQuery.noConflict();
           `
+        },
+        {
+          src: "https://slider.webstdy.com/revslider/public/assets/js/jquery.themepunch.tools.min.js",
+        },
+        {
+          src: "https://slider.webstdy.com/revslider/public/assets/js/jquery.themepunch.revolution.min.js",
         },
       
       ],

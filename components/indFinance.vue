@@ -53,7 +53,7 @@
             >
               <template #option="slotProps">
                 <div class="flex align-items-center">
-                  <div @click="price = slotProps.option.price">
+                  <div @click="price = slotProps.option.selling_price">
                     {{ slotProps.option.name }}
                   </div>
                 </div>
