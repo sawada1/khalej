@@ -352,8 +352,12 @@
 <script setup>
 import { useHomeStore } from "@/stores/home";
 import { useCarStore } from "@/stores/car";
+import { useindividualsStore } from "@/stores/individuals";
+import { useCompanyStore } from "@/stores/company";
 let store = useHomeStore();
 let store2 = useCarStore();
+let store3 = useindividualsStore();
+let store4 = useCompanyStore();
 store.getBrands();
 store.getIpAddress();
 store.getWebsiteData();
@@ -368,6 +372,10 @@ let openPopup = ref(false);
 const removeStore = () => {
   store2.page = 1;
   store2.filteredCar = [];
+  store3.checkOtp = 1;
+  store4.checkOtp = 1;
+  store3.changeStat2 = 1;
+  store4.changeStat2 = 1;
 }
 
 function handleBackButton() {

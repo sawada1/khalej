@@ -7,6 +7,7 @@
         alt="Separator"
       />
       <div class="main-links-container">
+      <div class="d-flex gap-5">
         <div class="image-container">
           <nuxt-link :to="localePath('/')">
             <img
@@ -205,6 +206,7 @@
             </a>
           </div>
         </div>
+      </div>
         <div class="all-links">
           <div class="links-container">
             <h4>{{ $t("impLinks") }}</h4>
@@ -279,6 +281,41 @@
             </div>
           </div>
         </div>
+      <div class="subscripe-container">
+        <h3> انضم إلى القائمة البريدية  </h3>
+        <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="50"
+              height="3"
+              viewBox="0 0 50 3"
+              fill="none"
+            >
+              <rect
+                x="11.9043"
+                width="38.0952"
+                height="3.00022"
+                rx="1.50011"
+                fill="#2D9596"
+              />
+              <rect
+                opacity="0.9"
+                width="7.14286"
+                height="3.00022"
+                rx="1.50011"
+                fill="#2D9596"
+              />
+            </svg>
+        <p> لا يفوتك كل جديد من كودكار بالإنضمام إلى قائمة الرسائل. </p>
+        <div class="search-input">
+        <div class="inputt">
+        <input type="email" value="" placeholder="ادخل البريد الالكتروني"></div>
+        <button class="">
+        <div class="d-flex align-items-center gap-2">
+        <span>الانضمام</span>
+        </div>
+        </button>
+        </div>
+      </div>
       </div>
       <div class="foot-line">
         <span> © {{ $t("foot") }}</span>

@@ -176,16 +176,23 @@
       gap: 40px;
       text-align: center;
     }
+    .subscripe-container{
+      align-items: center;
+    }
     .image-container {
       p {
         width: 100% !important;
       }
       .icons {
         justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px !important;
       }
     }
     .all-links {
-      gap: 80px !important;
+      gap: 50px !important;
+      justify-content: center;
+      flex-direction: column;
     }
     .foot-line {
       gap: 20px;
@@ -222,6 +229,7 @@
     .mySwiper {
       width: 100%;
       height: 350px;
+      margin: 0;
     }
   }
   .order-finance-container {

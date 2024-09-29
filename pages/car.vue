@@ -3,7 +3,7 @@
     <div v-if="mainCar" class="container">
       <div class="product-page">
         <div class="row">
-          <div class="col-12 col-xl-5 col-lg-5">
+          <div class="col-12 col-xl-4 col-lg-4">
             <div class="details-container">
               <div class="comp-price">
                 <span v-if="mainCar?.other_text_ar"> {{ locale == 'ar' ? mainCar?.other_text_ar : mainCar?.other_text_en }} </span>
@@ -347,7 +347,7 @@
               </v-expansion-panels>
             </div>
           </div>
-          <div class="col-12 col-xl-7 col-lg-7 bg-dange">
+          <div class="col-12 col-xl-8 col-lg-8 bg-dange">
             <swiper
               :spaceBetween="30"
               :pagination="{ clickable: true }"

@@ -4,7 +4,7 @@ import { useNuxtApp } from "#app";
 import "mosha-vue-toastify/dist/style.css";
 
 export const useindividualsStore = defineStore("individuals", () => {
-const { locale } = useI18n();
+const { locale , t } = useI18n();
   const { $axios } = useNuxtApp();
   const errors = ref({});
   const errors2 = ref({});
@@ -12,13 +12,31 @@ const { locale } = useI18n();
   const isLoading2 = ref(false);
   const pendingState = ref(false);
   const paymentOtp = ref(1);
+  const checkOtp = ref(1);
   const pendingOtp1 = ref(false);
   const phone1 = ref("");
+  const phone2 = ref("");
   const otp1 = ref('');
+  const otp2 = ref('');
   const orderInd1 = ref('');
-
+  const changeStat2 = ref(1);
+  const getToast = async(message) =>{
+    const moshaToastify = await import("mosha-vue-toastify");
+    const { createToast } = moshaToastify;
+    createToast(t(message),
+      {
+        toastBackgroundColor: "#2D9596",
+        position: "top-right",
+        type: "success",
+        transition: "bounce",
+        showIcon: "true",
+        timeout: 3000,
+      }
+    );
+  }
   async function getContact(obj , resetForm) {
     isLoading.value = true;
+    phone1.value = `+966${obj.phone}`;
     try{
       let form = new FormData();
       form.append("name" , obj.name);
@@ -36,23 +54,12 @@ const { locale } = useI18n();
       form.append("stumbles" , obj.stumbles);
       const result = await $axios.post(`individuals-finance`, form);
       if (result.status >= 200) {
+        getToast('sendOtp');
         isLoading.value = false;
         errors.value = undefined;
-        const moshaToastify = await import("mosha-vue-toastify");
-        const { createToast } = moshaToastify;
-        createToast(
-          locale.value == "ar"
-            ? "تم التواصل بنجاح "
-            : "Communication was successful",
-          {
-            toastBackgroundColor: "#2D9596",
-            position: "top-right",
-            type: "success",
-            transition: "bounce",
-            showIcon: "true",
-            timeout: 3000,
-          }
-        );
+        checkOtp.value = 2;
+        otp1.value = result.data?.otp;
+       
         resetForm({
           values: {
             city_id: "",
@@ -82,6 +89,7 @@ const { locale } = useI18n();
   }
   async function getContact2(obj , resetForm) {
     isLoading2.value = true;
+    phone1.value = `+966${obj.phone}`;
     try{
       let form = new FormData();
       form.append("name" , obj.name);
@@ -90,28 +98,11 @@ const { locale } = useI18n();
       form.append("price" , obj.price);
       const result = await $axios.post(`individuals-cash`, form);
       if (result.status >= 200) {
+        getToast('sendOtp');
+        otp1.value = result.data?.otp;
+        checkOtp.value = 2;
         isLoading2.value = false;
         errors2.value = undefined;
-        const moshaToastify = await import("mosha-vue-toastify");
-        const { createToast } = moshaToastify;
-        //  const result2 = await $axios.post(`api/otp`, {
-        //  params:{
-        //   recipients: `+966${obj.phone}`
-        //  }
-        //  });
-        createToast(
-          locale.value == "ar"
-            ? "تم التواصل بنجاح "
-            : "Communication was successful",
-          {
-            toastBackgroundColor: "#2D9596",
-            position: "top-right",
-            type: "success",
-            transition: "bounce",
-            showIcon: "true",
-            timeout: 3000,
-          }
-        );
         resetForm({
           values: {
             price: "",
@@ -130,18 +121,41 @@ const { locale } = useI18n();
     }
   }
 
-  const sendOtp = async () => {
+  const sendOtp = async (otp) => {
     let formBody = new FormData();
-    formBody.append("otp", otp1.value);
-    formBody.append("recipients", `+966${phone1.value}`);
+    formBody.append("otp", otp);
+    formBody.append("mobile", phone1.value);
     // formBody.append("order_id", orderInd1.value);
     try {
-      let result = await $axios.post(`valid/otp`, formBody,);
+      let result = await $axios.post(`valid/otp`, formBody);
       if (result.status >= 200) {
-        
+        getToast('sendOrder');
+        changeStat2.value = 2;
+        // checkOtp.value = 1;
         paymentOtp.value = 2;
+        otp1.value = '';
+        phone1.value = '';
         pendingOtp1.value = false;
         // error1.value = '';
+    
+      }
+    } catch (errorss) {
+      console.log(errorss);
+      if (errorss.response) {
+        pendingOtp1.value = false;
+        // error1.value = errorss.response.data.errors;
+      }
+    }
+  }
+  const reSendOtp = async () => {
+    let formBody = new FormData();
+    formBody.append("phone", phone1.value);
+    try {
+      let result = await $axios.post(`resend/otp`, formBody);
+      if (result.status >= 200) {
+        getToast('resendOtp');
+        otp1.value = result.data;
+        
     
       }
     } catch (errorss) {
@@ -159,8 +173,17 @@ const { locale } = useI18n();
     errors2,
     isLoading,
     pendingState,
+    changeStat2,
     isLoading2,
+    reSendOtp,
     getContact,
+    checkOtp,
+    paymentOtp,
+    pendingOtp1,
+    phone1,
+    orderInd1,
+    otp1,
+    sendOtp,
     getContact2
   };
 });

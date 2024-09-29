@@ -1,6 +1,6 @@
 <template>
-  <div class="container" style="min-height: 100vh">
-    <div class="container order-finance-container">
+  <div class="container" style="min-height: 75vh">
+    <div v-if="store.checkOtp == 1" class="container order-finance-container">
       <div class="header">
         <h1> {{ $t('reqOrd') }} </h1>
         <nuxt-link :to="localePath('/')">
@@ -46,10 +46,13 @@
        <companyCash  :cars="cars"/>
       </div>
     </div>
+    <otpContainer v-if="store.checkOtp == 2" :changeStat2="changeStat2Val" :reSendOtp="store.reSendOtp" :sendOtp="store.sendOtp" :otp="otpValue" style="margin-top: 80px;"/>
+
   </div>
 </template>
 
 <script setup>
+import { useCompanyStore } from "@/stores/company";
 const { locale } = useI18n();
 const localePath = useLocalePath();
 let activeBtn = ref(1);
@@ -57,6 +60,9 @@ import { useHomeStore } from "@/stores/home";
 let store2 = useHomeStore();
 store2.getCars();
 store2.getBanks();
+let store = useCompanyStore();
+const otpValue = computed(() => store.otp1);
+const changeStat2Val = computed(() => store.changeStat2);
 let cars = ref(store2.carsHome);
 useSeoMeta({
   title: locale.value == 'ar' ? ' طلب شراء ' : " Purchase order ",

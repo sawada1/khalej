@@ -1,8 +1,8 @@
 <template>
     <div>
-        
+        {{ check }}
       <div  class="confirm-container">
-        <div v-if="changeStat2 == 1" class="confirm-text">
+        <div v-if="check == 1" class="confirm-text">
           <client-only>
             <Vue3Lottie :animation-data="otpp" :height="200" :width="200" />
           </client-only>
@@ -12,19 +12,19 @@
           <p>
             {{ $t('otp2') }}
           </p>
-
-          <v-otp-input v-model="otp" style="direction: ltr !important;" :length="4"
+            {{ otp1 }}
+          <v-otp-input v-model="otp1" style="direction: ltr !important;" :length="4"
             placeholder="-"></v-otp-input>
           <!-- {{ otp }}
           {{ store.state.otpFin1 }} -->
           <!-- <span class="error-msg2" v-if="error1">{{
           error1
         }}</span> -->
-          <button class="resend" @click="resendOtp1()">{{ $t('reOtp') }}</button>
+          <button class="resend" @click="reSendOtp()">{{ $t('reOtp') }}</button>
 
-          <button @click="sendOtp()" class="send">{{ $t('follow') }}</button>
+          <button @click="sendOtp(otp)" class="send">{{ $t('follow') }}</button>
         </div>
-        <div v-if="changeStat2 == 2" class="confirm-text">
+        <div v-if="check == 2" class="confirm-text">
           <client-only>
             <Vue3Lottie :animation-data="success" :height="200" :width="200" />
           </client-only>
@@ -32,7 +32,7 @@
           <p>
             {{ $t('otp4') }}
           </p>
-
+<!-- 
           <div class="order-number">
             <h5>{{ $t('orderNum') }} : <span> dsdsd </span></h5>
             <button @click="copyToClipboard();" class="iconn">
@@ -43,7 +43,7 @@
                   d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
               </svg>
             </button>
-          </div>
+          </div> -->
 
           <nuxt-link :to="localePath('/')" class="nav-link">
             <button class="send home">{{ $t('backHome') }}</button>
@@ -56,8 +56,16 @@
 import otpp from "~/assets/animations/otp.json";
 import success from "~/assets/animations/success.json";
 import { Vue3Lottie } from "vue3-lottie";
-let otp = ref("");
-let props = defineProps(["changeStat2"]);
+const localePath = useLocalePath();
+let props = defineProps(["changeStat2" , "otp" , "sendOtp" , "reSendOtp"]);
+let otp1 = computed(()=> props.otp);
+let check = computed(()=> props.changeStat2);
+watch([() => props.otp , ()=> props.changeStat2], ([newVal , val2]) => {
+    otp1.value = newVal;
+    check.value = val2;
+  }
+);
+
 </script>
 <style lang="scss">
     .confirm-container {

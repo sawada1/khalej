@@ -1,6 +1,6 @@
 <template>
-  <div v-if="changeStat == 1" class="container" style="min-height: 100vh">
-    <div class="container order-finance-container">
+  <div  class="container" style="min-height: 75vh">
+    <div v-if="store.checkOtp == 1" class="container order-finance-container">
       <div class="header">
         <h1> {{ $t('reqOrd') }} </h1>
         <nuxt-link :to="localePath('/')">
@@ -46,18 +46,21 @@
         <indCash :cars="cars" />
        </div>
     </div>
-    <otpContainer v-if="changeStat == 2" :changeStat2="changeStat2"/>
+    <otpContainer v-if="store.checkOtp == 2" :changeStat2="changeStat2Val" :reSendOtp="store.reSendOtp" :sendOtp="store.sendOtp" :otp="otpValue" style="margin-top: 80px;"/>
   </div>
 </template>
 
 <script setup>
 import { useHomeStore } from "@/stores/home";
+import { useindividualsStore } from "@/stores/individuals";
 let activeBtn = ref(1);
 const { locale } = useI18n();
 const localePath = useLocalePath();
 let store2 = useHomeStore();
-let changeStat = ref(1);
-let changeStat2 = ref(1);
+let store = useindividualsStore();
+const otpValue = computed(() => store.otp1);
+const changeStat2Val = computed(() => store.changeStat2);
+const checkOtpVal = computed(() => store.checkOtp);
 store2.getCars();
 store2.getBanks();
 store2.getCities();
