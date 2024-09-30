@@ -4,7 +4,7 @@
       <!-- <div class="overlay"></div> -->
       <!-- <NuxtImg src="/images/hero.png" width="10" height="10" /> -->
       <!-- <NuxtImg src="/images/hero.png" format="webp" quality="80" alt="hero" style="object-fit: cover" class="w-100 h-100" /> -->
-      <slider/>
+      <!-- <slider/> -->
     </div>
     
     <div class="container search-home-p">
