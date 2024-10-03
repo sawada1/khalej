@@ -83,7 +83,6 @@
             <input
               type="number"
               v-model="price"
-              readonly
               v-bind="priceAttrs"
               :placeholder="$t('price')"
             />

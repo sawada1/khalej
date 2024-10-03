@@ -6,7 +6,7 @@ import "mosha-vue-toastify/dist/style.css";
 export const useCarStore = defineStore("car", () => {
   const { $axios } = useNuxtApp();
   const errors = ref({});
-const { locale } = useI18n();
+const { locale , t } = useI18n();
   const car = ref();
   const prices = ref();
   const filteredCar = ref([]);
@@ -20,8 +20,8 @@ const { locale } = useI18n();
   let page = ref(1);
 let per_page = ref();
 let itemsPerPage = ref();
-  let value1 = ref(locale.value == 'ar' ? " تم الاضافة الي قائمة المفضلات " : " Added to Favorites list ");
-  let value2 = ref(locale.value == 'ar' ? " تم الحذف من قائمة المفضلات " : " Removed from Favorites list ");
+  // let value1 = ref(locale.value == 'ar' ? " تم الاضافة الي قائمة المفضلات " : " Added to Favorites list ");
+  // let value2 = ref(locale.value == 'ar' ? " تم الحذف من قائمة المفضلات " : " Removed from Favorites list ");
   async function getCar(id) {
     const result = await $axios.get(`car/${id}`);
     if (result.status >= 200) {
@@ -63,7 +63,7 @@ let itemsPerPage = ref();
     if (result.status >= 200) {
       const moshaToastify = await import("mosha-vue-toastify");
       const { createToast } = moshaToastify;
-      createToast(favBtn ? value1.value : value2.value,
+      createToast(favBtn ? t("wishlist1") : t("wishlist2"),
         {
           toastBackgroundColor: "#2D9596",
           position: "top-right",

@@ -85,7 +85,7 @@
               type="number"
               v-model="price"
               v-bind="priceAttrs"
-              readonly
+            
               :placeholder="$t('price')"
             />
             <!-- <div class="label-container">

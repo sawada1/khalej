@@ -55,7 +55,9 @@ watch(
   [() => locale.value],
   ([val]) => {
     store.questions = [];
+    store.page = 1;
     store3.careers = [];
+    store3.page = 1;
     useHead({
       htmlAttrs: {
         lang: val == 'en' ? "en" : "ar",

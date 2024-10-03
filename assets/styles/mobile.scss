@@ -23,6 +23,11 @@
 }
 // max width 1000px
 @media (max-width: 1000px) {
+  .product-page {
+    .details-container {
+      margin-top: 70px;
+    }
+  }
   .payment-order-section {
     .main-one {
       gap: 40px;

@@ -1,6 +1,5 @@
 <template>
     <div>
-        {{ check }}
       <div  class="confirm-container">
         <div v-if="check == 1" class="confirm-text">
           <client-only>
@@ -12,7 +11,6 @@
           <p>
             {{ $t('otp2') }}
           </p>
-            {{ otp1 }}
           <v-otp-input v-model="otp1" style="direction: ltr !important;" :length="4"
             placeholder="-"></v-otp-input>
           <!-- {{ otp }}
@@ -29,9 +27,7 @@
             <Vue3Lottie :animation-data="success" :height="200" :width="200" />
           </client-only>
           <h4>{{ $t('otp3') }}</h4>
-          <p>
-            {{ $t('otp4') }}
-          </p>
+        
 <!-- 
           <div class="order-number">
             <h5>{{ $t('orderNum') }} : <span> dsdsd </span></h5>
