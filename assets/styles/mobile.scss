@@ -1,6 +1,16 @@
 @import "./variables.scss";
 
 // max width 1200px
+@media (max-width: 1400px) {
+ .why-choose-section{
+   .box{
+    h5{
+      font-size: 20px;
+    }
+   }
+ }
+}
+// max width 1200px
 @media (max-width: 1200px) {
   // start how-work-section
   .how-work-section {
@@ -164,6 +174,7 @@
 }
 // max width 775px
 @media (max-width: 775px) {
+  $mainSpace: 80px !important;
     iframe{
         width: 100% !important;
         height: 300px !important;
@@ -346,6 +357,12 @@
   .search-home .searchBtn {
     width: 140px;
     height: 48px;
+  }
+  .cars-section-home{
+    padding: 25px 0px;
+    .more-btn{
+      margin-top: 10px;
+    }
   }
 }
 // max width 690px

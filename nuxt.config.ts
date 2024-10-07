@@ -53,8 +53,9 @@ export default defineNuxtConfig({
     defaultLocale: "ar",
   },
   ssr: true, // Enable Server-Side Rendering
-  target: 'server', // Use 'server' for SSR deployment
+  // target: 'server', // Use 'server' for SSR deployment
   nitro: {
+    preset: 'static',
     prerender: {
       crawlLinks: true,
       failOnError: false,

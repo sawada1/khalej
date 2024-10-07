@@ -315,7 +315,6 @@
         flex-direction: column;
         height: 45px;
         justify-content: center;
-        left: 5px;
         padding: 0 38px;
         position: absolute;
         width: 100px;
@@ -369,6 +368,21 @@
       font-style: normal;
       font-weight: 400;
       color: $sec;
+    }
+  }
+}
+
+html[dir="rtl"]{
+  .search-input{
+    button{
+      left: 5px;
+    }
+  }
+}
+html[dir="ltr"]{
+  .search-input{
+    button{
+      right: 5px;
     }
   }
 }

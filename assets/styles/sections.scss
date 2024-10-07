@@ -63,6 +63,7 @@
 .explore-brands-section {
   margin-top: $mainSpace;
   position: relative;
+  @include responsive-main-space();
 
   h1 {
     font-size: 40px;
@@ -95,6 +96,7 @@
   margin-top: $mainSpace;
   margin-bottom: 50px;
   position: relative;
+  @include responsive-main-space();
 
   .text {
     h2 {
@@ -188,6 +190,7 @@
   margin-top: $mainSpace;
   background: #f4f5f6;
   padding: 56px 0px;
+  @include responsive-main-space();
 
   .text {
     display: flex;
@@ -236,6 +239,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  @include responsive-main-space();
 
   .custom-row {
     width: 855px;
@@ -332,9 +336,8 @@ html[dir="ltr"] .payment-order-section{
 // start how-work-section
 
 .how-work-section {
-  margin-top: $mainSpace;
-  margin-bottom: $footerSpace;
-
+  @include responsive-main-space();
+  @include responsive-main-space2();
   .text-container {
     span {
       font-size: 20px;
@@ -817,7 +820,7 @@ html[dir="ltr"] .payment-order-section{
 // start news page
 
 .news-page {
-  margin-bottom: $footerSpace;
+  @include responsive-main-space2();
 
   .news-boxes {
     .box {
@@ -870,8 +873,7 @@ html[dir="ltr"] .payment-order-section{
 
 .single-new-container {
   min-height: 100vh;
-  padding-bottom: $footerSpace;
-
+  @include responsive-main-space2Padding();
   .single-new {
     margin-top: 60px;
     padding: 32px;
@@ -1031,8 +1033,7 @@ html[dir="ltr"] .payment-order-section{
 // start offers page
 
 .offers-page {
-  margin-bottom: $footerSpace;
-
+  @include responsive-main-space2();
   .box {
     border-radius: 16px;
     border: 1px solid #dfe3ea;
@@ -1169,7 +1170,7 @@ html[dir="ltr"] .payment-order-section{
 // start wishlist-page
 
 .wishlist-page {
-  padding-bottom: $footerSpace;
+  @include responsive-main-space2Padding();
   background: #f4f5f6;
 
   .text-page {
@@ -1387,12 +1388,12 @@ html[dir="ltr"] .payment-order-section{
   }
 
   .common {
-    margin-top: $mainSpace;
-    margin-bottom: $footerSpace;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    @include responsive-main-space();
+    @include responsive-main-space2();
 
     h2 {
       font-size: 32px;
@@ -1611,8 +1612,7 @@ html[dir="ltr"] .contact-page{
 // start jobs page
 
 .jobs-container {
-  margin-bottom: $footerSpace;
-
+  @include responsive-main-space2();
   .all-jobs {
     display: flex;
     flex-direction: column;
@@ -1774,7 +1774,7 @@ html[dir="ltr"] .contact-page{
   .allcars {
     background: #f4f5f6;
     padding-top: 50px;
-    padding-bottom: $footerSpace;
+    @include responsive-main-space2Padding();
     .progress-container {
       display: flex;
       align-items: center;
@@ -1795,7 +1795,7 @@ html[dir="ltr"] .contact-page{
   background-color: #fff;
   border-radius: 24px;
   padding: 56px;
-  margin-bottom: $footerSpace;
+  @include responsive-main-space2();
   .header {
     display: flex;
     align-items: center;

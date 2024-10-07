@@ -6,7 +6,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     const locale = i18n.locale.value;
   // Create an Axios instance with default configuration
   const axiosInstance = axios.create({
-    baseURL: 'https://admin.alkhalej.webstdy.com/api', // Your base URL
+    baseURL: 'https://new.khalejauto.sa/api', // Your base URL
     // headers: {
     //     'Content-Language': locale.value == 'en' ? 'en' : 'ar', // Default content language
     //     // 'Content-Type': 'application/json', // Default content type

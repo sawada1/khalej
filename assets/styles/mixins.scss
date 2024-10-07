@@ -1,3 +1,4 @@
+@import "./variables.scss";
 
 @mixin text-line($line){
     display: -webkit-box;
@@ -15,3 +16,26 @@
     -webkit-line-clamp: unset; /* unset line clamping */
     -webkit-box-orient: unset !important; /* unset the vertical box orientation */
 }
+
+@mixin responsive-main-space() {
+    margin-top: $mainSpace;
+
+    @media (max-width: 765px) {
+      margin-top: $mobileSpace;
+    }
+  }
+
+@mixin responsive-main-space2() {
+    margin-bottom: $footerSpace;
+
+    @media (max-width: 765px) {
+      margin-bottom: $footerSpaceMobile;
+    }
+  }
+@mixin responsive-main-space2Padding() {
+    padding-bottom: $footerSpace;
+
+    @media (max-width: 765px) {
+      padding-bottom: $footerSpaceMobile;
+    }
+  }

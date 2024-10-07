@@ -239,7 +239,9 @@
               <nuxt-link :to="localePath('/contact')" class="link">
                 {{ $t("contact") }}
               </nuxt-link>
-              <span class="link"> {{ $t("policy") }} </span>
+              <nuxt-link :to="localePath('/terms')" class="link">
+                {{ $t("policy") }}
+              </nuxt-link>
               <span @click="openPopup = !openPopup" class="link">
                 {{ $t("reqOrd") }}</span
               >
@@ -272,7 +274,7 @@
             <div class="links">
               <span
                 class="link"
-                v-for="item in store.branches"
+                v-for="item in store.branches.slice(0 , 4)"
                 :key="item"
                 @click="(openPopup2 = true), (frameDiv = item.frame)"
               >
@@ -282,7 +284,7 @@
           </div>
         </div>
       <div class="subscripe-container">
-        <h3> انضم إلى القائمة البريدية  </h3>
+        <h3> {{ $t('subscripe') }} </h3>
         <svg
               xmlns="http://www.w3.org/2000/svg"
               width="50"
@@ -305,13 +307,13 @@
                 fill="#2D9596"
               />
             </svg>
-        <p> لا يفوتك كل جديد من كودكار بالإنضمام إلى قائمة الرسائل. </p>
+        <p> {{ $t('subscripe') }} </p>
         <div class="search-input">
         <div class="inputt">
-        <input type="email" value="" placeholder="ادخل البريد الالكتروني"></div>
-        <button class="">
+        <input type="email" v-model="subscripe" :placeholder="$t('enterEmail')"></div>
+        <button @click="subFunc()" class="">
         <div class="d-flex align-items-center gap-2">
-        <span>الانضمام</span>
+        <span> {{ $t('join') }} </span>
         </div>
         </button>
         </div>
@@ -366,6 +368,23 @@ store.getBranches();
 store.getSocial();
 let openPopup = ref(false);
 let openPopup2 = ref(false);
+let subscripe = ref('');
+function isValidEmail() {
+  if(subscripe.value != ''){
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(subscripe.value);
+  }
+}
+const subFunc = () =>{
+   if(isValidEmail()){
+    store.subscriber(subscripe.value);
+   }
+}
+watch(()=> store.pendingSub , (val)=> {
+  if(val){
+    subscripe.value = '';
+  }
+})
 const imgURL = "https://webstdy.com/CDN/cr_blue.png";
 const handleUpdatePopup = (newState) => {
   openPopup.value = newState;

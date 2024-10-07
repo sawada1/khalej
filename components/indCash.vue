@@ -185,9 +185,18 @@ import { useForm } from "vee-validate";
 import * as yup from "yup";
 let years = ref([1, 2, 3, 4, 5, 6]);
 let errorsApi = ref();
-const props = defineProps(["cars"]);
+const props = defineProps({
+  cars: {
+    type: Array,
+    required: true,
+  },
+  id: {
+    type: Number,
+    required: false,
+  },
+});
 const { locale } = useI18n();
-const { errors, handleSubmit, values, resetForm, defineField } = useForm({
+const { errors, handleSubmit, values, resetForm, defineField , setFieldValue } = useForm({
   validationSchema: yup.object({
     phone: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
     name: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
@@ -195,6 +204,7 @@ const { errors, handleSubmit, values, resetForm, defineField } = useForm({
     car_id: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
   }),
 });
+
 let pending = ref(store.isLoading2);
 const [car_id, car_idAttrs] = defineField("car_id");
 const [name, nameAttrs] = defineField("name");
@@ -205,6 +215,13 @@ const onSubmit = handleSubmit(() => {
   store.getContact2(values, resetForm);
 });
 
+watchEffect(() => {
+  if (props.id) {
+    setFieldValue("car_id", Number(props.id));
+    const newPrice = props.cars.find((car) => car.id === Number(props.id));
+    setFieldValue("price", newPrice?.selling_price);
+  }
+});
 watch(
   [() => store.isLoading2, () => store.errors2],
   ([val1, val2]) => {

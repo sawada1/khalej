@@ -3,7 +3,7 @@
     <div v-if="openPopup" class="popup-container">
       <div @click="togglePopup" class="overlay"></div>
       <div class="modal-custom-container">
-      <nuxt-link :to="localePath('/order-individuals')" @click="togglePopup">
+      <nuxt-link :to="goPage()" @click="togglePopup">
         <div class="item">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -93,9 +93,17 @@
 </template>
 
 <script setup>
-let props = defineProps(["openPopup"]);
+let props = defineProps(["openPopup" , "id" , "nameCar"]);
 const emit = defineEmits(["update"]);
 const localePath = useLocalePath();
+
+const goPage = () =>{
+  if(props.id){
+    return localePath({ path: '/order-individuals', query:{id: props.id , name: props.nameCar} });
+  } else{
+    return localePath('/order-individuals');
+  }
+}
 
 const togglePopup = () => {
   emit("update", !props.openPopup);

@@ -1,10 +1,10 @@
 import { ref, onMounted, watch } from "vue";
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#app";
-
+import "mosha-vue-toastify/dist/style.css";
 export const useHomeStore = defineStore("home", () => {
   const { $axios } = useNuxtApp();
-
+  const { locale , t } = useI18n();
   const errors = ref({});
   const errorsEdit = ref();
   const brands = ref([]);
@@ -21,13 +21,16 @@ export const useHomeStore = defineStore("home", () => {
   const social = ref();
   const total = ref();
   const pendingShow = ref(false);
+  const pendingSub = ref(false);
   const showBrand = ref();
   const websiteData = ref();
   const checkBrand = ref();
   const loading = ref(false);
+  const loading2 = ref(false);
   const loadingEdit = ref(false);
   const errorSubmit = ref();
   const aboutUs = ref();
+  const terms = ref();
   const ipAddress = ref();
   const pendingAbout = ref(false);
 
@@ -105,7 +108,7 @@ export const useHomeStore = defineStore("home", () => {
     const result = await $axios.get("aboutUs");
     if (result.status >= 200) {
       pendingAbout.value = false;
-      aboutUs.value = result.data.data[0];
+      aboutUs.value = result.data.data;
       //   setTimeout(() => {
       //     pendingAbout.value = true;
       // }, 500);
@@ -121,6 +124,14 @@ export const useHomeStore = defineStore("home", () => {
     const result = await $axios.get("banks");
     if (result.status >= 200) {
       banks.value = result.data.data;
+    }
+  }
+  async function getTerms() {
+    loading2.value = true;
+    const result = await $axios.get("terms");
+    if (result.status >= 200) {
+      terms.value = result.data.data;
+      loading2.value = false;
     }
   }
   async function getCities() {
@@ -148,6 +159,26 @@ export const useHomeStore = defineStore("home", () => {
         ipAddress.value = data.ip;
       })
       .catch((error) => console.error("Error fetching IP address:", error));
+  }
+  async function subscriber(email) {
+    const result = await $axios.post("subscriber/store" , {
+    email:email
+    });
+    if (result.status >= 200) {
+      pendingSub.value = true;
+      const moshaToastify = await import("mosha-vue-toastify");
+      const { createToast } = moshaToastify;
+      createToast(t('sub1'),
+        {
+          toastBackgroundColor: "#2D9596",
+          position: "top-right",
+          type: "success",
+          transition: "bounce",
+          showIcon: "true",
+          timeout: 3000,
+        }
+      );
+    }
   }
 
   // Fetch models with caching logic
@@ -179,7 +210,9 @@ export const useHomeStore = defineStore("home", () => {
     models,
     brand,
     pendingShow,
+    pendingSub,
     loading,
+    subscriber,
     showBrand,
     checkBrand,
     getIpAddress,
@@ -189,7 +222,10 @@ export const useHomeStore = defineStore("home", () => {
     getCarsByBrand,
     branches,
     SearchModels,
+    getTerms,
+    terms,
     SearchCars,
+    loading2,
     getAbout,
     aboutUs,
     pendingAbout,

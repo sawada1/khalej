@@ -43,8 +43,7 @@
             <Dropdown
               :filter-placeholder="$t('search')"
               v-model="car_id"
-              v-bind="car_idAttrs"
-              :options="cars"
+              :options="filteredCars"
               filter
               optionLabel="name"
               optionValue="id"
@@ -59,7 +58,6 @@
                 </div>
               </template>
             </Dropdown>
-           
           </div>
           <div class="text-danger">{{ errors.car_id }}</div>
           <div class="text-danger" v-if="errorsApi">
@@ -326,7 +324,7 @@
               </defs>
             </svg>
             <div class="label-container">
-              <label for=""> {{ $t('firstpatch1') }} </label>
+              <label for=""> {{ $t("firstpatch1") }} </label>
               <input
                 type="number"
                 v-model="first_payment_value"
@@ -379,7 +377,7 @@
               />
             </svg>
             <div class="label-container">
-              <label for=""> {{ $t('lastPatch1') }} </label>
+              <label for=""> {{ $t("lastPatch1") }} </label>
               <input
                 type="number"
                 v-model="last_payment_value"
@@ -535,15 +533,23 @@
           <div>
             <div class="radio-container flex-column flex-xl-row flex-lg-row">
               <div class="d-flex radio-btn flex-column gap-2">
-                <h6> {{ $t('stumbles') }} </h6>
+                <h6>{{ $t("stumbles") }}</h6>
                 <v-radio-group v-model="stumbles" v-bind="stumblesAttrs">
-                  <v-radio :label="$t('no')" color="#2D9596" value="0"></v-radio>
-                  <v-radio :label="$t('yes')" color="#2D9596" value="1"></v-radio>
+                  <v-radio
+                    :label="$t('no')"
+                    color="#2D9596"
+                    value="0"
+                  ></v-radio>
+                  <v-radio
+                    :label="$t('yes')"
+                    color="#2D9596"
+                    value="1"
+                  ></v-radio>
                 </v-radio-group>
               </div>
 
               <div class="d-flex radio-btn flex-column gap-2">
-                <h6> {{ $t('drivingLicense') }} </h6>
+                <h6>{{ $t("drivingLicense") }}</h6>
                 <v-radio-group
                   v-model="driving_license"
                   v-bind="driving_licenseAttrs"
@@ -553,7 +559,11 @@
                     color="#2D9596"
                     value="available"
                   ></v-radio>
-                  <v-radio :label="$t('exp')" color="#2D9596" value="expired"></v-radio>
+                  <v-radio
+                    :label="$t('exp')"
+                    color="#2D9596"
+                    value="expired"
+                  ></v-radio>
                   <v-radio
                     :label="$t('exist')"
                     color="#2D9596"
@@ -598,52 +608,116 @@ let store = useindividualsStore();
 // import "mosha-vue-toastify/dist/style.css";
 import { useForm } from "vee-validate";
 import * as yup from "yup";
-let formFinance = ref({
-  year: "",
-});
 let years = ref([1, 2, 3, 4, 5, 6]);
 const { locale } = useI18n();
 let errorsApi = ref();
-const props = defineProps(["cars"]);
+const props = defineProps({
+  cars: {
+    type: Array,
+    required: true,
+  },
+  id: {
+    type: Number,
+    required: false,
+  },
+});
+let pending = ref(store.isLoading);
+
+const filteredCars = computed(() => {
+  return props.cars;
+});
 
 let sectors = ref([
   {
-    name: locale.value == 'ar' ? 'خاص' : 'Private',
-    value: 'Private',
+    name: locale.value == "ar" ? "خاص" : "Private",
+    value: "Private",
   },
   {
-    name: locale.value == 'ar' ? 'حكومي مدني' : 'Civil Government',
-    value: 'Civil Government',
+    name: locale.value == "ar" ? "حكومي مدني" : "Civil Government",
+    value: "Civil Government",
   },
   {
-    name: locale.value == 'ar' ? 'حكومي عسكري' : 'Military Government',
-    value: 'Military Government',
+    name: locale.value == "ar" ? "حكومي عسكري" : "Military Government",
+    value: "Military Government",
   },
   {
-    name: locale.value == 'ar' ? 'متقاعد' : 'Retired',
-    value: 'Retired',
+    name: locale.value == "ar" ? "متقاعد" : "Retired",
+    value: "Retired",
   },
- ]);
+]);
 
-const { errors, handleSubmit, values, resetForm, defineField } = useForm({
-  validationSchema: yup.object({
-    // email: yup.string().email().required(),
-    phone: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
-    name: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
-    salary: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
-    commitments: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
-    first_payment_value: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
-    last_payment_value: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
-    price: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
-    bank_id: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
-    work: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
-    city_id: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
-    driving_license: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
-    stumbles: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
-    car_id: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
-  }),
-});
-let pending = ref(store.isLoading);
+const { errors, handleSubmit, values, resetForm, defineField, setFieldValue } =
+  useForm({
+    validationSchema: yup.object({
+      // email: yup.string().email().required(),
+      phone: yup
+        .string()
+        .required(
+          locale.value == "ar" ? "هذا الحقل مطلوب" : "this field is required"
+        ),
+      name: yup
+        .string()
+        .required(
+          locale.value == "ar" ? "هذا الحقل مطلوب" : "this field is required"
+        ),
+      salary: yup
+        .string()
+        .required(
+          locale.value == "ar" ? "هذا الحقل مطلوب" : "this field is required"
+        ),
+      commitments: yup
+        .string()
+        .required(
+          locale.value == "ar" ? "هذا الحقل مطلوب" : "this field is required"
+        ),
+      first_payment_value: yup
+        .string()
+        .required(
+          locale.value == "ar" ? "هذا الحقل مطلوب" : "this field is required"
+        ),
+      last_payment_value: yup
+        .string()
+        .required(
+          locale.value == "ar" ? "هذا الحقل مطلوب" : "this field is required"
+        ),
+      price: yup
+        .string()
+        .required(
+          locale.value == "ar" ? "هذا الحقل مطلوب" : "this field is required"
+        ),
+      bank_id: yup
+        .string()
+        .required(
+          locale.value == "ar" ? "هذا الحقل مطلوب" : "this field is required"
+        ),
+      work: yup
+        .string()
+        .required(
+          locale.value == "ar" ? "هذا الحقل مطلوب" : "this field is required"
+        ),
+      city_id: yup
+        .string()
+        .required(
+          locale.value == "ar" ? "هذا الحقل مطلوب" : "this field is required"
+        ),
+      driving_license: yup
+        .string()
+        .required(
+          locale.value == "ar" ? "هذا الحقل مطلوب" : "this field is required"
+        ),
+      stumbles: yup
+        .string()
+        .required(
+          locale.value == "ar" ? "هذا الحقل مطلوب" : "this field is required"
+        ),
+      car_id: yup
+        .string()
+        .default(props.id ? props.id : "")
+        .required(
+          locale.value == "ar" ? "هذا الحقل مطلوب" : "this field is required"
+        ),
+    }),
+  });
 // const [email, emailAttrs] = defineField("email");
 const [car_id, car_idAttrs] = defineField("car_id");
 const [salary, salaryAttrs] = defineField("salary");
@@ -666,11 +740,15 @@ const onSubmit = handleSubmit(() => {
   store.getContact(values, resetForm);
 });
 
-watch(
-  [() => store.isLoading, () => store.errors],
-  ([val1, val2]) => {
-    pending.value = val1;
-    errorsApi.value = val2;
+watchEffect(() => {
+  if (props.id) {
+    setFieldValue("car_id", Number(props.id));
+    const newPrice = props.cars.find((car) => car.id === Number(props.id));
+    setFieldValue("price", newPrice?.selling_price);
   }
-);
+});
+watch([() => store.isLoading, () => store.errors], ([val1, val2]) => {
+  pending.value = val1;
+  errorsApi.value = val2;
+});
 </script>

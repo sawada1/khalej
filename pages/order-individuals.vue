@@ -40,10 +40,10 @@
         </button>
       </div>
        <div v-if="activeBtn == 1">
-        <indFinance :cars="cars" />
+        <indFinance :cars="cars" :id="id" />
        </div>
        <div v-if="activeBtn == 2">
-        <indCash :cars="cars" />
+        <indCash :cars="cars" :id="id" />
        </div>
     </div>
     <otpContainer v-if="store.checkOtp == 2" :changeStat2="changeStat2Val" :reSendOtp="store.reSendOtp" :sendOtp="store.sendOtp" :otp="otpValue" style="margin-top: 80px;"/>
@@ -53,6 +53,9 @@
 <script setup>
 import { useHomeStore } from "@/stores/home";
 import { useindividualsStore } from "@/stores/individuals";
+const route = useRoute();
+let id = ref(route.query.id);
+let nameCar = ref(route.query.name);
 let activeBtn = ref(1);
 const { locale } = useI18n();
 const localePath = useLocalePath();

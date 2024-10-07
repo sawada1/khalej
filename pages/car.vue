@@ -238,7 +238,7 @@
         </div>
       </div>
     </div>
-    <popup-one :openPopup="openPopup" @update="handleUpdatePopup"></popup-one>
+    <popup-one :openPopup="openPopup" :id="id" :nameCar="mainCar?.name" @update="handleUpdatePopup"></popup-one>
 
     <loading v-if="isLoading" />
   </div>
