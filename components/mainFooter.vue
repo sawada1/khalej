@@ -317,6 +317,7 @@
         </div>
         </button>
         </div>
+        <span v-if="store.errorSub" class="text-danger"> {{ store.errorSub?.email[0] }} </span>
       </div>
       </div>
       <div class="foot-line">
@@ -375,6 +376,7 @@ function isValidEmail() {
     return emailRegex.test(subscripe.value);
   }
 }
+let error = ref();
 const subFunc = () =>{
    if(isValidEmail()){
     store.subscriber(subscripe.value);

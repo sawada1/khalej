@@ -48,7 +48,7 @@ import axios from "axios";
       // eval("var $ = jQuery.noConflict();");
       // getHead();
       try {
-        const additionalContent = await axios.get('https://slider.webstdy.com/RevSliderEmbedderputRevSlider.php?slide=alkathiri_ar');
+        const additionalContent = await axios.get('https://slider.webstdy.com/RevSliderEmbedderputRevSlider.php?slide=Khaleg_AR');
         // Extract script tags
         if (additionalContent.status == 200) {
           const scriptTagRegex = /<script\b[^>]*>([\s\S]*?)<\/script>/gm;

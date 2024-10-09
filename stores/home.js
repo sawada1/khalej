@@ -31,6 +31,7 @@ export const useHomeStore = defineStore("home", () => {
   const errorSubmit = ref();
   const aboutUs = ref();
   const terms = ref();
+  const errorSub = ref();
   const ipAddress = ref();
   const pendingAbout = ref(false);
 
@@ -161,23 +162,31 @@ export const useHomeStore = defineStore("home", () => {
       .catch((error) => console.error("Error fetching IP address:", error));
   }
   async function subscriber(email) {
-    const result = await $axios.post("subscriber/store" , {
-    email:email
-    });
-    if (result.status >= 200) {
-      pendingSub.value = true;
-      const moshaToastify = await import("mosha-vue-toastify");
-      const { createToast } = moshaToastify;
-      createToast(t('sub1'),
-        {
-          toastBackgroundColor: "#2D9596",
-          position: "top-right",
-          type: "success",
-          transition: "bounce",
-          showIcon: "true",
-          timeout: 3000,
-        }
-      );
+    try{
+      const result = await $axios.post("subscriber/store" , {
+      email:email
+      });
+      if (result.status >= 200) {
+        pendingSub.value = true;
+        const moshaToastify = await import("mosha-vue-toastify");
+        const { createToast } = moshaToastify;
+        errorSub.value = undefined;
+        createToast(t('sub1'),
+          {
+            toastBackgroundColor: "#2D9596",
+            position: "top-right",
+            type: "success",
+            transition: "bounce",
+            showIcon: "true",
+            timeout: 3000,
+          }
+        );
+    }
+    }catch(error){
+      if(error.response){
+        errorSub.value = error.response.data.errors;
+        pendingSub.value = false;
+      }
     }
   }
 
@@ -223,6 +232,7 @@ export const useHomeStore = defineStore("home", () => {
     branches,
     SearchModels,
     getTerms,
+    errorSub,
     terms,
     SearchCars,
     loading2,
