@@ -11,6 +11,8 @@ export const useHomeStore = defineStore("home", () => {
   const cars = ref([]);
   const SearchCars = ref([]);
   const SearchModels = ref([]);
+  const SearchCars2 = ref([]);
+  const SearchModels2 = ref([]);
   const carsHome = ref([]);
   const models = ref([]);
   const banks = ref([]);
@@ -96,6 +98,17 @@ export const useHomeStore = defineStore("home", () => {
     if (result.status >= 200) {
       SearchCars.value = result.data.cars;
       SearchModels.value = result.data.models;
+    }
+  }
+  async function getCarsByBrand3(obj) {
+    const result = await $axios.get("BrandModel", {
+      params: {
+        brand_id: typeof obj == "object" ? [...obj] : [obj],
+      },
+    });
+    if (result.status >= 200) {
+      SearchCars2.value = result.data.cars;
+      SearchModels2.value = result.data.models;
     }
   }
   async function getBranches() {
@@ -231,10 +244,13 @@ export const useHomeStore = defineStore("home", () => {
     getCarsByBrand,
     branches,
     SearchModels,
+    SearchModels2,
     getTerms,
     errorSub,
     terms,
+    getCarsByBrand3,
     SearchCars,
+    SearchCars2,
     loading2,
     getAbout,
     aboutUs,

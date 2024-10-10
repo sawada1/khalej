@@ -32,10 +32,7 @@
                 v-if="dropdown1.items"
                 class="dropdown-item"
                 v-for="item in dropdown1.items"
-                @click.prevent="
-                  dropdown1.select2(item),
-                    store.getCarsByBrand(item.id),
-                    (selectedBrand = item.id)
+                @click.prevent="dropdown1.select2(item),store.getCarsByBrand3(item.id),(selectedBrand = item.id)
                 "
                 :key="item.id"
                 :for="`checkBox-${item.id}`"
@@ -418,7 +415,7 @@ const modelss = computed(() => {
 });
 
 watch(
-  [() => store.cars, () => store.brands, () => store.models],
+  [() => store.SearchCars2, () => store.brands, () => store.SearchModels2],
   ([val1, val2, val3]) => {
     // obj.value.val1 = val1.id;
     // obj.value.val2 = val2.id;
